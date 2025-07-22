@@ -377,6 +377,9 @@ async function submitToFormspree(formData) {
         throw new Error('Formspree is not configured. Please update the form action URL with your Formspree form ID.');
     }
     
+    // Log successful configuration
+    console.log('Formspree configured with ID: xleqgkrw');
+    
     try {
         const response = await fetch(formspreeUrl, {
             method: 'POST',
