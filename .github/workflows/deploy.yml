@@ -22,17 +22,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Force specific Ruby version
       - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
+        uses: actions/setup-ruby@v1
         with:
-          ruby-version: "3.2.2"
-          bundler-cache: false
+          ruby-version: '3.2'
 
+      # Clear any existing Gemfile.lock to avoid conflicts
+      - name: Remove Gemfile.lock
+        run: rm -f Gemfile.lock
+        
+      # Install dependencies without using the lock file
       - name: Install dependencies
         run: |
-          gem install bundler -v '2.4.22'
-          bundle _2.4.22_ config set --local path 'vendor/bundle'
-          bundle _2.4.22_ install
+          gem install bundler
+          bundle config set --local path 'vendor/bundle'
+          bundle config set --local frozen false
+          bundle install
 
       - name: Setup Pages
         id: pages
