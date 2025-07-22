@@ -1,0 +1,23 @@
+<svg width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="grad-ecommerce" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#e74c3c;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#c0392b;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#grad-ecommerce)"/>
+    <rect x="50" y="50" width="700" height="400" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2" rx="8"/>
+    <text x="50%" y="45%" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="36" font-weight="bold">
+        E-Commerce Platform
+    </text>
+    <text x="50%" y="55%" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-family="Arial, sans-serif" font-size="18">
+        Full-Stack Shopping Solution
+    </text>
+    <rect x="150" y="180" width="120" height="80" fill="rgba(255,255,255,0.2)" rx="4"/>
+    <rect x="300" y="180" width="120" height="80" fill="rgba(255,255,255,0.15)" rx="4"/>
+    <rect x="450" y="180" width="120" height="80" fill="rgba(255,255,255,0.1)" rx="4"/>
+    <circle cx="100" cy="100" r="30" fill="rgba(255,255,255,0.2)"/>
+    <circle cx="700" cy="100" r="20" fill="rgba(255,255,255,0.15)"/>
+    <circle cx="100" cy="400" r="25" fill="rgba(255,255,255,0.1)"/>
+    <circle cx="700" cy="400" r="35" fill="rgba(255,255,255,0.08)"/>
+</svg>

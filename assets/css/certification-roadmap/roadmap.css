@@ -1,0 +1,337 @@
+/* Roadmap Visualization Styles */
+
+.roadmap-visualization {
+    width: 100%;
+    height: 100%;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.roadmap-visualization .links line {
+    stroke-opacity: 0.6;
+}
+
+.roadmap-visualization .nodes circle {
+    stroke: #fff;
+    stroke-width: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.roadmap-visualization .nodes circle:hover {
+    stroke-width: 3px;
+    filter: brightness(1.1);
+}
+
+.roadmap-visualization .texts text {
+    font-size: 10px;
+    font-weight: 500;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Roadmap Legend */
+.roadmap-legend {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.roadmap-legend h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.roadmap-legend ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.roadmap-legend li {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.legend-item {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    margin-right: 8px;
+}
+
+.legend-item.foundational {
+    background-color: #4CAF50;
+}
+
+.legend-item.associate {
+    background-color: #2196F3;
+}
+
+.legend-item.professional {
+    background-color: #9C27B0;
+}
+
+.legend-item.specialty {
+    background-color: #FF9800;
+}
+
+.legend-item.expert {
+    background-color: #F44336;
+}
+
+/* Roadmap Controls */
+.roadmap-controls {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.roadmap-control-button {
+    padding: 8px 15px;
+    background-color: #f1f3f5;
+    border: none;
+    border-radius: 4px;
+    color: #333;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.roadmap-control-button:hover {
+    background-color: #e9ecef;
+}
+
+.roadmap-control-button.primary {
+    background-color: #0066cc;
+    color: #fff;
+}
+
+.roadmap-control-button.primary:hover {
+    background-color: #0056b3;
+}
+
+/* Roadmap Export Dialog */
+.roadmap-export-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.roadmap-export-dialog-content {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.roadmap-export-dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.roadmap-export-dialog-header h3 {
+    margin: 0;
+    color: #333;
+}
+
+.roadmap-export-dialog-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #6c757d;
+}
+
+.roadmap-export-dialog-body {
+    margin-bottom: 20px;
+}
+
+.roadmap-export-dialog-body p {
+    margin-top: 0;
+    color: #555;
+}
+
+.roadmap-export-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.roadmap-export-option {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #e1e4e8;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.roadmap-export-option:hover {
+    background-color: #f8f9fa;
+}
+
+.roadmap-export-option input[type="radio"] {
+    margin-right: 10px;
+}
+
+.roadmap-export-dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.roadmap-export-dialog-button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.roadmap-export-dialog-button.cancel {
+    background-color: #f1f3f5;
+    color: #333;
+}
+
+.roadmap-export-dialog-button.cancel:hover {
+    background-color: #e9ecef;
+}
+
+.roadmap-export-dialog-button.export {
+    background-color: #0066cc;
+    color: #fff;
+}
+
+.roadmap-export-dialog-button.export:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .roadmap-legend ul {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .roadmap-controls {
+        flex-direction: column;
+    }
+    
+    .roadmap-control-button {
+        width: 100%;
+    }
+}/* Roa
+dmap Filters */
+.roadmap-filters {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-group label {
+    font-weight: 500;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.roadmap-filter {
+    padding: 8px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+/* Zoom Controls */
+.roadmap-zoom-controls {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 10;
+}
+
+.roadmap-zoom-button {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+}
+
+.roadmap-zoom-button:hover {
+    background-color: #f1f3f5;
+}
+
+/* Responsive styles for filters and zoom controls */
+@media (max-width: 768px) {
+    .roadmap-filters {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .filter-group {
+        width: 100%;
+    }
+    
+    .roadmap-filter {
+        width: 100%;
+    }
+    
+    .roadmap-zoom-controls {
+        bottom: 10px;
+        right: 10px;
+    }
+}

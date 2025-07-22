@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>404 - Page Not Found | Alex Johnson Portfolio</title>
+    <meta name="title" content="404 - Page Not Found | Alex Johnson Portfolio">
+    <meta name="description" content="The page you're looking for doesn't exist. Return to Alex Johnson's portfolio to explore web development projects and professional information.">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="404 - Page Not Found | Alex Johnson Portfolio">
+    <meta property="og:description" content="The page you're looking for doesn't exist. Return to Alex Johnson's portfolio to explore web development projects and professional information.">
+    <meta property="og:site_name" content="Alex Johnson Portfolio">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="404 - Page Not Found | Alex Johnson Portfolio">
+    <meta name="twitter:description" content="The page you're looking for doesn't exist. Return to Alex Johnson's portfolio to explore web development projects and professional information.">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+    <!-- Header Component -->
+    <header class="header" role="banner">
+        <nav class="nav" role="navigation" aria-label="Main navigation">
+            <div class="nav__brand">
+                <a href="index.html" class="nav__logo" aria-label="Portfolio home">Portfolio</a>
+            </div>
+            <button 
+                class="nav__toggle" 
+                aria-label="Toggle navigation menu"
+                aria-expanded="false"
+                aria-controls="nav-menu"
+            >
+                <span class="nav__hamburger"></span>
+            </button>
+            <ul class="nav__menu" id="nav-menu" role="menubar">
+                <li class="nav__item" role="none">
+                    <a href="index.html" class="nav__link" role="menuitem">Home</a>
+                </li>
+                <li class="nav__item" role="none">
+                    <a href="projects.html" class="nav__link" role="menuitem">Projects</a>
+                </li>
+                <li class="nav__item" role="none">
+                    <a href="contact.html" class="nav__link" role="menuitem">Contact</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main" id="main-content">
+        <section class="error-page">
+            <div class="container">
+                <div class="error-page__content">
+                    <div class="error-page__icon" aria-hidden="true">🔍</div>
+                    <h1 class="error-page__title">404</h1>
+                    <h2 class="error-page__subtitle">Page Not Found</h2>
+                    <p class="error-page__description">
+                        Sorry, the page you're looking for doesn't exist or has been moved.
+                        Let's get you back on track!
+                    </p>
+                    
+                    <!-- Search Suggestions -->
+                    <div class="error-page__suggestions">
+                        <h3 class="error-page__suggestions-title">Looking for something specific?</h3>
+                        <div class="error-page__search">
+                            <input 
+                                type="text" 
+                                id="error-search" 
+                                class="error-page__search-input" 
+                                placeholder="Search for projects, skills, or content..."
+                                aria-label="Search site content"
+                            >
+                            <button type="button" class="error-page__search-btn" id="search-btn" aria-label="Search">
+                                🔍
+                            </button>
+                        </div>
+                        <div class="error-page__search-results" id="search-results" style="display: none;"></div>
+                    </div>
+                    
+                    <!-- Popular Pages -->
+                    <div class="error-page__popular">
+                        <h3 class="error-page__popular-title">Popular Pages</h3>
+                        <div class="error-page__links">
+                            <a href="index.html" class="error-page__link">
+                                <span class="error-page__link-icon">🏠</span>
+                                <span class="error-page__link-text">Home</span>
+                                <span class="error-page__link-desc">Learn about my background and skills</span>
+                            </a>
+                            <a href="projects.html" class="error-page__link">
+                                <span class="error-page__link-icon">💼</span>
+                                <span class="error-page__link-text">Projects</span>
+                                <span class="error-page__link-desc">Browse my portfolio and case studies</span>
+                            </a>
+                            <a href="contact.html" class="error-page__link">
+                                <span class="error-page__link-icon">📧</span>
+                                <span class="error-page__link-text">Contact</span>
+                                <span class="error-page__link-desc">Get in touch for opportunities</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Main Actions -->
+                    <div class="error-page__actions">
+                        <a href="index.html" class="btn btn--primary">
+                            <span class="btn__text">Go Home</span>
+                            <span class="btn__icon" aria-hidden="true">🏠</span>
+                        </a>
+                        <button type="button" class="btn btn--secondary" id="go-back-btn">
+                            <span class="btn__text">Go Back</span>
+                            <span class="btn__icon" aria-hidden="true">←</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Help Text -->
+                    <div class="error-page__help">
+                        <p class="error-page__help-text">
+                            If you believe this is an error, please 
+                            <a href="contact.html" class="error-page__help-link">contact me</a> 
+                            and I'll look into it.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer__content">
+                <!-- Footer Main Content -->
+                <div class="footer__main">
+                    <!-- Brand Section -->
+                    <div class="footer__brand">
+                        <h3 class="footer__brand-title">Alex Johnson</h3>
+                        <p class="footer__brand-tagline">Full Stack Developer</p>
+                        <p class="footer__brand-description">
+                            Crafting digital experiences with modern web technologies and user-centered design.
+                        </p>
+                    </div>
+                    
+                    <!-- Quick Links -->
+                    <div class="footer__section">
+                        <h4 class="footer__section-title">Quick Links</h4>
+                        <nav class="footer__nav" aria-label="Footer navigation">
+                            <ul class="footer__nav-list">
+                                <li><a href="index.html" class="footer__nav-link">Home</a></li>
+                                <li><a href="projects.html" class="footer__nav-link">Projects</a></li>
+                                <li><a href="contact.html" class="footer__nav-link">Contact</a></li>
+                                <li><a href="index.html#skills" class="footer__nav-link">Skills</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    
+                    <!-- Connect Section -->
+                    <div class="footer__section">
+                        <h4 class="footer__section-title">Connect</h4>
+                        <div class="footer__social">
+                            <a href="https://linkedin.com/in/alexjohnson-dev" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+                                <span class="footer__social-icon">💼</span>
+                                <span class="footer__social-text">LinkedIn</span>
+                            </a>
+                            <a href="https://github.com/alexjohnson-dev" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+                                <span class="footer__social-icon">🔗</span>
+                                <span class="footer__social-text">GitHub</span>
+                            </a>
+                            <a href="mailto:alex.johnson@example.com" class="footer__social-link" aria-label="Email Contact">
+                                <span class="footer__social-icon">📧</span>
+                                <span class="footer__social-text">Email</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Newsletter Section -->
+                    <div class="footer__section">
+                        <h4 class="footer__section-title">Stay Updated</h4>
+                        <p class="footer__newsletter-description">
+                            Get notified about new projects and articles
+                        </p>
+                        <form class="footer__newsletter" id="newsletter-form">
+                            <div class="footer__newsletter-input-group">
+                                <input 
+                                    type="email" 
+                                    class="footer__newsletter-input" 
+                                    placeholder="Enter your email"
+                                    aria-label="Email address for newsletter"
+                                    required
+                                >
+                                <button type="submit" class="footer__newsletter-btn" aria-label="Subscribe to newsletter">
+                                    Subscribe
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Footer Bottom -->
+                <div class="footer__bottom">
+                    <div class="footer__bottom-left">
+                        <p class="footer__copyright">
+                            &copy; 2025 Alex Johnson. All rights reserved.
+                        </p>
+                        <p class="footer__updated">
+                            Last updated: <span id="last-updated">January 2025</span>
+                        </p>
+                    </div>
+                    
+                    <div class="footer__bottom-right">
+                        <div class="footer__links">
+                            <a href="#privacy" class="footer__link">Privacy Policy</a>
+                            <a href="#terms" class="footer__link">Terms of Use</a>
+                            <a href="#sitemap" class="footer__link">Sitemap</a>
+                        </div>
+                        
+                        <div class="footer__tech">
+                            <span class="footer__tech-text">Built with</span>
+                            <div class="footer__tech-stack">
+                                <span class="footer__tech-item" title="HTML5">HTML5</span>
+                                <span class="footer__tech-item" title="CSS3">CSS3</span>
+                                <span class="footer__tech-item" title="JavaScript">JavaScript</span>
+                                <span class="footer__tech-item" title="GitHub Pages">GitHub Pages</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Back to Top Button -->
+        <button class="footer__back-to-top" id="back-to-top" aria-label="Back to top">
+            <span class="footer__back-to-top-icon">↑</span>
+        </button>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/error-handling.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/images.js"></script>
+    <script src="assets/js/404.js"></script>
+</body>
+</html>

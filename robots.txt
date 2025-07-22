@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://dineshrajdhanapathy.dev/sitemap.xml
+
+# Disallow common non-content directories
+Disallow: /assets/
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /.vscode/
+Disallow: /node_modules/
+
+# Allow specific asset types that should be crawled
+Allow: /assets/images/
+Allow: /assets/css/
+Allow: /assets/js/
+
+# Crawl delay (optional - be respectful to search engines)
+Crawl-delay: 1

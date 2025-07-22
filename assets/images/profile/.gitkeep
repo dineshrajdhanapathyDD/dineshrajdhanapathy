@@ -1,0 +1,20 @@
+# Profile Images Directory
+
+This directory should contain your professional photos.
+
+## Recommended Image Specifications:
+- Format: WebP (with JPG fallback)
+- Dimensions: 400x400px (square aspect ratio)
+- File size: < 100KB for optimal loading
+- Naming: profile-photo.jpg
+
+## Image Requirements:
+- Professional headshot or portrait
+- High quality and well-lit
+- Appropriate for professional use
+- Square crop works best for the circular display
+
+## Optimization Tips:
+- Use tools like ImageOptim, TinyPNG, or Squoosh.app
+- Consider using WebP format for better compression
+- Ensure the image looks good when cropped to a circle

@@ -1,0 +1,221 @@
+/* Accessibility Styles */
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    /* General high contrast styles */
+    body {
+        color: #000000;
+        background-color: #ffffff;
+    }
+    
+    /* Increase contrast for text */
+    h1, h2, h3, h4, h5, h6, p, span, a, button, input, select, textarea, label {
+        color: #000000;
+    }
+    
+    /* Increase contrast for links */
+    a {
+        color: #0000EE;
+        text-decoration: underline;
+    }
+    
+    a:visited {
+        color: #551A8B;
+    }
+    
+    a:hover, a:focus {
+        color: #0000FF;
+        text-decoration: underline;
+    }
+    
+    /* Increase contrast for buttons */
+    button, 
+    .certification-roadmap__btn,
+    .resource-card-link,
+    .study-plan__topic-action,
+    .roadmap-control-button,
+    .resource-control-button {
+        color: #ffffff;
+        background-color: #0000EE;
+        border: 2px solid #000000;
+    }
+    
+    button:hover, 
+    button:focus,
+    .certification-roadmap__btn:hover,
+    .certification-roadmap__btn:focus,
+    .resource-card-link:hover,
+    .resource-card-link:focus,
+    .study-plan__topic-action:hover,
+    .study-plan__topic-action:focus,
+    .roadmap-control-button:hover,
+    .roadmap-control-button:focus,
+    .resource-control-button:hover,
+    .resource-control-button:focus {
+        color: #ffffff;
+        background-color: #0000FF;
+        border-color: #000000;
+    }
+    
+    /* Increase contrast for form elements */
+    input, select, textarea {
+        color: #000000;
+        background-color: #ffffff;
+        border: 2px solid #000000;
+    }
+    
+    input:focus, select:focus, textarea:focus {
+        outline: 3px solid #0000FF;
+    }
+    
+    /* Increase contrast for progress bars */
+    .study-plan__progress-bar,
+    .study-plan__topic-progress-bar,
+    .resource-card-progress-bar {
+        background-color: #ffffff;
+        border: 1px solid #000000;
+    }
+    
+    .study-plan__progress-fill,
+    .study-plan__topic-progress-fill,
+    .resource-card-progress-fill {
+        background-color: #0000EE;
+    }
+    
+    /* Increase contrast for cards and containers */
+    .certification-roadmap__step,
+    .resource-card,
+    .study-plan__content,
+    .study-plan__topic-item,
+    .study-plan__milestone-item {
+        border: 2px solid #000000;
+        background-color: #ffffff;
+    }
+    
+    /* Increase contrast for tabs */
+    .study-plan__tab-button,
+    .certification-details__tab-button {
+        color: #000000;
+        background-color: #ffffff;
+        border: 1px solid #000000;
+    }
+    
+    .study-plan__tab-button.active,
+    .certification-details__tab-button.active {
+        color: #ffffff;
+        background-color: #0000EE;
+    }
+    
+    /* Increase contrast for workflow steps */
+    .certification-roadmap-workflow__step {
+        color: #000000;
+        background-color: #ffffff;
+        border: 2px solid #000000;
+    }
+    
+    .certification-roadmap-workflow__step--active {
+        color: #ffffff;
+        background-color: #0000EE;
+    }
+    
+    /* Increase contrast for roadmap visualization */
+    .roadmap-visualization .links line {
+        stroke: #000000;
+        stroke-width: 2px;
+    }
+    
+    .roadmap-visualization .nodes circle {
+        stroke: #000000;
+        stroke-width: 3px;
+    }
+    
+    .roadmap-visualization .texts text {
+        fill: #000000;
+        font-weight: bold;
+    }
+}
+
+/* Focus Styles */
+:focus {
+    outline: 3px solid #0066cc;
+    outline-offset: 2px;
+}
+
+/* Skip Links */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #0066cc;
+    color: #ffffff;
+    padding: 8px;
+    z-index: 1001;
+    transition: top 0.2s;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Screen Reader Only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Keyboard Focus Indicator */
+.keyboard-focus-indicator {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100%);
+    background-color: #0066cc;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.keyboard-focus-indicator.visible {
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Keyboard Focus Styles */
+.focus-visible {
+    outline: 3px solid #0066cc;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.3);
+}
+
+/* Keyboard Focus Mode */
+body.keyboard-focus button:focus,
+body.keyboard-focus a:focus,
+body.keyboard-focus input:focus,
+body.keyboard-focus select:focus,
+body.keyboard-focus textarea:focus,
+body.keyboard-focus [tabindex]:focus {
+    outline: 3px solid #0066cc;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.3);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+}

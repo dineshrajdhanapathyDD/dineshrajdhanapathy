@@ -1,0 +1,605 @@
+/* Scenario Manager Styles */
+
+/* Scenario Manager Dialog */
+.scenario-manager-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.scenario-manager-dialog-content {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.scenario-manager-dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #e1e4e8;
+}
+
+.scenario-manager-dialog-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.scenario-manager-dialog-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #6c757d;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+}
+
+.scenario-manager-dialog-close:hover {
+    background-color: #f1f3f5;
+}
+
+.scenario-manager-dialog-body {
+    padding: 20px;
+}
+
+.scenario-manager-section {
+    margin-bottom: 30px;
+}
+
+.scenario-manager-section:last-child {
+    margin-bottom: 0;
+}
+
+.scenario-manager-section h4 {
+    margin: 0 0 15px;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.scenario-manager-button {
+    padding: 10px 15px;
+    background-color: #0066cc;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    margin-right: 10px;
+    margin-top: 15px;
+    transition: background-color 0.2s ease;
+}
+
+.scenario-manager-button:hover {
+    background-color: #0056b3;
+}
+
+/* Scenarios List */
+.scenarios-list {
+    margin-bottom: 15px;
+}
+
+.scenarios-empty-message {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    color: #6c757d;
+    text-align: center;
+    font-style: italic;
+}
+
+.scenario-item {
+    background-color: #fff;
+    border: 1px solid #e1e4e8;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: box-shadow 0.2s ease;
+}
+
+.scenario-item:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.scenario-item--active {
+    border-color: #0066cc;
+    box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
+}
+
+.scenario-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.scenario-item-title {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.scenario-item-date {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.scenario-item-details {
+    margin-bottom: 15px;
+}
+
+.scenario-item-detail {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.scenario-item-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.scenario-item-button {
+    padding: 6px 12px;
+    background-color: #f1f3f5;
+    color: #333;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+}
+
+.scenario-item-button:hover {
+    background-color: #e9ecef;
+}
+
+.scenario-item-button--danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.scenario-item-button--danger:hover {
+    background-color: #f5c6cb;
+}
+
+/* Scenario Name Dialog */
+.scenario-name-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1100;
+}
+
+.scenario-name-dialog-content {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 90%;
+    max-width: 400px;
+}
+
+.scenario-name-dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e1e4e8;
+}
+
+.scenario-name-dialog-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.scenario-name-dialog-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #6c757d;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+}
+
+.scenario-name-dialog-close:hover {
+    background-color: #f1f3f5;
+}
+
+.scenario-name-dialog-body {
+    padding: 20px;
+}
+
+.scenario-name-dialog-body label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+.scenario-name-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.scenario-name-dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 15px 20px;
+    border-top: 1px solid #e1e4e8;
+}
+
+.scenario-name-button {
+    padding: 8px 15px;
+    background-color: #f1f3f5;
+    color: #333;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.scenario-name-button:hover {
+    background-color: #e9ecef;
+}
+
+.scenario-name-button-primary {
+    background-color: #0066cc;
+    color: #fff;
+}
+
+.scenario-name-button-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Scenario Edit Dialog */
+.scenario-edit-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1100;
+}
+
+.scenario-edit-dialog-content {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 90%;
+    max-width: 400px;
+}
+
+.scenario-edit-dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e1e4e8;
+}
+
+.scenario-edit-dialog-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.scenario-edit-dialog-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #6c757d;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+}
+
+.scenario-edit-dialog-close:hover {
+    background-color: #f1f3f5;
+}
+
+.scenario-edit-dialog-body {
+    padding: 20px;
+}
+
+.scenario-edit-dialog-body label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+.scenario-edit-name-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.scenario-edit-dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 15px 20px;
+    border-top: 1px solid #e1e4e8;
+}
+
+.scenario-edit-button {
+    padding: 8px 15px;
+    background-color: #f1f3f5;
+    color: #333;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.scenario-edit-button:hover {
+    background-color: #e9ecef;
+}
+
+.scenario-edit-button-primary {
+    background-color: #0066cc;
+    color: #fff;
+}
+
+.scenario-edit-button-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Scenario Comparison Dialog */
+.scenario-comparison-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1100;
+}
+
+.scenario-comparison-dialog-content {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.scenario-comparison-dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e1e4e8;
+}
+
+.scenario-comparison-dialog-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.scenario-comparison-dialog-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #6c757d;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+}
+
+.scenario-comparison-dialog-close:hover {
+    background-color: #f1f3f5;
+}
+
+.scenario-comparison-dialog-body {
+    padding: 20px;
+}
+
+.scenario-comparison-selection {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.scenario-comparison-selection label {
+    font-weight: 500;
+    color: #333;
+    margin-right: 5px;
+}
+
+.scenario-comparison-select {
+    padding: 8px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 0.9rem;
+    color: #333;
+    min-width: 200px;
+}
+
+.scenario-comparison-button {
+    padding: 8px 15px;
+    background-color: #0066cc;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.scenario-comparison-button:hover {
+    background-color: #0056b3;
+}
+
+.scenario-comparison-results {
+    margin-top: 20px;
+}
+
+.scenario-comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.scenario-comparison-table th,
+.scenario-comparison-table td {
+    padding: 10px;
+    border: 1px solid #e1e4e8;
+    text-align: left;
+}
+
+.scenario-comparison-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+.scenario-comparison-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.certification-comparison h4 {
+    margin: 20px 0 10px;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.certification-comparison-unique {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.certification-comparison-section {
+    flex: 1;
+    min-width: 250px;
+}
+
+.certification-comparison-section h5 {
+    margin: 0 0 10px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.certification-comparison-list {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.certification-comparison-list li {
+    margin-bottom: 5px;
+}
+
+.scenario-comparison-export-button {
+    padding: 10px 15px;
+    background-color: #0066cc;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    margin-top: 20px;
+    transition: background-color 0.2s ease;
+}
+
+.scenario-comparison-export-button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .scenario-comparison-selection {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .scenario-comparison-select {
+        width: 100%;
+    }
+    
+    .scenario-comparison-button {
+        width: 100%;
+    }
+    
+    .certification-comparison-unique {
+        flex-direction: column;
+    }
+    
+    .scenario-item-actions {
+        flex-direction: column;
+    }
+    
+    .scenario-item-button {
+        width: 100%;
+    }
+}

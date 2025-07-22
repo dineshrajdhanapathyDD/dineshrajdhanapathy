@@ -1,0 +1,18 @@
+# Project Images Directory
+
+This directory should contain screenshots and images for your projects.
+
+## Recommended Image Specifications:
+- Format: WebP (with JPG fallback)
+- Dimensions: 800x500px (16:10 aspect ratio)
+- File size: < 200KB for optimal loading
+- Naming: Use project ID as filename (e.g., portfolio-website.jpg)
+
+## Example Images Needed:
+- portfolio-website.jpg (screenshot of this portfolio)
+- Add more project images as you create new projects
+
+## Optimization Tips:
+- Use tools like ImageOptim, TinyPNG, or Squoosh.app
+- Consider using WebP format for better compression
+- Always include descriptive alt text in your HTML

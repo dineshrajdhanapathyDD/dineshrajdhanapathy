@@ -1,0 +1,446 @@
+/* Resume Match Feature Styles */
+
+/* General Styles */
+:root {
+  --resume-primary: #0066cc;
+  --resume-primary-light: #3385d6;
+  --resume-primary-dark: #004c99;
+  --resume-secondary: #ff6b35;
+  --resume-secondary-light: #ff8c5f;
+  --resume-secondary-dark: #e54e1b;
+  --resume-success: #28a745;
+  --resume-warning: #ffc107;
+  --resume-danger: #dc3545;
+  --resume-info: #17a2b8;
+  --resume-light: #f8f9fa;
+  --resume-dark: #343a40;
+  --resume-gray: #6c757d;
+  --resume-gray-light: #e9ecef;
+  --resume-gray-dark: #495057;
+  --resume-border-radius: 8px;
+  --resume-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --resume-transition: all 0.3s ease;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section__title {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--resume-dark);
+}
+
+.resume-section {
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--resume-gray-light);
+}
+
+/* Hero Section */
+.resume-hero {
+  background: linear-gradient(135deg, var(--resume-primary-dark), var(--resume-primary));
+  color: white;
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.resume-hero__title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.resume-hero__description {
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  line-height: 1.6;
+}
+
+.resume-hero__features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.resume-hero__feature {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: var(--resume-border-radius);
+  padding: 1.5rem;
+  transition: var(--resume-transition);
+}
+
+.resume-hero__feature:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-5px);
+}
+
+.resume-hero__feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.resume-hero__feature-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.resume-hero__feature-text {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* Resume Upload Section */
+.resume-upload {
+  padding: 4rem 0;
+  background-color: var(--resume-light);
+}
+
+.resume-upload__container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.resume-upload__dropzone {
+  border: 2px dashed var(--resume-primary);
+  border-radius: var(--resume-border-radius);
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--resume-transition);
+  background-color: white;
+}
+
+.resume-upload__dropzone:hover,
+.resume-upload__dropzone.active {
+  border-color: var(--resume-primary-dark);
+  background-color: rgba(0, 102, 204, 0.05);
+}
+
+.resume-upload__icon {
+  color: var(--resume-primary);
+  margin-bottom: 1rem;
+}
+
+.resume-upload__primary-text {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--resume-dark);
+}
+
+.resume-upload__secondary-text {
+  margin-bottom: 1rem;
+  color: var(--resume-gray);
+}
+
+.resume-upload__button {
+  display: inline-block;
+  background-color: var(--resume-primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--resume-border-radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--resume-transition);
+}
+
+.resume-upload__button:hover {
+  background-color: var(--resume-primary-dark);
+}
+
+.resume-upload__file-input {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.resume-upload__formats {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--resume-gray);
+}
+
+.resume-upload__progress {
+  margin-top: 1.5rem;
+  height: 8px;
+  background-color: var(--resume-gray-light);
+  border-radius: 4px;
+  overflow: hidden;
+  display: none;
+}
+
+.resume-upload__progress-bar {
+  height: 100%;
+  background-color: var(--resume-primary);
+  width: 0;
+  transition: width 0.3s ease;
+}
+
+.resume-upload__error {
+  margin-top: 1rem;
+  color: var(--resume-danger);
+  font-weight: 500;
+  display: none;
+}
+
+/* Workflow Navigation */
+.resume-workflow {
+  padding: 2rem 0;
+  background-color: white;
+  border-bottom: 1px solid var(--resume-gray-light);
+}
+
+.resume-workflow__steps {
+  display: flex;
+  justify-content: space-between;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.resume-workflow__steps::before {
+  content: '';
+  position: absolute;
+  top: 24px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--resume-gray-light);
+  z-index: 1;
+}
+
+.resume-workflow__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.resume-workflow__step-number {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: white;
+  border: 2px solid var(--resume-gray-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  transition: var(--resume-transition);
+  color: var(--resume-gray);
+}
+
+.resume-workflow__step-title {
+  font-size: 0.9rem;
+  color: var(--resume-gray);
+  transition: var(--resume-transition);
+}
+
+.resume-workflow__step--active .resume-workflow__step-number {
+  background-color: var(--resume-primary);
+  border-color: var(--resume-primary);
+  color: white;
+}
+
+.resume-workflow__step--active .resume-workflow__step-title {
+  color: var(--resume-primary);
+  font-weight: 600;
+}
+
+.resume-workflow__step--completed .resume-workflow__step-number {
+  background-color: var(--resume-success);
+  border-color: var(--resume-success);
+  color: white;
+}
+
+/* How It Works Section */
+.how-it-works {
+  padding: 4rem 0;
+  background-color: white;
+}
+
+.how-it-works__steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.how-it-works__step {
+  text-align: center;
+  padding: 1.5rem;
+  border-radius: var(--resume-border-radius);
+  background-color: var(--resume-light);
+  transition: var(--resume-transition);
+}
+
+.how-it-works__step:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--resume-box-shadow);
+}
+
+.how-it-works__step-number {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--resume-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  margin: 0 auto 1rem;
+}
+
+.how-it-works__step-title {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+  color: var(--resume-dark);
+}
+
+.how-it-works__step-description {
+  font-size: 0.9rem;
+  color: var(--resume-gray-dark);
+  line-height: 1.5;
+}
+
+/* Privacy Notice */
+.privacy-notice {
+  padding: 3rem 0;
+  background-color: var(--resume-light);
+}
+
+.privacy-notice__content {
+  display: flex;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  border-radius: var(--resume-border-radius);
+  background-color: white;
+  box-shadow: var(--resume-box-shadow);
+}
+
+.privacy-notice__icon {
+  flex-shrink: 0;
+  margin-right: 1.5rem;
+  color: var(--resume-info);
+}
+
+.privacy-notice__text p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  color: var(--resume-gray-dark);
+}
+
+.privacy-notice__text p:last-child {
+  margin-bottom: 0;
+}
+
+.privacy-notice__link {
+  color: var(--resume-primary);
+  text-decoration: underline;
+  transition: var(--resume-transition);
+}
+
+.privacy-notice__link:hover {
+  color: var(--resume-primary-dark);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .resume-hero__title {
+    font-size: 2rem;
+  }
+  
+  .resume-hero__description {
+    font-size: 1rem;
+  }
+  
+  .resume-workflow__steps {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  
+  .resume-workflow__steps::before {
+    display: none;
+  }
+  
+  .resume-workflow__step {
+    margin: 0 1rem;
+  }
+  
+  .privacy-notice__content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .privacy-notice__icon {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .resume-hero {
+    padding: 3rem 0;
+  }
+  
+  .resume-hero__features {
+    grid-template-columns: 1fr;
+  }
+  
+  .how-it-works__steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* Results Sections (Initially Hidden) */
+#results-container section {
+  display: none;
+}
+
+#results-container section.active {
+  display: block;
+  animation: fadeIn 0.5s ease forwards;
+}
