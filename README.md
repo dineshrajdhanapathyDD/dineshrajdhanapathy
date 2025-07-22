@@ -12,6 +12,7 @@ A modern, responsive portfolio website built with Jekyll, HTML5, CSS3, and JavaS
 - 🚀 GitHub Pages ready with automated deployment
 - 📝 Jekyll collections for organized project management
 - 🔌 Plugin ecosystem for enhanced functionality
+- 📨 Functional contact form with direct email integration (mailto: protocol)
 
 ## Jekyll Configuration
 
@@ -87,7 +88,7 @@ If you prefer manual deployment:
 ```
 ├── index.html              # Landing page
 ├── projects.html           # Portfolio showcase
-├── contact.html            # Contact form
+├── contact.html            # Contact form with mailto protocol
 ├── assets/
 │   ├── css/               # Stylesheets
 │   ├── js/                # JavaScript files
@@ -95,6 +96,19 @@ If you prefer manual deployment:
 ├── _config.yml            # Jekyll configuration
 └── .github/workflows/     # GitHub Actions
 ```
+
+## Contact Form
+
+The contact form has been updated to use the `mailto:` protocol instead of Formspree:
+
+- Uses HTML5 `mailto:` protocol to open the user's default email client
+- Form data is pre-populated in the email body using `enctype="text/plain"`
+- Subject line is pre-filled with "New Portfolio Contact Form Submission"
+- No third-party dependencies or API keys required
+- Works without JavaScript enabled
+- Provides immediate feedback to users
+
+Note: This approach requires the visitor to have an email client configured on their device.
 
 ## Performance
 
