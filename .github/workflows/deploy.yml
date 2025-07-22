@@ -2,9 +2,9 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 permissions:
   contents: read
@@ -21,27 +21,28 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        
+
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '2.7'
+          ruby-version: "3.2"
           bundler-cache: true
-      
+
       - name: Install dependencies
         run: |
+          gem install bundler -v '~> 2.4.0'
           bundle config set --local path 'vendor/bundle'
           bundle install
-          
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v4
-        
+
       - name: Build with Jekyll
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
-          
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
