@@ -366,54 +366,33 @@ function prepareFormData() {
 }
 
 /**
- * Submit form to Formspree
+ * Submit form via mailto
  */
 async function submitToFormspree(formData) {
     const form = document.getElementById('contact-form');
-    const formspreeUrl = form.action;
+    const mailtoUrl = form.action;
     
-    // Check if Formspree URL is configured
-    if (!formspreeUrl || formspreeUrl.includes('YOUR_FORM_ID')) {
-        throw new Error('Formspree is not configured. Please update the form action URL with your Formspree form ID.');
+    // Check if mailto URL is configured
+    if (!mailtoUrl || !mailtoUrl.includes('mailto:')) {
+        throw new Error('Email submission is not configured properly.');
     }
     
-    // Log successful configuration
-    console.log('Formspree configured with ID: xleqgkrw');
-    
     try {
-        const response = await fetch(formspreeUrl, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
+        // For mailto links, we'll just let the browser handle it
+        // and simulate a successful submission
+        console.log('Form will be submitted via mailto link');
+        
+        // We'll return a successful result after a short delay
+        // to simulate the form submission process
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve({ success: true });
+            }, 1000);
         });
         
-        if (!response.ok) {
-            const errorData = await response.json().catch(() => ({}));
-            
-            // Handle specific Formspree errors
-            if (response.status === 422) {
-                throw new Error('Please check your form data and try again.');
-            } else if (response.status === 429) {
-                throw new Error('Too many requests. Please wait a moment and try again.');
-            } else if (response.status >= 500) {
-                throw new Error('Server error. Please try again later.');
-            } else {
-                throw new Error(errorData.error || 'Failed to send message. Please try again.');
-            }
-        }
-        
-        const result = await response.json();
-        return result;
-        
     } catch (error) {
-        // Handle network errors
-        if (error.name === 'TypeError' && error.message.includes('fetch')) {
-            throw new Error('Network error. Please check your connection and try again.');
-        }
-        throw error;
+        console.error('Form submission error:', error);
+        throw new Error('Failed to open email client. Please contact directly via email.');
     }
 }
 
@@ -737,6 +716,46 @@ function debounce(func, wait) {
     };
 }
 
+/**
+ * Open email client with form data
+ */
+function openEmailClient(event) {
+    event.preventDefault();
+    
+    // Validate form first
+    const isFormValid = validateEntireForm();
+    if (!isFormValid) {
+        focusFirstInvalidField();
+        announceToScreenReader('Please correct the errors in the form');
+        return false;
+    }
+    
+    // Get form data
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const subject = document.getElementById('subject').value.trim() || 'Portfolio Contact Form';
+    const message = document.getElementById('message').value.trim();
+    
+    // Create mailto link
+    const mailtoSubject = encodeURIComponent(subject);
+    const mailtoBody = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+    const mailtoLink = `mailto:dineshrajdhanapathy@mail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
+    
+    // Open email client
+    window.location.href = mailtoLink;
+    
+    // Show success message
+    setTimeout(() => {
+        showSuccessMessage();
+        clearForm();
+    }, 1000);
+    
+    // Track form submission
+    trackFormSubmission('success');
+    
+    return false;
+}
+
 // Initialize contact form when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     initContactForm();
@@ -747,7 +766,8 @@ window.ContactModule = {
     initContactForm,
     validateField,
     clearForm,
-    trackFormEvent
+    trackFormEvent,
+    openEmailClient
 };/**
  
 * Additional Formspree integration features
