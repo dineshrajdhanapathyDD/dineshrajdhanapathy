@@ -426,56 +426,194 @@ window.ResumeAnalyzerModule = (function() {
 
     /**
      * Analyze keywords found in the resume
-     * @param {Array<string>} keywords - Extracted keywords
+     * @param {Array<Object>} keywords - Extracted keywords with metadata
      * @param {string} resumeText - Full resume text
      * @returns {Object} - Keyword analysis results
      */
     function analyzeKeywords(keywords, resumeText) {
-        // Calculate keyword frequency and relevance
-        const extractedKeywords = keywords.map(keyword => {
-            // Count occurrences
-            const regex = new RegExp(`\\b${keyword}\\b`, 'gi');
-            const matches = resumeText.match(regex) || [];
-            const frequency = matches.length;
-            
-            // Calculate relevance score (0-100)
-            // This is a simplified calculation - in a real system this would be more sophisticated
-            let relevance = Math.min(frequency * 10 + 60, 100);
-            
-            // Adjust relevance based on keyword position
-            // Keywords in summary and skills sections are more relevant
-            const sections = window.ResumeParserModule.extractSections(resumeText);
-            if ((sections.summary && new RegExp(`\\b${keyword}\\b`, 'i').test(sections.summary)) ||
-                (sections.skills && new RegExp(`\\b${keyword}\\b`, 'i').test(sections.skills))) {
-                relevance = Math.min(relevance + 10, 100);
+        // Keywords are already processed with relevance scores from the parser
+        // Just organize them by category and type
+        
+        // Group keywords by type
+        const keywordsByType = {
+            technical: keywords.filter(k => k.type === 'technical'),
+            soft: keywords.filter(k => k.type === 'soft'),
+            industry: keywords.filter(k => k.type === 'industry'),
+            other: keywords.filter(k => k.type === 'unknown' || !k.type)
+        };
+        
+        // Group technical keywords by category
+        const technicalByCategory = {};
+        keywordsByType.technical.forEach(keyword => {
+            if (!technicalByCategory[keyword.category]) {
+                technicalByCategory[keyword.category] = [];
             }
-            
-            return {
-                keyword,
-                relevance,
-                frequency
-            };
+            technicalByCategory[keyword.category].push(keyword);
         });
         
-        // Sort by relevance (descending)
-        extractedKeywords.sort((a, b) => b.relevance - a.relevance);
+        // Sort each category by relevance
+        Object.keys(technicalByCategory).forEach(category => {
+            technicalByCategory[category].sort((a, b) => b.relevance - a.relevance);
+        });
         
-        // Identify missing keywords that would be valuable to add
-        const commonKeywords = [
-            'leadership', 'teamwork', 'communication', 'problem-solving',
-            'project management', 'analytical', 'detail-oriented', 'innovative',
-            'strategic', 'collaborative', 'agile', 'scrum', 'customer-focused',
-            'results-driven', 'time management', 'adaptable', 'flexible'
-        ];
+        // Sort soft skills by relevance
+        keywordsByType.soft.sort((a, b) => b.relevance - a.relevance);
         
-        const missingKeywords = commonKeywords.filter(keyword => 
-            !keywords.some(k => k.toLowerCase() === keyword.toLowerCase())
-        );
+        // Get top keywords overall
+        const topKeywords = [...keywords].sort((a, b) => b.relevance - a.relevance).slice(0, 10);
         
+        // Identify missing important keywords by category
+        const missingKeywords = identifyMissingKeywords(keywords, resumeText);
+        
+        // Identify keyword gaps based on job market trends
+        const keywordGaps = analyzeKeywordGaps(keywords);
+        
+        // Calculate keyword density
+        const totalWords = resumeText.split(/\s+/).length;
+        const keywordDensity = keywords.reduce((sum, k) => sum + k.frequency, 0) / totalWords;
+        
+        // Prepare the final analysis result
         return {
-            extractedKeywords: extractedKeywords.slice(0, 5), // Top 5 keywords
-            missingKeywords: missingKeywords.slice(0, 3) // Top 3 missing keywords
+            topKeywords,
+            keywordsByType,
+            technicalByCategory,
+            missingKeywords,
+            keywordGaps,
+            keywordDensity: parseFloat((keywordDensity * 100).toFixed(2)),
+            keywordStats: {
+                total: keywords.length,
+                technical: keywordsByType.technical.length,
+                soft: keywordsByType.soft.length,
+                industry: keywordsByType.industry.length
+            }
         };
+    }
+    
+    /**
+     * Identify important keywords that are missing from the resume
+     * @param {Array<Object>} existingKeywords - Keywords found in the resume
+     * @param {string} resumeText - Full resume text
+     * @returns {Object} - Missing keywords by category
+     */
+    function identifyMissingKeywords(existingKeywords, resumeText) {
+        // Extract sections to determine resume focus
+        const sections = window.ResumeParserModule.extractSections(resumeText);
+        
+        // Common important keywords by category that should be present in most resumes
+        const importantKeywords = {
+            technical: [
+                // Core technical skills that are broadly applicable
+                'problem solving', 'analytical skills', 'technical documentation',
+                'version control', 'testing', 'debugging', 'code review'
+            ],
+            soft: [
+                // Essential soft skills for most professional roles
+                'communication', 'teamwork', 'leadership', 'time management',
+                'adaptability', 'collaboration', 'critical thinking'
+            ],
+            project_management: [
+                // Project management skills
+                'project management', 'agile', 'scrum', 'requirements gathering',
+                'stakeholder management', 'planning', 'risk management'
+            ]
+        };
+        
+        // Check for technology-specific keywords based on resume content
+        if (resumeText.match(/\b(web|frontend|front-end|front end|ui|ux)\b/i)) {
+            importantKeywords.web = [
+                'responsive design', 'cross-browser compatibility', 'web standards',
+                'accessibility', 'performance optimization', 'seo', 'web security'
+            ];
+        }
+        
+        if (resumeText.match(/\b(backend|back-end|back end|server|api)\b/i)) {
+            importantKeywords.backend = [
+                'api design', 'database design', 'security', 'performance optimization',
+                'scalability', 'microservices', 'authentication', 'authorization'
+            ];
+        }
+        
+        if (resumeText.match(/\b(data|analytics|analysis|statistics|ml|ai)\b/i)) {
+            importantKeywords.data = [
+                'data analysis', 'statistical analysis', 'data visualization',
+                'data modeling', 'machine learning', 'predictive modeling', 'data mining'
+            ];
+        }
+        
+        if (resumeText.match(/\b(devops|cloud|infrastructure|deployment|ci\/cd)\b/i)) {
+            importantKeywords.devops = [
+                'continuous integration', 'continuous deployment', 'infrastructure as code',
+                'monitoring', 'logging', 'cloud architecture', 'security best practices'
+            ];
+        }
+        
+        // Check which important keywords are missing
+        const missingKeywords = {};
+        const existingKeywordList = existingKeywords.map(k => k.keyword.toLowerCase());
+        
+        Object.entries(importantKeywords).forEach(([category, keywords]) => {
+            const missing = keywords.filter(keyword => {
+                // Check if this keyword or any of its common variations are present
+                const keywordLower = keyword.toLowerCase();
+                return !existingKeywordList.some(existing => 
+                    existing === keywordLower || 
+                    existing.includes(keywordLower) || 
+                    keywordLower.includes(existing)
+                );
+            });
+            
+            if (missing.length > 0) {
+                missingKeywords[category] = missing;
+            }
+        });
+        
+        return missingKeywords;
+    }
+    
+    /**
+     * Analyze gaps in keywords based on job market trends
+     * @param {Array<Object>} keywords - Keywords found in the resume
+     * @returns {Array<Object>} - Suggested keyword additions
+     */
+    function analyzeKeywordGaps(keywords) {
+        // This is a simplified version - in a real system, this would use
+        // current job market data and trends
+        
+        // Define trending skills by category
+        const trendingSkills = {
+            programming_languages: ['typescript', 'python', 'rust', 'go'],
+            frontend: ['react', 'next.js', 'tailwind css', 'web components'],
+            backend: ['node.js', 'graphql', 'microservices', 'serverless'],
+            data_science: ['machine learning', 'data visualization', 'nlp', 'tensorflow'],
+            devops: ['kubernetes', 'docker', 'terraform', 'github actions'],
+            soft: ['remote collaboration', 'cross-functional teamwork', 'agile methodologies']
+        };
+        
+        // Check which trending skills are missing
+        const gaps = [];
+        const keywordList = keywords.map(k => k.keyword.toLowerCase());
+        
+        Object.entries(trendingSkills).forEach(([category, skills]) => {
+            skills.forEach(skill => {
+                const skillLower = skill.toLowerCase();
+                if (!keywordList.some(k => k === skillLower || k.includes(skillLower) || skillLower.includes(k))) {
+                    gaps.push({
+                        keyword: skill,
+                        category,
+                        reason: 'trending',
+                        importance: category === 'soft' ? 'medium' : 'high'
+                    });
+                }
+            });
+        });
+        
+        // Sort by importance
+        gaps.sort((a, b) => {
+            if (a.importance === b.importance) return 0;
+            return a.importance === 'high' ? -1 : 1;
+        });
+        
+        return gaps.slice(0, 5); // Return top 5 gaps
     }
 
     /**

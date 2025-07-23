@@ -299,44 +299,390 @@ window.ResumeParserModule = (function() {
     /**
      * Extract keywords from resume text
      * @param {string} text - The resume text content
-     * @returns {Array<string>} - Array of extracted keywords
+     * @returns {Array<Object>} - Array of extracted keyword objects with metadata
      */
     function extractKeywords(text) {
-        // Common technical skills and keywords
-        const technicalKeywords = [
-            'javascript', 'python', 'java', 'c\\+\\+', 'c#', 'ruby', 'php', 'swift', 'kotlin',
-            'html', 'css', 'sql', 'nosql', 'react', 'angular', 'vue', 'node', 'express',
-            'django', 'flask', 'spring', 'asp\\.net', 'laravel', 'rails',
-            'aws', 'azure', 'gcp', 'docker', 'kubernetes', 'jenkins', 'git', 'ci/cd',
-            'rest', 'graphql', 'api', 'microservices', 'serverless',
-            'mongodb', 'mysql', 'postgresql', 'oracle', 'sql server', 'redis',
-            'machine learning', 'ai', 'data science', 'big data', 'analytics',
-            'agile', 'scrum', 'kanban', 'jira', 'confluence'
-        ];
+        // Common technical skills and keywords by category
+        const technicalKeywords = {
+            'programming_languages': [
+                'javascript', 'python', 'java', 'c\\+\\+', 'c#', 'ruby', 'php', 'swift', 'kotlin',
+                'typescript', 'go', 'rust', 'scala', 'perl', 'r', 'matlab', 'bash', 'powershell',
+                'objective-c', 'dart', 'lua', 'groovy', 'haskell', 'clojure', 'elixir'
+            ],
+            'frontend': [
+                'html', 'css', 'react', 'angular', 'vue', 'svelte', 'jquery', 'bootstrap',
+                'tailwind', 'sass', 'less', 'webpack', 'babel', 'redux', 'next.js', 'gatsby',
+                'material-ui', 'styled-components', 'responsive design', 'web accessibility',
+                'progressive web apps', 'spa', 'ssr', 'web components'
+            ],
+            'backend': [
+                'node', 'express', 'django', 'flask', 'spring', 'asp\\.net', 'laravel', 'rails',
+                'fastapi', 'nest.js', 'graphql', 'rest', 'api', 'microservices', 'serverless',
+                'websockets', 'oauth', 'jwt', 'authentication', 'authorization'
+            ],
+            'database': [
+                'sql', 'nosql', 'mongodb', 'mysql', 'postgresql', 'oracle', 'sql server', 'redis',
+                'dynamodb', 'cassandra', 'couchdb', 'firebase', 'elasticsearch', 'neo4j',
+                'mariadb', 'sqlite', 'orm', 'database design', 'data modeling', 'indexing'
+            ],
+            'devops': [
+                'aws', 'azure', 'gcp', 'docker', 'kubernetes', 'jenkins', 'git', 'ci/cd',
+                'terraform', 'ansible', 'puppet', 'chef', 'prometheus', 'grafana', 'elk stack',
+                'nginx', 'apache', 'linux', 'unix', 'shell scripting', 'infrastructure as code',
+                'load balancing', 'auto-scaling', 'monitoring', 'logging'
+            ],
+            'data_science': [
+                'machine learning', 'ai', 'data science', 'big data', 'analytics',
+                'tensorflow', 'pytorch', 'scikit-learn', 'pandas', 'numpy', 'data visualization',
+                'statistical analysis', 'natural language processing', 'computer vision',
+                'deep learning', 'neural networks', 'data mining', 'predictive modeling'
+            ],
+            'project_management': [
+                'agile', 'scrum', 'kanban', 'jira', 'confluence', 'trello', 'asana',
+                'project planning', 'sprint planning', 'backlog management', 'user stories',
+                'product management', 'release management', 'stakeholder management'
+            ],
+            'mobile': [
+                'android', 'ios', 'react native', 'flutter', 'xamarin', 'swift', 'kotlin',
+                'mobile development', 'app development', 'responsive design', 'mobile ui',
+                'push notifications', 'app store', 'play store', 'mobile testing'
+            ],
+            'testing': [
+                'unit testing', 'integration testing', 'e2e testing', 'test automation',
+                'jest', 'mocha', 'cypress', 'selenium', 'junit', 'pytest', 'tdd', 'bdd',
+                'qa', 'quality assurance', 'test cases', 'test plans', 'regression testing'
+            ],
+            'security': [
+                'cybersecurity', 'information security', 'penetration testing', 'security audits',
+                'encryption', 'authentication', 'authorization', 'oauth', 'jwt', 'ssl/tls',
+                'vulnerability assessment', 'security compliance', 'gdpr', 'hipaa', 'pci dss'
+            ]
+        };
         
-        // Common soft skills
-        const softKeywords = [
-            'communication', 'teamwork', 'leadership', 'problem solving', 'critical thinking',
-            'time management', 'organization', 'adaptability', 'flexibility', 'creativity',
-            'project management', 'collaboration', 'interpersonal', 'presentation',
-            'negotiation', 'conflict resolution', 'decision making', 'mentoring', 'coaching'
-        ];
+        // Common soft skills by category
+        const softKeywords = {
+            'communication': [
+                'communication', 'presentation', 'public speaking', 'technical writing',
+                'documentation', 'interpersonal', 'active listening', 'clear communication',
+                'stakeholder communication', 'client communication', 'reporting'
+            ],
+            'collaboration': [
+                'teamwork', 'collaboration', 'team player', 'cross-functional', 'pair programming',
+                'knowledge sharing', 'mentoring', 'coaching', 'conflict resolution',
+                'relationship building', 'remote collaboration'
+            ],
+            'leadership': [
+                'leadership', 'team management', 'people management', 'delegation',
+                'decision making', 'strategic thinking', 'vision', 'motivation',
+                'performance management', 'team building', 'influencing'
+            ],
+            'problem_solving': [
+                'problem solving', 'critical thinking', 'analytical skills', 'troubleshooting',
+                'debugging', 'root cause analysis', 'creative solutions', 'innovation',
+                'logical thinking', 'systems thinking', 'design thinking'
+            ],
+            'work_management': [
+                'time management', 'organization', 'prioritization', 'multitasking',
+                'attention to detail', 'planning', 'goal setting', 'productivity',
+                'self-management', 'resource management', 'deadline management'
+            ],
+            'adaptability': [
+                'adaptability', 'flexibility', 'learning agility', 'continuous learning',
+                'resilience', 'change management', 'open-mindedness', 'curiosity',
+                'growth mindset', 'handling ambiguity', 'quick learner'
+            ]
+        };
         
-        // Combine all keywords
-        const allKeywords = [...technicalKeywords, ...softKeywords];
+        // Industry-specific keywords
+        const industryKeywords = {
+            'finance': [
+                'financial services', 'banking', 'investment', 'trading', 'fintech',
+                'risk management', 'compliance', 'regulatory', 'accounting', 'audit',
+                'portfolio management', 'financial analysis', 'blockchain', 'cryptocurrency'
+            ],
+            'healthcare': [
+                'healthcare', 'medical', 'clinical', 'patient care', 'health records',
+                'hipaa', 'ehr', 'emr', 'telemedicine', 'healthcare analytics',
+                'medical devices', 'pharmaceutical', 'biotechnology', 'health informatics'
+            ],
+            'ecommerce': [
+                'ecommerce', 'retail', 'online shopping', 'payment processing', 'inventory management',
+                'shopping cart', 'product catalog', 'order management', 'customer experience',
+                'digital marketing', 'conversion optimization', 'merchandising'
+            ],
+            'education': [
+                'education', 'e-learning', 'lms', 'instructional design', 'curriculum development',
+                'educational technology', 'assessment', 'student management', 'academic',
+                'training', 'teaching', 'course development', 'learning analytics'
+            ],
+            'manufacturing': [
+                'manufacturing', 'supply chain', 'inventory', 'production', 'quality control',
+                'logistics', 'procurement', 'erp', 'lean', 'six sigma', 'automation',
+                'industrial', 'operations', 'warehouse management'
+            ]
+        };
+        
+        // Combine all keyword categories
+        const allKeywordCategories = {
+            ...technicalKeywords,
+            ...softKeywords,
+            ...industryKeywords
+        };
+        
+        // Flatten all keywords for initial search
+        const allKeywords = Object.values(allKeywordCategories).flat();
         
         // Extract keywords from text
         const foundKeywords = [];
         const lowerText = text.toLowerCase();
         
+        // First pass: Find predefined keywords
         for (const keyword of allKeywords) {
             const regex = new RegExp(`\\b${keyword}\\b`, 'i');
             if (regex.test(lowerText)) {
-                foundKeywords.push(keyword);
+                // Find the category for this keyword
+                let category = '';
+                let type = '';
+                
+                for (const [techCategory, keywords] of Object.entries(technicalKeywords)) {
+                    if (keywords.includes(keyword)) {
+                        category = techCategory;
+                        type = 'technical';
+                        break;
+                    }
+                }
+                
+                if (!category) {
+                    for (const [softCategory, keywords] of Object.entries(softKeywords)) {
+                        if (keywords.includes(keyword)) {
+                            category = softCategory;
+                            type = 'soft';
+                            break;
+                        }
+                    }
+                }
+                
+                if (!category) {
+                    for (const [indCategory, keywords] of Object.entries(industryKeywords)) {
+                        if (keywords.includes(keyword)) {
+                            category = indCategory;
+                            type = 'industry';
+                            break;
+                        }
+                    }
+                }
+                
+                // Count occurrences
+                const regex = new RegExp(`\\b${keyword}\\b`, 'gi');
+                const matches = text.match(regex) || [];
+                const frequency = matches.length;
+                
+                // Calculate context score based on where the keyword appears
+                let contextScore = 0;
+                const sections = extractSections(text);
+                
+                // Keywords in skills section get highest score
+                if (sections.skills && new RegExp(`\\b${keyword}\\b`, 'i').test(sections.skills)) {
+                    contextScore += 3;
+                }
+                
+                // Keywords in experience section get medium score
+                if (sections.experience && new RegExp(`\\b${keyword}\\b`, 'i').test(sections.experience)) {
+                    contextScore += 2;
+                }
+                
+                // Keywords in summary get lower score
+                if (sections.summary && new RegExp(`\\b${keyword}\\b`, 'i').test(sections.summary)) {
+                    contextScore += 1;
+                }
+                
+                foundKeywords.push({
+                    keyword,
+                    type,
+                    category,
+                    frequency,
+                    contextScore,
+                    // Calculate a relevance score based on frequency and context
+                    relevance: Math.min((frequency * 10) + (contextScore * 15), 100)
+                });
             }
         }
         
+        // Second pass: Extract potential keywords not in our predefined lists
+        // This uses a simple n-gram approach to find potential technical terms
+        const sections = extractSections(text);
+        const potentialKeywordSections = [sections.skills, sections.experience, sections.summary].filter(Boolean).join(' ');
+        
+        // Extract n-grams (1-3 words)
+        const words = potentialKeywordSections.toLowerCase().split(/\s+/);
+        const ngrams = [];
+        
+        // Generate 1-grams, 2-grams, and 3-grams
+        for (let i = 0; i < words.length; i++) {
+            // Skip common words and short words
+            if (isCommonWord(words[i]) || words[i].length < 3) continue;
+            
+            // 1-gram
+            ngrams.push(words[i]);
+            
+            // 2-gram
+            if (i < words.length - 1 && !isCommonWord(words[i+1])) {
+                ngrams.push(`${words[i]} ${words[i+1]}`);
+            }
+            
+            // 3-gram
+            if (i < words.length - 2 && !isCommonWord(words[i+1]) && !isCommonWord(words[i+2])) {
+                ngrams.push(`${words[i]} ${words[i+1]} ${words[i+2]}`);
+            }
+        }
+        
+        // Filter and score n-grams
+        for (const ngram of ngrams) {
+            // Skip if already found in predefined keywords
+            if (foundKeywords.some(k => k.keyword.toLowerCase() === ngram)) continue;
+            
+            // Count occurrences
+            const regex = new RegExp(`\\b${escapeRegExp(ngram)}\\b`, 'gi');
+            const matches = text.match(regex) || [];
+            const frequency = matches.length;
+            
+            // Only consider terms that appear multiple times or in specific contexts
+            if (frequency >= 2 || 
+                (sections.skills && new RegExp(`\\b${escapeRegExp(ngram)}\\b`, 'i').test(sections.skills))) {
+                
+                // Calculate context score
+                let contextScore = 0;
+                
+                // Terms in skills section get highest score
+                if (sections.skills && new RegExp(`\\b${escapeRegExp(ngram)}\\b`, 'i').test(sections.skills)) {
+                    contextScore += 3;
+                }
+                
+                // Terms in experience section get medium score
+                if (sections.experience && new RegExp(`\\b${escapeRegExp(ngram)}\\b`, 'i').test(sections.experience)) {
+                    contextScore += 2;
+                }
+                
+                // Terms in summary get lower score
+                if (sections.summary && new RegExp(`\\b${escapeRegExp(ngram)}\\b`, 'i').test(sections.summary)) {
+                    contextScore += 1;
+                }
+                
+                // Determine likely type based on context
+                let type = 'unknown';
+                if (sections.skills && new RegExp(`\\b${escapeRegExp(ngram)}\\b`, 'i').test(sections.skills)) {
+                    type = 'technical'; // Assume most skills section items are technical
+                }
+                
+                foundKeywords.push({
+                    keyword: ngram,
+                    type,
+                    category: 'other',
+                    frequency,
+                    contextScore,
+                    // Lower base relevance for extracted terms
+                    relevance: Math.min((frequency * 8) + (contextScore * 12), 90)
+                });
+            }
+        }
+        
+        // Sort by relevance (descending)
+        foundKeywords.sort((a, b) => b.relevance - a.relevance);
+        
+        // Find synonyms and related terms
+        enrichKeywordsWithSynonyms(foundKeywords);
+        
         return foundKeywords;
+    }
+    
+    /**
+     * Check if a word is a common English word that should be excluded from keyword extraction
+     * @param {string} word - The word to check
+     * @returns {boolean} - True if it's a common word to exclude
+     */
+    function isCommonWord(word) {
+        const commonWords = [
+            'the', 'and', 'that', 'have', 'for', 'not', 'with', 'you', 'this', 'but',
+            'his', 'her', 'they', 'from', 'she', 'will', 'one', 'all', 'would', 'there',
+            'their', 'what', 'out', 'about', 'who', 'get', 'which', 'when', 'make',
+            'can', 'like', 'time', 'just', 'him', 'know', 'take', 'people', 'into', 'year',
+            'your', 'good', 'some', 'could', 'them', 'see', 'other', 'than', 'then', 'now',
+            'look', 'only', 'come', 'its', 'over', 'think', 'also', 'back', 'after', 'use',
+            'two', 'how', 'our', 'work', 'first', 'well', 'way', 'even', 'new', 'want',
+            'because', 'any', 'these', 'give', 'day', 'most', 'was', 'are', 'is', 'am',
+            'been', 'being', 'were', 'did', 'has', 'had', 'do', 'does', 'doing', 'a', 'an'
+        ];
+        
+        return commonWords.includes(word.toLowerCase());
+    }
+    
+    /**
+     * Escape special characters in a string for use in a regular expression
+     * @param {string} string - The string to escape
+     * @returns {string} - The escaped string
+     */
+    function escapeRegExp(string) {
+        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+    
+    /**
+     * Enrich keywords with synonyms and related terms
+     * @param {Array<Object>} keywords - The keywords to enrich
+     */
+    function enrichKeywordsWithSynonyms(keywords) {
+        // Define synonym groups
+        const synonymGroups = [
+            // Programming languages
+            ['javascript', 'js', 'ecmascript'],
+            ['python', 'py'],
+            ['java', 'jvm'],
+            ['c++', 'cpp', 'cplusplus'],
+            ['c#', 'csharp', '.net'],
+            
+            // Frontend
+            ['react', 'reactjs', 'react.js'],
+            ['angular', 'angularjs', 'angular.js'],
+            ['vue', 'vuejs', 'vue.js'],
+            
+            // Backend
+            ['node', 'nodejs', 'node.js'],
+            ['express', 'expressjs', 'express.js'],
+            
+            // Cloud
+            ['aws', 'amazon web services', 'amazon cloud'],
+            ['azure', 'microsoft azure', 'microsoft cloud'],
+            ['gcp', 'google cloud', 'google cloud platform'],
+            
+            // DevOps
+            ['ci/cd', 'continuous integration', 'continuous deployment', 'continuous delivery'],
+            ['docker', 'containerization', 'containers'],
+            ['kubernetes', 'k8s', 'container orchestration'],
+            
+            // Data Science
+            ['machine learning', 'ml', 'artificial intelligence', 'ai'],
+            ['data science', 'data analytics', 'data analysis'],
+            
+            // Soft Skills
+            ['communication', 'verbal skills', 'written communication'],
+            ['leadership', 'team leadership', 'people management'],
+            ['problem solving', 'troubleshooting', 'analytical thinking'],
+            ['time management', 'prioritization', 'scheduling'],
+            ['teamwork', 'collaboration', 'team player']
+        ];
+        
+        // Process each keyword
+        for (let i = 0; i < keywords.length; i++) {
+            const keyword = keywords[i].keyword.toLowerCase();
+            
+            // Check if this keyword belongs to any synonym group
+            for (const group of synonymGroups) {
+                if (group.includes(keyword)) {
+                    // Add related terms property with other terms from the same group
+                    keywords[i].relatedTerms = group.filter(term => term !== keyword);
+                    break;
+                }
+            }
+        }
     }
 
     // Public API
