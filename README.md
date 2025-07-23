@@ -12,23 +12,33 @@ A modern, responsive portfolio website built with Jekyll, HTML5, CSS3, and JavaS
 - 🚀 GitHub Pages ready with automated deployment
 - 📝 Jekyll collections for organized project management
 - 🔌 Plugin ecosystem for enhanced functionality
-- 📨 Functional contact form with direct email integration (mailto: protocol)
+- 📨 Functional contact form with Formspree integration
+
+## Recent Updates
+
+- **2025-07-23**: Updated LinkedIn profile URL format from "dineshrajdhanapathy-25490058" to "dineshraj-dhanapathy-25490058" for consistent linking
+- **2025-07-23**: Standardized URL formats by removing trailing slashes and IDs from social media links
+- **2025-07-23**: Improved contact page link consistency for better user experience
+- **2025-07-23**: Fixed LinkedIn profile URL in structured data (JSON-LD)
 
 ## Jekyll Configuration
 
 This site uses Jekyll with the following key features:
 
 ### Collections
+
 - **Projects Collection**: Organized project showcase with individual project pages
 - Custom permalinks: `/projects/project-name/`
 - Automatic project page generation
 
 ### Plugins
+
 - `jekyll-feed`: RSS feed generation
 - `jekyll-sitemap`: Automatic XML sitemap
 - `jekyll-seo-tag`: Enhanced SEO meta tags
 
 ### Build Settings
+
 - Markdown processor: Kramdown
 - Syntax highlighter: Rouge
 - Pretty permalinks for clean URLs
@@ -80,15 +90,16 @@ This site is configured for automatic deployment to GitHub Pages using GitHub Ac
 ### Manual Deployment
 
 If you prefer manual deployment:
+
 1. Build the site: `bundle exec jekyll build`
 2. Deploy the `_site` folder contents
 
 ## Project Structure
 
-```
+```text
 ├── index.html              # Landing page
 ├── projects.html           # Portfolio showcase
-├── contact.html            # Contact form with mailto protocol
+├── contact.html            # Contact form with Formspree integration
 ├── assets/
 │   ├── css/               # Stylesheets
 │   ├── js/                # JavaScript files
@@ -99,16 +110,25 @@ If you prefer manual deployment:
 
 ## Contact Form
 
-The contact form has been updated to use the `mailto:` protocol instead of Formspree:
+The contact form uses Formspree for handling form submissions:
 
-- Uses HTML5 `mailto:` protocol to open the user's default email client
-- Form data is pre-populated in the email body using `enctype="text/plain"`
-- Subject line is pre-filled with "New Portfolio Contact Form Submission"
-- No third-party dependencies or API keys required
-- Works without JavaScript enabled
-- Provides immediate feedback to users
+- Integrated with Formspree service (https://formspree.io/f/xpwlpyyv)
+- Form submissions are sent directly to the owner's email
+- Custom redirect after submission to a success page
+- CAPTCHA protection disabled for better user experience
+- Honeypot field implemented to prevent spam
+- Client-side validation for immediate user feedback
+- Maintains accessibility features and validation
+- No server-side code required, works with GitHub Pages hosting
 
-Note: This approach requires the visitor to have an email client configured on their device.
+## URL Format Standards
+
+To maintain consistency across the site, the following URL format standards are applied:
+
+- External links do not include trailing slashes (e.g., `https://example.com/page`)
+- Internal links use relative paths when possible
+- Social media profile links follow platform-specific format requirements
+- All URLs are regularly validated to ensure they remain active
 
 ## Performance
 
