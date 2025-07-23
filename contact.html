@@ -159,14 +159,9 @@
                     <!-- Contact Form -->
                     <div class="contact__form-section">
                         <h2 class="contact__section-title">Send a Message</h2>
-                        <form class="contact-form" id="contact-form" action="https://formspree.io/f/xeqyqvnj"
-                            method="POST">
-                            <!-- Formspree Configuration -->
-                            <input type="hidden" name="_subject" value="New Portfolio Contact Form Submission">
-                            <input type="hidden" name="_next"
-                                value="https://dineshrajdhanapathyDD.github.io/dineshrajdhanapathy/contact.html?success=true">
-                            <input type="hidden" name="_captcha" value="false">
-                            <input type="text" name="_gotcha" style="display:none">
+                        <form class="contact-form" id="contact-form" onsubmit="return openEmailClient(event)">
+                            <!-- Direct Email Configuration -->
+                            <input type="hidden" name="subject" value="New Portfolio Contact Form Submission">
 
                             <div class="form__group">
                                 <label for="name" class="form__label">Name *</label>
@@ -201,6 +196,9 @@
                                 <span class="btn__text">Send Message</span>
                                 <span class="btn__loading" style="display: none;">Sending...</span>
                             </button>
+                            <p class="form__note" style="margin-top: 10px; font-size: 0.9em; color: #666;">
+                                <em>Note: Clicking "Send Message" will open your default email client with the form information pre-filled.</em>
+                            </p>
                         </form>
 
                         <!-- Fallback for JavaScript-disabled browsers -->
