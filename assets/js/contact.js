@@ -366,33 +366,44 @@ function prepareFormData() {
 }
 
 /**
- * Submit form via mailto
+ * Submit form via Formspree
  */
 async function submitToFormspree(formData) {
     const form = document.getElementById('contact-form');
-    const mailtoUrl = form.action;
+    const formspreeUrl = form.action;
     
-    // Check if mailto URL is configured
-    if (!mailtoUrl || !mailtoUrl.includes('mailto:')) {
-        throw new Error('Email submission is not configured properly.');
+    // Check if Formspree URL is configured
+    if (!formspreeUrl || !formspreeUrl.includes('formspree.io')) {
+        throw new Error('Formspree is not configured properly.');
     }
     
     try {
-        // For mailto links, we'll just let the browser handle it
-        // and simulate a successful submission
-        console.log('Form will be submitted via mailto link');
-        
-        // We'll return a successful result after a short delay
-        // to simulate the form submission process
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                resolve({ success: true });
-            }, 1000);
+        // Create form data object for submission
+        const formDataObj = new FormData();
+        Object.keys(formData).forEach(key => {
+            formDataObj.append(key, formData[key]);
         });
+        
+        // Submit the form data to Formspree
+        const response = await fetch(formspreeUrl, {
+            method: 'POST',
+            body: formDataObj,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+        
+        if (!response.ok) {
+            const responseData = await response.json();
+            throw new Error(responseData.error || 'Form submission failed');
+        }
+        
+        const result = await response.json();
+        return result;
         
     } catch (error) {
         console.error('Form submission error:', error);
-        throw new Error('Failed to open email client. Please contact directly via email.');
+        throw new Error('Failed to submit form. Please try again or contact directly via email.');
     }
 }
 
