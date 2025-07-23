@@ -1,0 +1,61 @@
+# Site settings
+title: Dineshraj Dhanapathy - Cloud and DevOps Engineer
+email: dineshrajdhanapathy@mail.com
+description: >-
+  Experienced Cloud and DevOps Engineer specializing in AWS, Kubernetes, and modern infrastructure technologies.
+  Creating scalable cloud solutions and automated deployment pipelines.
+baseurl: "/dineshrajdhanapathy" # the subpath of your site, e.g. /blog
+url: "https://dineshrajdhanapathyDD.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+twitter_username: DD_Dineshraj
+github_username:  dineshrajdhanapathyDD
+linkedin_username: dineshraj-dhanapathy-dd-25490058
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+
+# Collections
+collections:
+  projects:
+    output: true
+    permalink: /projects/:path/
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Exclude from processing
+exclude:
+  - .git/
+  - .github/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/
+  - README.md
+  - LICENSE
+
+# SEO settings
+author: Dineshraj Dhanapathy
+logo: /assets/images/logo.png
+social:
+  name: Dineshraj Dhanapathy
+  links:
+    - https://www.linkedin.com/in/dineshraj-dhanapathy-dd-25490058
+    - https://github.com/dineshrajdhanapathyDD
+    - https://twitter.com/DD_Dineshraj
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "project"
