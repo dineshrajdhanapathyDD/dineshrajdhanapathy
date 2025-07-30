@@ -70,7 +70,40 @@ window.CertificationRoadmap.CertificationDatabase = (function() {
                             intermediate: 40,
                             advanced: 20
                         },
-                        officialLink: "https://aws.amazon.com/certification/certified-cloud-practitioner/"
+                        officialLink: "https://aws.amazon.com/certification/certified-cloud-practitioner/",
+                        resources: [
+                            {
+                                type: "official",
+                                name: "AWS Cloud Practitioner Essentials",
+                                provider: "AWS Training",
+                                cost: "free",
+                                url: "https://aws.amazon.com/training/digital/aws-cloud-practitioner-essentials/"
+                            },
+                            {
+                                type: "practice",
+                                name: "AWS Cloud Practitioner Practice Exams",
+                                provider: "AWS",
+                                cost: "paid",
+                                url: "https://aws.amazon.com/certification/certification-prep/"
+                            }
+                        ],
+                        studyGuide: {
+                            phase1: {
+                                name: "Foundation (Weeks 1-4)",
+                                topics: ["Cloud concepts", "AWS global infrastructure", "Core services overview"],
+                                resources: ["AWS Cloud Practitioner Essentials", "AWS Whitepapers"]
+                            },
+                            phase2: {
+                                name: "Deep Dive (Weeks 5-8)",
+                                topics: ["Security and compliance", "Billing and pricing", "Support plans"],
+                                resources: ["AWS Documentation", "Practice exams"]
+                            },
+                            phase3: {
+                                name: "Exam Prep (Weeks 9-12)",
+                                topics: ["Practice tests", "Review weak areas", "Exam strategies"],
+                                resources: ["Official practice exam", "Community forums"]
+                            }
+                        }
                     }
                 ],
                 associate: [

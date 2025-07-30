@@ -473,4 +473,256 @@
     .resources-grid {
         grid-template-columns: 1fr;
     }
+}/* M
+obile Responsive Improvements for Resources */
+@media (max-width: 767px) {
+    /* Improve resource filters for mobile */
+    .resources-filters {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+    
+    .filter-group {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .filter-group label {
+        font-size: 1rem;
+        font-weight: 600;
+    }
+    
+    .resource-filter {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px; /* Prevent zoom on iOS */
+        min-height: 48px;
+        border-radius: 6px;
+    }
+    
+    /* Improve resource control buttons */
+    .resource-control-button {
+        width: 100%;
+        padding: 12px 15px;
+        font-size: 16px;
+        min-height: 48px;
+        margin-top: 10px;
+    }
+    
+    /* Improve resource grid for mobile */
+    .resources-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    /* Improve resource cards for mobile */
+    .resource-card {
+        padding: 20px;
+        border-radius: 8px;
+    }
+    
+    .resource-card-header {
+        margin-bottom: 15px;
+    }
+    
+    .resource-card-title {
+        font-size: 1.2rem;
+        line-height: 1.3;
+        margin-bottom: 8px;
+    }
+    
+    .resource-card-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .resource-card-badge {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+    
+    .resource-card-actions {
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 20px;
+    }
+    
+    .resource-card-button {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        min-height: 48px;
+        border-radius: 6px;
+    }
+    
+    /* Improve resource pagination for mobile */
+    .resources-pagination {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+    }
+    
+    .resource-pagination-button {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        min-height: 48px;
+    }
+    
+    #page-info {
+        text-align: center;
+        font-size: 1rem;
+        padding: 10px;
+    }
+    
+    /* Improve resource details modal for mobile */
+    .resource-details-modal {
+        padding: 10px;
+    }
+    
+    .resource-details-content {
+        width: 95%;
+        max-height: 85vh;
+        margin: 0;
+        border-radius: 8px;
+    }
+    
+    .resource-details-header {
+        padding: 20px;
+        border-bottom: 2px solid #e9ecef;
+    }
+    
+    .resource-details-body {
+        padding: 20px;
+        max-height: 60vh;
+        overflow-y: auto;
+    }
+    
+    .resource-details-footer {
+        padding: 20px;
+        border-top: 2px solid #e9ecef;
+    }
+    
+    .resource-details-close {
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
+    }
+}
+
+/* Tablet Responsive Improvements */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .resources-filters {
+        justify-content: center;
+    }
+    
+    .filter-group {
+        min-width: 200px;
+    }
+    
+    .resources-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .resource-card-actions {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .resource-card-button {
+        flex: 1;
+        margin: 0 5px;
+    }
+}
+
+/* Improved Touch Interactions */
+@media (hover: none) and (pointer: coarse) {
+    .resource-card {
+        transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    
+    .resource-card:active {
+        transform: scale(0.98);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .resource-card-button:active,
+    .resource-control-button:active,
+    .resource-pagination-button:active {
+        transform: scale(0.95);
+        background-color: #004c99;
+    }
+    
+    .resource-filter:active {
+        background-color: #e9ecef;
+    }
+}
+
+/* Better Focus States */
+.resource-filter:focus,
+.resource-control-button:focus,
+.resource-card-button:focus,
+.resource-pagination-button:focus {
+    outline: 3px solid #0066cc;
+    outline-offset: 2px;
+}
+
+.resource-card:focus-within {
+    outline: 2px solid #0066cc;
+    outline-offset: 2px;
+}
+
+/* High DPI Display Improvements */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .resource-card {
+        border-width: 0.5px;
+    }
+    
+    .resource-card-badge {
+        border: 0.5px solid rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Improved Loading States */
+.resource-card.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.resource-card.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #0066cc;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .resource-card,
+    .resource-card-button,
+    .resource-control-button {
+        transition: none;
+    }
+    
+    .resource-card.loading::after {
+        animation: none;
+        border-top-color: #0066cc;
+    }
 }

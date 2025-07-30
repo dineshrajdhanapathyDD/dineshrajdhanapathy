@@ -61,10 +61,14 @@
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/accessibility.css">
+    <link rel="stylesheet" href="assets/css/certification-roadmap/hero.css">
+    <link rel="stylesheet" href="assets/css/certification-roadmap/how-it-works.css">
     <link rel="stylesheet" href="assets/css/certification-roadmap/main.css">
     <link rel="stylesheet" href="assets/css/certification-roadmap/assessment.css">
     <link rel="stylesheet" href="assets/css/certification-roadmap/career-goals.css">
     <link rel="stylesheet" href="assets/css/certification-roadmap/roadmap.css">
+    <link rel="stylesheet" href="assets/css/certification-roadmap/roadmap-details.css">
+    <link rel="stylesheet" href="assets/css/certification-roadmap/certification-modal.css">
     <link rel="stylesheet" href="assets/css/certification-roadmap/certification-details.css">
     <link rel="stylesheet" href="assets/css/certification-roadmap/resources.css">
     <link rel="stylesheet" href="assets/css/certification-roadmap/study-plan.css">
@@ -336,41 +340,182 @@
 
                     <!-- Roadmap Step -->
                     <div class="certification-roadmap__step" id="roadmap-step">
-                        <div class="roadmap-filters" role="group" aria-label="Roadmap filters">
-                            <div class="filter-group">
-                                <label for="provider-filter">Provider:</label>
-                                <select id="provider-filter" class="roadmap-filter" aria-label="Filter by provider">
-                                    <option value="">All Providers</option>
-                                    <option value="aws">AWS</option>
-                                    <option value="azure">Azure</option>
-                                    <option value="gcp">GCP</option>
-                                </select>
+                        <div id="roadmap-container">
+                            <!-- Sample Roadmap Content -->
+                            <div class="roadmap-header">
+                                <h3 class="roadmap-title">Your Personalized Certification Roadmap</h3>
+                                <p class="roadmap-description">Based on your skills and career goals - Cloud Architect
+                                    Path</p>
                             </div>
-                            <div class="filter-group">
-                                <label for="level-filter">Level:</label>
-                                <select id="level-filter" class="roadmap-filter"
-                                    aria-label="Filter by certification level">
-                                    <option value="">All Levels</option>
-                                    <option value="foundational">Foundational</option>
-                                    <option value="associate">Associate</option>
-                                    <option value="professional">Professional</option>
-                                    <option value="specialty">Specialty</option>
-                                </select>
+
+                            <div class="roadmap-content">
+                                <div class="roadmap-path-selector">
+                                    <label for="provider-select">Cloud Provider:</label>
+                                    <select id="provider-select" class="roadmap-select">
+                                        <option value="aws" selected>Amazon Web Services (AWS)</option>
+                                        <option value="azure">Microsoft Azure</option>
+                                        <option value="gcp">Google Cloud Platform (GCP)</option>
+                                        <option value="multicloud">Multi-Cloud Path</option>
+                                    </select>
+                                </div>
+
+                                <div class="roadmap-visualization" id="roadmap-viz">
+                                    <!-- Step 1: AWS Cloud Practitioner -->
+                                    <div class="roadmap-step recommended" data-step-id="aws-cloud-practitioner">
+                                        <div class="step-content">
+                                            <div class="step-header">
+                                                <div class="step-number">1</div>
+                                                <div class="step-badge foundational">Foundational</div>
+                                            </div>
+                                            <div class="step-body">
+                                                <h4 class="step-title">AWS Cloud Practitioner</h4>
+                                                <p class="step-description">Start your cloud journey with fundamental
+                                                    AWS concepts and services. Perfect for beginners entering the cloud
+                                                    space.</p>
+                                                <div class="step-meta">
+                                                    <span class="meta-item">
+                                                        <i class="icon-clock">⏱️</i>
+                                                        2-3 months
+                                                    </span>
+                                                    <span class="meta-item">
+                                                        <i class="icon-level">📊</i>
+                                                        Beginner
+                                                    </span>
+                                                    <span class="meta-item">
+                                                        <i class="icon-cost">💰</i>
+                                                        $100
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="step-actions">
+                                                <button class="btn-step-details"
+                                                    onclick="CertificationRoadmap.CertificationModal.show('aws-cloud-practitioner')">
+                                                    View Details
+                                                </button>
+                                                <button class="btn-step-resources"
+                                                    onclick="CertificationRoadmap.CertificationModal.showStudyResources('aws-cloud-practitioner')"></button>
+                                                Resources
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Step 2: Solutions Architect Associate -->
+                                    <div class="roadmap-step next" data-step-id="aws-solutions-architect-associate">
+                                        <div class="step-connector visible"></div>
+                                        <div class="step-content">
+                                            <div class="step-header">
+                                                <div class="step-number">2</div>
+                                                <div class="step-badge associate">Associate</div>
+                                            </div>
+                                            <div class="step-body">
+                                                <h4 class="step-title">AWS Solutions Architect Associate</h4>
+                                                <p class="step-description">Learn to design resilient and scalable AWS
+                                                    architectures. Master core AWS services and architectural best
+                                                    practices.</p>
+                                                <div class="step-meta">
+                                                    <span class="meta-item">
+                                                        <i class="icon-clock">⏱️</i>
+                                                        3-4 months
+                                                    </span>
+                                                    <span class="meta-item">
+                                                        <i class="icon-level">📊</i>
+                                                        Intermediate
+                                                    </span>
+                                                    <span class="meta-item">
+                                                        <i class="icon-cost">💰</i>
+                                                        $150
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="step-actions">
+                                                <button class="btn-step-details"
+                                                    onclick="CertificationRoadmap.CertificationModal.show('aws-solutions-architect-associate')"></button>
+                                                View Details
+                                                </button>
+                                                <button class="btn-step-resources"
+                                                    onclick="CertificationRoadmap.CertificationModal.showStudyResources('aws-solutions-architect-associate')"></button>
+                                                Resources
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Step 3: Solutions Architect Professional -->
+                                    <div class="roadmap-step future"
+                                        data-step-id="aws-solutions-architect-professional">
+                                        <div class="step-connector visible"></div>
+                                        <div class="step-content">
+                                            <div class="step-header">
+                                                <div class="step-number">3</div>
+                                                <div class="step-badge professional">Professional</div>
+                                            </div>
+                                            <div class="step-body">
+                                                <h4 class="step-title">AWS Solutions Architect Professional</h4>
+                                                <p class="step-description">Master complex architectural patterns and
+                                                    enterprise solutions. Design sophisticated, large-scale distributed
+                                                    systems.</p>
+                                                <div class="step-meta">
+                                                    <span class="meta-item">
+                                                        <i class="icon-clock">⏱️</i>
+                                                        4-6 months
+                                                    </span>
+                                                    <span class="meta-item">
+                                                        <i class="icon-level">📊</i>
+                                                        Advanced
+                                                    </span>
+                                                    <span class="meta-item">
+                                                        <i class="icon-cost">💰</i>
+                                                        $300
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="step-actions">
+                                                <button class="btn-step-details"
+                                                    onclick="CertificationRoadmap.CertificationModal.show('aws-solutions-architect-professional')"></button>
+                                                View Details
+                                                </button>
+                                                <button class="btn-step-resources"
+                                                    onclick="CertificationRoadmap.CertificationModal.showStudyResources('aws-solutions-architect-professional')"></button>
+                                                Resources
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="roadmap-summary">
+                                    <div class="roadmap-stats">
+                                        <div class="stat-item">
+                                            <span class="stat-number">3</span>
+                                            <span class="stat-label">Certifications</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-number">9-13</span>
+                                            <span class="stat-label">Months</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-number">$130k+</span>
+                                            <span class="stat-label">Avg Salary</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-number">$550</span>
+                                            <span class="stat-label">Total Cost</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <button type="button" class="roadmap-control-button" id="reset-filters">Reset
-                                Filters</button>
+                        </div>
+
+                        <div class="roadmap-controls">
                             <button type="button" class="roadmap-control-button" id="export-roadmap-pdf">Export as
                                 PDF</button>
                             <button type="button" class="roadmap-control-button" id="export-roadmap-png">Export as
                                 PNG</button>
                             <button type="button" class="roadmap-control-button" id="manage-scenarios">Manage
                                 Scenarios</button>
-                        </div>
-                        <div id="roadmap-container"></div>
-                        <div class="roadmap-zoom-controls">
-                            <button type="button" class="roadmap-zoom-button" id="zoom-in">+</button>
-                            <button type="button" class="roadmap-zoom-button" id="zoom-out">-</button>
-                            <button type="button" class="roadmap-zoom-button" id="zoom-reset">Reset</button>
+                            <button type="button" class="roadmap-control-button" id="reset-roadmap">Reset
+                                Roadmap</button>
                         </div>
                     </div>
 
@@ -468,45 +613,83 @@
             <div class="container">
                 <h2 id="how-it-works-title" class="section__title">How It Works</h2>
                 <div class="how-it-works__steps">
-                    <div class="how-it-works__step">
-                        <div class="how-it-works__step-number">1</div>
-                        <h3 class="how-it-works__step-title">Assess Your Skills</h3>
+                    <div class="how-it-works__step" tabindex="0" role="article" aria-labelledby="step-1-title">
+                        <div class="how-it-works__step-number" aria-hidden="true">1</div>
+                        <h3 id="step-1-title" class="how-it-works__step-title">Assess Your Skills</h3>
                         <p class="how-it-works__step-description">
-                            Complete a comprehensive assessment of your cloud skills and experience across different
-                            providers and domains.
+                            Complete a comprehensive assessment of your current cloud skills and experience across AWS,
+                            Azure, and GCP.
+                            Evaluate your knowledge in key domains like compute, storage, networking, and security to
+                            identify your strengths and areas for improvement.
                         </p>
                     </div>
-                    <div class="how-it-works__step">
-                        <div class="how-it-works__step-number">2</div>
-                        <h3 class="how-it-works__step-title">Define Career Goals</h3>
+                    <div class="how-it-works__step" tabindex="0" role="article" aria-labelledby="step-2-title">
+                        <div class="how-it-works__step-number" aria-hidden="true">2</div>
+                        <h3 id="step-2-title" class="how-it-works__step-title">Define Career Goals</h3>
                         <p class="how-it-works__step-description">
-                            Specify your career objectives, target roles, and preferences to help tailor your
-                            certification path.
+                            Specify your career objectives, target roles, and professional preferences. Whether you're
+                            aiming to become a cloud architect,
+                            developer, or security specialist, we'll help tailor your certification journey to align
+                            with your aspirations.
                         </p>
                     </div>
-                    <div class="how-it-works__step">
-                        <div class="how-it-works__step-number">3</div>
-                        <h3 class="how-it-works__step-title">Generate Roadmap</h3>
+                    <div class="how-it-works__step" tabindex="0" role="article" aria-labelledby="step-3-title">
+                        <div class="how-it-works__step-number" aria-hidden="true">3</div>
+                        <h3 id="step-3-title" class="how-it-works__step-title">Generate Roadmap</h3>
                         <p class="how-it-works__step-description">
-                            Receive a personalized certification roadmap with recommended certifications in a logical
-                            progression.
+                            Receive a personalized, interactive certification roadmap with recommended certifications in
+                            logical progression.
+                            Our intelligent system considers prerequisites, difficulty levels, and your specific goals
+                            to create the optimal learning path.
                         </p>
                     </div>
-                    <div class="how-it-works__step">
-                        <div class="how-it-works__step-number">4</div>
-                        <h3 class="how-it-works__step-title">Create Study Plan</h3>
+                    <div class="how-it-works__step" tabindex="0" role="article" aria-labelledby="step-4-title">
+                        <div class="how-it-works__step-number" aria-hidden="true">4</div>
+                        <h3 id="step-4-title" class="how-it-works__step-title">Create Study Plan</h3>
                         <p class="how-it-works__step-description">
-                            Build a structured study plan with resources, timeline, and milestones to achieve your
-                            certification goals.
+                            Build a structured, time-based study plan with curated resources, realistic timelines, and
+                            achievable milestones.
+                            Access recommended courses, practice exams, documentation, and hands-on labs to maximize
+                            your success rate.
                         </p>
                     </div>
-                    <div class="how-it-works__step">
-                        <div class="how-it-works__step-number">5</div>
-                        <h3 class="how-it-works__step-title">Track Progress</h3>
+                    <div class="how-it-works__step" tabindex="0" role="article" aria-labelledby="step-5-title">
+                        <div class="how-it-works__step-number" aria-hidden="true">5</div>
+                        <h3 id="step-5-title" class="how-it-works__step-title">Track Progress</h3>
                         <p class="how-it-works__step-description">
-                            Monitor your progress, update your skills, and adjust your roadmap as you complete
-                            certifications.
+                            Monitor your learning progress, track completed certifications, and continuously update your
+                            skills assessment.
+                            Adjust your roadmap as you grow, ensuring your certification journey evolves with your
+                            career advancement.
                         </p>
+                    </div>
+                </div>
+
+                <!-- Additional Benefits Section -->
+                <div class="how-it-works__benefits">
+                    <div class="how-it-works__benefit">
+                        <div class="how-it-works__benefit-icon" aria-hidden="true">🎯</div>
+                        <h4 class="how-it-works__benefit-title">Personalized Approach</h4>
+                        <p class="how-it-works__benefit-text">Every roadmap is tailored to your unique skills,
+                            experience level, and career objectives.</p>
+                    </div>
+                    <div class="how-it-works__benefit">
+                        <div class="how-it-works__benefit-icon" aria-hidden="true">🔒</div>
+                        <h4 class="how-it-works__benefit-title">Privacy First</h4>
+                        <p class="how-it-works__benefit-text">All data processing happens locally in your browser. Your
+                            information never leaves your device.</p>
+                    </div>
+                    <div class="how-it-works__benefit">
+                        <div class="how-it-works__benefit-icon" aria-hidden="true">📱</div>
+                        <h4 class="how-it-works__benefit-title">Mobile Friendly</h4>
+                        <p class="how-it-works__benefit-text">Access your certification roadmap on any device, anywhere,
+                            anytime.</p>
+                    </div>
+                    <div class="how-it-works__benefit">
+                        <div class="how-it-works__benefit-icon" aria-hidden="true">💾</div>
+                        <h4 class="how-it-works__benefit-title">Export & Backup</h4>
+                        <p class="how-it-works__benefit-text">Export your roadmap and study plans, create backups, and
+                            manage your data with full control.</p>
                     </div>
                 </div>
             </div>
@@ -657,11 +840,17 @@
     <script src="assets/js/main.js"></script>
 
     <!-- Certification Roadmap Scripts -->
+    <script src="assets/js/certification-roadmap/init.js"></script>
     <script src="assets/js/certification-roadmap/data-models.js"></script>
     <script src="assets/js/certification-roadmap/storage-service.js"></script>
+    <script src="assets/js/certification-roadmap/accessibility-enhancements.js"></script>
     <script src="assets/js/certification-roadmap/assessment.js"></script>
     <script src="assets/js/certification-roadmap/career-goals.js"></script>
     <script src="assets/js/certification-roadmap/certification-database.js"></script>
+    <script src="assets/js/certification-roadmap/aws-certifications-complete.js"></script>
+    <script src="assets/js/certification-roadmap/roadmap-data.js"></script>
+    <script src="assets/js/certification-roadmap/roadmap-details.js"></script>
+    <script src="assets/js/certification-roadmap/certification-details-modal.js"></script>
     <script src="assets/js/certification-roadmap/roadmap-generator.js"></script>
     <script src="assets/js/certification-roadmap/keyboard-focus.js"></script>
     <script src="assets/js/certification-roadmap/roadmap-visualizer.js"></script>

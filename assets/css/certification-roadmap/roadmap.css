@@ -110,6 +110,9 @@
     font-weight: 500;
     cursor: pointer;
     transition: background-color 0.2s ease;
+    /* Ensure minimum touch target size */
+    min-height: 44px;
+    min-width: 44px;
 }
 
 .roadmap-control-button:hover {
@@ -333,5 +336,182 @@ dmap Filters */
     .roadmap-zoom-controls {
         bottom: 10px;
         right: 10px;
+    }
+}
+/* Mobile
+ Responsive Improvements */
+@media (max-width: 767px) {
+    /* Improve roadmap controls for mobile */
+    .roadmap-controls {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .roadmap-control-button {
+        width: 100%;
+        padding: 12px 15px;
+        font-size: 16px; /* Prevent zoom on iOS */
+        min-height: 48px; /* Larger touch target for mobile */
+    }
+    
+    /* Improve roadmap filters */
+    .roadmap-filters {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .filter-group {
+        width: 100%;
+    }
+    
+    .filter-group select {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        min-height: 48px;
+    }
+    
+    /* Improve roadmap legend for mobile */
+    .roadmap-legend ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .roadmap-legend li {
+        font-size: 1rem;
+        padding: 8px 0;
+    }
+    
+    .legend-item {
+        width: 20px;
+        height: 20px;
+        margin-right: 12px;
+    }
+    
+    /* Improve roadmap visualization for mobile */
+    .roadmap-visualization {
+        height: 400px; /* Fixed height for mobile */
+        touch-action: pan-x pan-y; /* Enable touch scrolling */
+    }
+    
+    .roadmap-visualization .nodes circle {
+        r: 8; /* Larger nodes for touch */
+        stroke-width: 3px;
+    }
+    
+    .roadmap-visualization .texts text {
+        font-size: 12px; /* Larger text for mobile */
+        font-weight: 600;
+    }
+    
+    /* Improve zoom controls for mobile */
+    .roadmap-zoom-controls {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        z-index: 100;
+    }
+    
+    .roadmap-zoom-button {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background-color: #0066cc;
+        color: white;
+        border: none;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.2s ease;
+    }
+    
+    .roadmap-zoom-button:hover,
+    .roadmap-zoom-button:focus {
+        background-color: #0056b3;
+        transform: scale(1.1);
+    }
+    
+    /* Improve export dialog for mobile */
+    .roadmap-export-dialog-content {
+        width: 95%;
+        margin: 20px;
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+    
+    .roadmap-export-option {
+        padding: 15px;
+        font-size: 16px;
+    }
+    
+    .roadmap-export-option input[type="radio"] {
+        width: 20px;
+        height: 20px;
+        margin-right: 15px;
+    }
+}
+
+/* Tablet Responsive Improvements */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .roadmap-controls {
+        justify-content: center;
+    }
+    
+    .roadmap-control-button {
+        min-width: 120px;
+        padding: 10px 20px;
+    }
+    
+    .roadmap-visualization {
+        height: 500px;
+    }
+    
+    .roadmap-zoom-controls {
+        bottom: 30px;
+        right: 30px;
+    }
+}
+
+/* High DPI Display Improvements */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .roadmap-visualization .nodes circle {
+        stroke-width: 1.5px;
+    }
+    
+    .roadmap-visualization .texts text {
+        font-weight: 600;
+    }
+    
+    .legend-item {
+        border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Improved Focus States for Better Accessibility */
+.roadmap-control-button:focus,
+.roadmap-zoom-button:focus {
+    outline: 3px solid #0066cc;
+    outline-offset: 2px;
+}
+
+.roadmap-export-option:focus-within {
+    outline: 2px solid #0066cc;
+    outline-offset: 2px;
+}
+
+/* Better Touch Feedback */
+@media (hover: none) and (pointer: coarse) {
+    .roadmap-control-button:active,
+    .roadmap-zoom-button:active {
+        transform: scale(0.95);
+        background-color: #004c99;
+    }
+    
+    .roadmap-export-option:active {
+        background-color: #e9ecef;
     }
 }

@@ -16,6 +16,9 @@ A modern, responsive portfolio website built with Jekyll, HTML5, CSS3, and JavaS
 
 ## Recent Updates
 
+- **2025-01-30**: Enhanced "How It Works" section with professional step-by-step visualization, colorful gradient step numbers, modern card design, and comprehensive accessibility features
+- **2025-01-30**: Added comprehensive hero section styling for Cloud Certification Roadmap with gradient backgrounds, glass morphism effects, and responsive design
+- **2025-01-30**: Implemented professional workflow navigation with visual progress indicators and mobile-optimized layout
 - **2025-07-23**: Updated LinkedIn profile URL format from "dineshrajdhanapathy-25490058" to "dineshraj-dhanapathy-25490058" for consistent linking
 - **2025-07-23**: Standardized URL formats by removing trailing slashes and IDs from social media links
 - **2025-07-23**: Improved contact page link consistency for better user experience
@@ -100,13 +103,48 @@ If you prefer manual deployment:
 ├── index.html              # Landing page
 ├── projects.html           # Portfolio showcase
 ├── contact.html            # Contact form with Formspree integration
+├── certification-roadmap.html # Cloud certification planning tool
 ├── assets/
 │   ├── css/               # Stylesheets
+│   │   ├── certification-roadmap/ # Certification roadmap styles
+│   │   │   ├── hero.css   # Hero section and main layout
+│   │   │   └── [other modules] # Component-specific styles
 │   ├── js/                # JavaScript files
 │   └── images/            # Images and media
 ├── _config.yml            # Jekyll configuration
 └── .github/workflows/     # GitHub Actions
 ```
+
+## Cloud Certification Roadmap Styling
+
+The certification roadmap features modern, professional styling with:
+
+- **Hero Section**: Beautiful gradient background with grid pattern overlay and glass morphism effects
+- **How It Works Section**: Professional step-by-step process visualization with:
+  - Colorful gradient step numbers (unique color for each step: green, cyan, blue, purple, orange)
+  - Modern card design with hover effects and backdrop blur
+  - Connection lines between steps on desktop
+  - Detailed step descriptions with cloud provider mentions (AWS, Azure, GCP)
+  - Benefits section highlighting key features (personalized approach, privacy-first, mobile-friendly)
+  - Enhanced animations including pulse effects and smooth transitions
+  - Full accessibility support with keyboard navigation and screen reader compatibility
+- **Complete AWS Certifications Database**: Comprehensive database with all 12 current AWS certifications:
+  - **All Certification Levels**: Foundational, Associate, Professional, and Specialty certifications
+  - **Detailed Exam Information**: Current exam codes, pricing, duration, questions, and passing scores
+  - **Multi-Language Support**: Up to 11 languages available for foundational certifications
+  - **Domain Breakdown**: Percentage weights for each exam domain area
+  - **Career Guidance**: Target job roles, prerequisites, and next steps for each certification
+  - **Study Path Recommendations**: Pre-defined career paths with time and cost estimates
+- **Roadmap Data Architecture**: Comprehensive data structure for certification paths:
+  - **Multi-Provider Support**: AWS, Azure, and GCP certification paths
+  - **Skill-Level Adaptation**: Beginner, intermediate, and advanced tracks
+  - **Career Path Focus**: Currently supports Cloud Architect path with extensible architecture
+  - **Certification Metadata**: Order, requirements, estimated timelines, and salary projections
+  - **Modular Design**: Easy to extend with additional career paths and providers
+- **Responsive Design**: Mobile-first approach with CSS Grid layouts that adapt across all screen sizes
+- **Interactive Elements**: Smooth hover animations and transitions with accessibility considerations
+- **Workflow Navigation**: Visual progress indicators with numbered steps and state management
+- **Accessibility**: High contrast mode support, reduced motion preferences, and WCAG compliance
 
 ## Contact Form
 

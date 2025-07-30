@@ -1,0 +1,441 @@
+/**
+ * Cloud Certification Roadmap - Hero Section Styles
+ * 
+ * This file contains styles for the hero section and main layout.
+ */
+
+/* Hero Section */
+.certification-roadmap-hero {
+    background: linear-gradient(135deg, #0066cc 0%, #004c99 100%);
+    color: white;
+    padding: 4rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.certification-roadmap-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+}
+
+.certification-roadmap-hero__content {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.certification-roadmap-hero__title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.certification-roadmap-hero__description {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.95;
+}
+
+.certification-roadmap-hero__features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.certification-roadmap-hero__feature {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.certification-roadmap-hero__feature:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.certification-roadmap-hero__feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.certification-roadmap-hero__feature-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: white;
+}
+
+.certification-roadmap-hero__feature-text {
+    font-size: 1rem;
+    line-height: 1.5;
+    opacity: 0.9;
+    margin: 0;
+}
+
+/* Workflow Navigation */
+.certification-roadmap-workflow {
+    background: #f8f9fa;
+    padding: 2rem 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.certification-roadmap-workflow__steps {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.certification-roadmap-workflow__step {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+    min-width: 140px;
+    justify-content: center;
+}
+
+.certification-roadmap-workflow__step:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.certification-roadmap-workflow__step--active {
+    background: #0066cc;
+    color: white;
+    border-color: #004c99;
+}
+
+.certification-roadmap-workflow__step--completed {
+    background: #28a745;
+    color: white;
+    border-color: #1e7e34;
+}
+
+.certification-roadmap-workflow__step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: rgba(0, 102, 204, 0.1);
+    color: #0066cc;
+    border-radius: 50%;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.certification-roadmap-workflow__step--active .certification-roadmap-workflow__step-number {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.certification-roadmap-workflow__step--completed .certification-roadmap-workflow__step-number {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.certification-roadmap-workflow__step-title {
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+/* Main Content Area */
+.certification-roadmap {
+    padding: 3rem 0;
+    background: white;
+}
+
+.certification-roadmap .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.section__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #333;
+}
+
+/* Welcome Step Styles */
+.certification-roadmap__step {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.certification-roadmap__step--active {
+    display: block;
+}
+
+.certification-roadmap__welcome {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.certification-roadmap__welcome-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.certification-roadmap__welcome-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+    color: #555;
+}
+
+.certification-roadmap__welcome-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+    text-align: left;
+}
+
+.certification-roadmap__welcome-step {
+    display: flex;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #0066cc;
+}
+
+.certification-roadmap__welcome-step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #0066cc;
+    color: white;
+    border-radius: 50%;
+    font-weight: 600;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.certification-roadmap__welcome-step-content {
+    flex: 1;
+}
+
+.certification-roadmap__welcome-step-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.certification-roadmap__welcome-step-description {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #555;
+    margin: 0;
+}
+
+.certification-roadmap__welcome-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.certification-roadmap__welcome-feature {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e9ecef;
+}
+
+.certification-roadmap__welcome-feature-icon {
+    font-size: 2rem;
+    color: #0066cc;
+}
+
+.certification-roadmap__welcome-feature-content {
+    flex: 1;
+}
+
+.certification-roadmap__welcome-feature-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.certification-roadmap__welcome-feature-description {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #555;
+    margin: 0;
+}
+
+.certification-roadmap__welcome-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .certification-roadmap-hero {
+        padding: 3rem 0;
+    }
+    
+    .certification-roadmap-hero__title {
+        font-size: 2.5rem;
+    }
+    
+    .certification-roadmap-hero__description {
+        font-size: 1.1rem;
+    }
+    
+    .certification-roadmap-hero__features {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .certification-roadmap-hero__feature {
+        padding: 1.5rem;
+    }
+    
+    .certification-roadmap-workflow__steps {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .certification-roadmap-workflow__step {
+        min-width: auto;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    .section__title {
+        font-size: 2rem;
+    }
+    
+    .certification-roadmap__welcome-steps {
+        grid-template-columns: 1fr;
+    }
+    
+    .certification-roadmap__welcome-features {
+        grid-template-columns: 1fr;
+    }
+    
+    .certification-roadmap__welcome-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .certification-roadmap__welcome-actions .certification-roadmap__btn {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .certification-roadmap-hero__title {
+        font-size: 2rem;
+    }
+    
+    .certification-roadmap-hero__feature {
+        padding: 1rem;
+    }
+    
+    .certification-roadmap__welcome-step {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .certification-roadmap__welcome-feature {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .certification-roadmap-hero {
+        background: #000000;
+        color: #ffffff;
+    }
+    
+    .certification-roadmap-hero__feature {
+        background: rgba(255, 255, 255, 0.2);
+        border: 2px solid #ffffff;
+    }
+    
+    .certification-roadmap-workflow__step {
+        border: 2px solid #000000;
+    }
+    
+    .certification-roadmap-workflow__step--active {
+        background: #000000;
+        color: #ffffff;
+        border-color: #ffffff;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .certification-roadmap-hero__feature,
+    .certification-roadmap-workflow__step,
+    .certification-roadmap__step {
+        transition: none;
+        animation: none;
+    }
+}

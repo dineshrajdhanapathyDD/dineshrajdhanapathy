@@ -1,0 +1,444 @@
+/**
+ * Certification Details Modal Styles
+ * 
+ * This file contains styles for the certification details modal component.
+ */
+
+/* Modal Overlay */
+.certification-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.certification-modal.active {
+    display: flex;
+}
+
+.certification-modal__backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+}
+
+/* Modal Container */
+.certification-modal__container {
+    position: relative;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    overflow: hidden;
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Modal Header */
+.certification-modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 2rem 1rem;
+    border-bottom: 1px solid #e9ecef;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+}
+
+.certification-modal__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+    flex: 1;
+    padding-right: 1rem;
+}
+
+.certification-modal__close {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: #f8f9fa;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    color: #666;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.certification-modal__close:hover {
+    background: #e9ecef;
+    color: #333;
+    transform: scale(1.1);
+}
+
+/* Modal Content */
+.certification-modal__content {
+    padding: 2rem;
+    overflow-y: auto;
+    max-height: calc(90vh - 120px);
+}
+
+/* Certification Overview */
+.cert-overview {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.cert-badge {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.cert-badge.foundational {
+    background: #e8f5e8;
+    color: #2d5a2d;
+}
+
+.cert-badge.associate {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.cert-badge.professional {
+    background: #f3e5f5;
+    color: #7b1fa2;
+}
+
+.cert-badge.specialty {
+    background: #fff3e0;
+    color: #ef6c00;
+}
+
+.cert-code {
+    background: #f8f9fa;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    color: #0066cc;
+    border: 1px solid #e9ecef;
+}
+
+.cert-description {
+    flex: 1;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin: 0;
+    min-width: 100%;
+    margin-top: 1rem;
+}
+
+/* Details Grid */
+.cert-details-grid {
+    display: grid;
+    gap: 2rem;
+}
+
+.cert-section {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 4px solid #0066cc;
+}
+
+.cert-section h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.cert-section h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #555;
+}
+
+/* Info Grid */
+.cert-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.info-label {
+    font-weight: 600;
+    color: #666;
+}
+
+.info-value {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Domains List */
+.domains-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.domain-item {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.domain-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.domain-name {
+    font-weight: 600;
+    color: #333;
+}
+
+.domain-weight {
+    background: #0066cc;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* Job Roles */
+.roles-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.role-tag {
+    background: #e3f2fd;
+    color: #1565c0;
+    padding: 0.25rem 0.75rem;
+    border-radius: 16px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* Languages */
+.languages-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.language-tag {
+    background: white;
+    color: #666;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    border: 1px solid #e9ecef;
+}
+
+/* Next Steps */
+.next-steps ul {
+    margin: 0.5rem 0 0 0;
+    padding-left: 1.5rem;
+}
+
+.next-steps li {
+    margin-bottom: 0.25rem;
+    color: #555;
+}
+
+/* Modal Actions */
+.cert-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e9ecef;
+    flex-wrap: wrap;
+}
+
+.cert-actions .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    font-size: 0.95rem;
+}
+
+.btn-primary {
+    background: #0066cc;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background: transparent;
+    color: #0066cc;
+    border: 2px solid #0066cc;
+}
+
+.btn-outline:hover {
+    background: #0066cc;
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .certification-modal {
+        padding: 0.5rem;
+    }
+    
+    .certification-modal__container {
+        max-height: 95vh;
+        border-radius: 12px;
+    }
+    
+    .certification-modal__header {
+        padding: 1.5rem 1.5rem 1rem;
+    }
+    
+    .certification-modal__title {
+        font-size: 1.3rem;
+    }
+    
+    .certification-modal__content {
+        padding: 1.5rem;
+    }
+    
+    .cert-overview {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .cert-info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .info-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+    
+    .domain-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .cert-actions {
+        flex-direction: column;
+    }
+    
+    .cert-actions .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .certification-modal__container {
+        border: 3px solid #000;
+    }
+    
+    .cert-section {
+        border-left-color: #000;
+        border: 2px solid #000;
+    }
+    
+    .info-item,
+    .domain-item {
+        border-color: #000;
+    }
+    
+    .btn-primary {
+        background: #000;
+        color: #fff;
+    }
+    
+    .btn-outline {
+        border-color: #000;
+        color: #000;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .certification-modal__container {
+        animation: none;
+    }
+    
+    .certification-modal__close,
+    .cert-actions .btn {
+        transition: none;
+    }
+    
+    .btn-primary:hover,
+    .btn-secondary:hover {
+        transform: none;
+    }
+}
