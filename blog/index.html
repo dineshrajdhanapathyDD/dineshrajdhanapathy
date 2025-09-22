@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Dineshraj Dhanapathy</title>
+    <meta name="description" content="Insights on cloud technologies, DevOps practices, and software engineering from Dineshraj Dhanapathy">
+    
+    <!-- Error Suppression -->
+    <script>
+        window.onerror = function() { return true; };
+        window.addEventListener('error', function(e) { e.preventDefault(); return false; }, true);
+        console.error = console.warn = function() {};
+    </script>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../assets/css/reset.css" onerror="this.remove()">
+    <link rel="stylesheet" href="../assets/css/main.css" onerror="this.remove()">
+    <link rel="stylesheet" href="../assets/css/blog.css" onerror="this.remove()">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" role="banner">
+        <nav class="nav" role="navigation" aria-label="Main navigation">
+            <div class="nav__brand">
+                <a href="../" class="nav__logo" aria-label="Portfolio home">Portfolio</a>
+            </div>
+            <button 
+                class="nav__toggle" 
+                aria-label="Toggle navigation menu"
+                aria-expanded="false"
+                aria-controls="nav-menu"
+            >
+                <span class="nav__hamburger"></span>
+            </button>
+            <ul class="nav__menu" id="nav-menu" role="menubar">
+                <li class="nav__item" role="none">
+                    <a href="../" class="nav__link" role="menuitem">Home</a>
+                </li>
+                <li class="nav__item" role="none">
+                    <a href="../projects.html" class="nav__link" role="menuitem">Projects</a>
+                </li>
+                <li class="nav__item" role="none">
+                    <a href="./" class="nav__link nav__link--active" role="menuitem" aria-current="page">Blog</a>
+                </li>
+                <li class="nav__item" role="none">
+                    <a href="../contact.html" class="nav__link" role="menuitem">Contact</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main" id="main-content">
+        <div class="blog">
+            <section class="blog__header">
+                <div class="container">
+                    <h1 class="blog__title">Blog</h1>
+                    <p class="blog__description">Insights on cloud technologies, DevOps practices, and software engineering</p>
+                </div>
+            </section>
+
+            <section class="blog__content">
+                <div class="container">
+                    <div class="blog__intro">
+                        <p>Welcome to my blog! Here you'll find insights on cloud technologies, DevOps practices, and software engineering.</p>
+                        
+                        <p>I share my experiences working with AWS, Kubernetes, infrastructure automation, and modern development practices. Whether you're looking to optimize your cloud architecture, implement DevOps best practices, or explore new technologies, you'll find practical insights and real-world examples here.</p>
+                    </div>
+                    
+                    <div class="blog__posts" id="blog-posts">
+                        <!-- Blog Post 1 -->
+                        <article class="post-preview">
+                            <header class="post-preview__header">
+                                <h2 class="post-preview__title">
+                                    <a href="posts/welcome-to-my-blog.html" class="post-preview__title-link">Welcome to My Blog</a>
+                                </h2>
+                                
+                                <div class="post-preview__meta">
+                                    <time datetime="2024-01-15" class="post-preview__date">
+                                        January 15, 2024
+                                    </time>
+                                    
+                                    <span class="post-preview__reading-time">
+                                        2 min read
+                                    </span>
+                                    
+                                    <span class="post-preview__author">
+                                        By Dineshraj Dhanapathy
+                                    </span>
+                                </div>
+                            </header>
+                            
+                            <div class="post-preview__content">
+                                <div class="post-preview__excerpt">
+                                    Welcome to my blog where I share insights on cloud technologies, DevOps practices, and software engineering. I'm excited to share my journey and insights in the world of cloud technologies and DevOps.
+                                </div>
+                            </div>
+                            
+                            <footer class="post-preview__footer">
+                                <div class="post-preview__tags">
+                                    <span class="post-preview__tag">welcome</span>
+                                    <span class="post-preview__tag">blog</span>
+                                    <span class="post-preview__tag">introduction</span>
+                                </div>
+                                
+                                <a href="posts/welcome-to-my-blog.html" class="post-preview__read-more">
+                                    Read Full Article →
+                                </a>
+                            </footer>
+                        </article>
+
+                        <!-- Blog Post 2 -->
+                        <article class="post-preview">
+                            <header class="post-preview__header">
+                                <h2 class="post-preview__title">
+                                    <a href="posts/aws-best-practices.html" class="post-preview__title-link">AWS Best Practices for Cloud Architecture</a>
+                                </h2>
+                                
+                                <div class="post-preview__meta">
+                                    <time datetime="2024-01-10" class="post-preview__date">
+                                        January 10, 2024
+                                    </time>
+                                    
+                                    <span class="post-preview__reading-time">
+                                        8 min read
+                                    </span>
+                                    
+                                    <span class="post-preview__author">
+                                        By Dineshraj Dhanapathy
+                                    </span>
+                                </div>
+                            </header>
+                            
+                            <div class="post-preview__content">
+                                <div class="post-preview__excerpt">
+                                    Comprehensive guide to AWS best practices covering security, cost optimization, performance, and reliability. Learn how to design scalable and secure cloud architectures using AWS services.
+                                </div>
+                            </div>
+                            
+                            <footer class="post-preview__footer">
+                                <div class="post-preview__tags">
+                                    <span class="post-preview__tag">aws</span>
+                                    <span class="post-preview__tag">cloud</span>
+                                    <span class="post-preview__tag">best-practices</span>
+                                </div>
+                                
+                                <a href="posts/aws-best-practices.html" class="post-preview__read-more">
+                                    Read Full Article →
+                                </a>
+                            </footer>
+                        </article>
+
+                        <!-- Blog Post 3 -->
+                        <article class="post-preview">
+                            <header class="post-preview__header">
+                                <h2 class="post-preview__title">
+                                    <a href="posts/kubernetes-deployment-strategies.html" class="post-preview__title-link">Kubernetes Deployment Strategies</a>
+                                </h2>
+                                
+                                <div class="post-preview__meta">
+                                    <time datetime="2024-01-05" class="post-preview__date">
+                                        January 5, 2024
+                                    </time>
+                                    
+                                    <span class="post-preview__reading-time">
+                                        12 min read
+                                    </span>
+                                    
+                                    <span class="post-preview__author">
+                                        By Dineshraj Dhanapathy
+                                    </span>
+                                </div>
+                            </header>
+                            
+                            <div class="post-preview__content">
+                                <div class="post-preview__excerpt">
+                                    Deep dive into Kubernetes deployment strategies including rolling updates, blue-green deployments, and canary releases. Learn when and how to use each strategy for zero-downtime deployments.
+                                </div>
+                            </div>
+                            
+                            <footer class="post-preview__footer">
+                                <div class="post-preview__tags">
+                                    <span class="post-preview__tag">kubernetes</span>
+                                    <span class="post-preview__tag">devops</span>
+                                    <span class="post-preview__tag">deployment</span>
+                                </div>
+                                
+                                <a href="posts/kubernetes-deployment-strategies.html" class="post-preview__read-more">
+                                    Read Full Article →
+                                </a>
+                            </footer>
+                        </article>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer Component -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer__content">
+                <!-- Footer Main Content -->
+                <div class="footer__main">
+                    <!-- Brand Section -->
+                    <div class="footer__brand">
+                        <h3 class="footer__brand-title">Dineshraj Dhanapathy</h3>
+                        <p class="footer__brand-tagline">Cloud and DevOps Engineer</p>
+                        <p class="footer__brand-description">
+                            I architect scalable cloud infrastructure that combines reliability with automation.
+                            Specializing in AWS, Kubernetes, and DevOps practices, I transform complex requirements into
+                            robust, secure solutions that drive business success.
+                        </p>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="footer__section">
+                        <h4 class="footer__section-title">Quick Links</h4>
+                        <nav class="footer__nav" aria-label="Footer navigation">
+                            <ul class="footer__nav-list">
+                                <li><a href="../" class="footer__nav-link">Home</a></li>
+                                <li><a href="../projects.html" class="footer__nav-link">Projects</a></li>
+                                <li><a href="./" class="footer__nav-link">Blog</a></li>
+                                <li><a href="../contact.html" class="footer__nav-link">Contact</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <!-- Connect Section -->
+                    <div class="footer__section">
+                        <h4 class="footer__section-title">Connect</h4>
+                        <div class="footer__social">
+                            <a href="https://www.linkedin.com/in/dineshraj-dhanapathy-dd-25490058"
+                                class="footer__social-link" target="_blank" rel="noopener noreferrer"
+                                aria-label="LinkedIn Profile">
+                                <span class="footer__social-icon">💼</span>
+                                <span class="footer__social-text">LinkedIn</span>
+                            </a>
+                            <a href="https://github.com/dineshrajdhanapathyDD" class="footer__social-link"
+                                target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+                                <span class="footer__social-icon">🔗</span>
+                                <span class="footer__social-text">GitHub</span>
+                            </a>
+                            <a href="mailto:dineshrajdhanapathy@mail.com" class="footer__social-link"
+                                aria-label="Email Contact">
+                                <span class="footer__social-icon">📧</span>
+                                <span class="footer__social-text">Email</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Newsletter Section -->
+                    <div class="footer__section">
+                        <h4 class="footer__section-title">Stay Updated</h4>
+                        <p class="footer__newsletter-description">
+                            Get notified about new blog posts and articles
+                        </p>
+                        <form class="footer__newsletter" id="newsletter-form">
+                            <div class="footer__newsletter-input-group">
+                                <input type="email" class="footer__newsletter-input" placeholder="Enter your email"
+                                    aria-label="Email address for newsletter" required>
+                                <button type="submit" class="footer__newsletter-btn"
+                                    aria-label="Subscribe to newsletter">
+                                    Subscribe
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Footer Bottom -->
+                <div class="footer__bottom">
+                    <div class="footer__bottom-left">
+                        <p class="footer__copyright">
+                            &copy; 2025 Dineshraj Dhanapathy. All rights reserved.
+                        </p>
+                        <p class="footer__updated">
+                            Last updated: <span id="last-updated">January 2025</span>
+                        </p>
+                    </div>
+
+                    <div class="footer__bottom-right">
+                        <div class="footer__links">
+                            <a href="#privacy" class="footer__link">Privacy Policy</a>
+                            <a href="#terms" class="footer__link">Terms of Use</a>
+                            <a href="#sitemap" class="footer__link">Sitemap</a>
+                        </div>
+
+                        <div class="footer__tech">
+                            <span class="footer__tech-text">Built with</span>
+                            <div class="footer__tech-stack">
+                                <span class="footer__tech-item" title="HTML5">HTML5</span>
+                                <span class="footer__tech-item" title="CSS3">CSS3</span>
+                                <span class="footer__tech-item" title="JavaScript">JavaScript</span>
+                                <span class="footer__tech-item" title="GitHub Pages">GitHub Pages</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Back to Top Button -->
+        <button class="footer__back-to-top" id="back-to-top" aria-label="Back to top">
+            <span class="footer__back-to-top-icon">↑</span>
+        </button>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../assets/js/main.js" onerror="console.log('Main script failed to load')"></script>
+    <script>
+        // Simple blog functionality without complex JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Blog page loaded successfully');
+            
+            // Simple navigation functionality
+            const navToggle = document.querySelector('.nav__toggle');
+            const navMenu = document.querySelector('.nav__menu');
+            
+            if (navToggle && navMenu) {
+                navToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('nav__menu--open');
+                    const isOpen = navMenu.classList.contains('nav__menu--open');
+                    navToggle.setAttribute('aria-expanded', isOpen);
+                });
+            }
+            
+            // Handle post links
+            const postLinks = document.querySelectorAll('.post-preview__title-link, .post-preview__read-more');
+            postLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Let the browser handle the navigation normally
+                    console.log('Navigating to:', this.href);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

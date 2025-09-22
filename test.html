@@ -1,0 +1,20 @@
+---
+layout: default
+title: "Test Page"
+---
+
+<h1>Test Page</h1>
+<p>This is a test page to verify Jekyll is working correctly.</p>
+<p>Site title: {{ site.title }}</p>
+<p>Current time: {{ 'now' | date: "%Y-%m-%d %H:%M:%S" }}</p>
+
+{% if site.posts.size > 0 %}
+<h2>Blog Posts Found:</h2>
+<ul>
+{% for post in site.posts %}
+  <li><a href="{{ post.url }}">{{ post.title }}</a> - {{ post.date | date: "%Y-%m-%d" }}</li>
+{% endfor %}
+</ul>
+{% else %}
+<p>No blog posts found.</p>
+{% endif %}

@@ -1,0 +1,138 @@
+---
+layout: default
+title: "All Tags"
+description: "Browse all blog post tags to find content on specific topics"
+seo_title: "Blog Tags - Find Posts by Topic | Dineshraj Dhanapathy"
+seo_description: "Browse all blog post tags to find content on AWS, Kubernetes, DevOps, and other cloud technologies from Dineshraj Dhanapathy."
+permalink: /blog/tags/
+---
+
+<div class="tags-index">
+    <!-- Tags Header -->
+    <section class="tags-index__header">
+        <div class="tags-index__header-content">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <ol class="breadcrumb__list">
+                    <li class="breadcrumb__item">
+                        <a href="{{ '/' | relative_url }}" class="breadcrumb__link">Home</a>
+                    </li>
+                    <li class="breadcrumb__item">
+                        <a href="{{ '/blog/' | relative_url }}" class="breadcrumb__link">Blog</a>
+                    </li>
+                    <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">
+                        Tags
+                    </li>
+                </ol>
+            </nav>
+            
+            <h1 class="tags-index__title">All Tags</h1>
+            <p class="tags-index__description">
+                Browse topics to find posts that interest you
+            </p>
+        </div>
+    </section>
+
+    <!-- Tags Content -->
+    <section class="tags-index__content">
+        {% assign sorted_tags = site.tags | sort %}
+        {% if sorted_tags.size > 0 %}
+            <div class="tags-cloud">
+                <div class="tags-cloud__grid">
+                    {% for tag in sorted_tags %}
+                        {% assign tag_posts = tag[1] %}
+                        {% assign tag_size = tag_posts.size %}
+                        
+                        <div class="tag-card" itemscope itemtype="https://schema.org/Thing">
+                            <a href="{{ '/blog/tags/' | append: tag[0] | slugify | append: '/' | relative_url }}" 
+                               class="tag-card__link"
+                               itemprop="url">
+                                <div class="tag-card__content">
+                                    <h2 class="tag-card__name" itemprop="name">{{ tag[0] }}</h2>
+                                    <div class="tag-card__meta">
+                                        <span class="tag-card__count">
+                                            {{ tag_size }} 
+                                            {% if tag_size == 1 %}post{% else %}posts{% endif %}
+                                        </span>
+                                    </div>
+                                    
+                                    <!-- Recent posts preview -->
+                                    {% if tag_posts.size > 0 %}
+                                    <div class="tag-card__preview">
+                                        <h3 class="tag-card__preview-title">Recent posts:</h3>
+                                        <ul class="tag-card__preview-list">
+                                            {% assign recent_posts = tag_posts | sort: 'date' | reverse %}
+                                            {% for post in recent_posts limit: 3 %}
+                                                <li class="tag-card__preview-item">
+                                                    <span class="tag-card__preview-post">{{ post.title }}</span>
+                                                    <time class="tag-card__preview-date" datetime="{{ post.date | date_to_xmlschema }}">
+                                                        {{ post.date | date: "%b %Y" }}
+                                                    </time>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                
+                                <div class="tag-card__arrow" aria-hidden="true">→</div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Tags Statistics -->
+            <div class="tags-stats">
+                <div class="tags-stats__content">
+                    <h2 class="tags-stats__title">Tag Statistics</h2>
+                    <div class="tags-stats__grid">
+                        <div class="stat-card">
+                            <div class="stat-card__number">{{ sorted_tags.size }}</div>
+                            <div class="stat-card__label">Total Tags</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card__number">{{ site.posts.size }}</div>
+                            <div class="stat-card__label">Total Posts</div>
+                        </div>
+                        <div class="stat-card">
+                            {% assign avg_tags = 0 %}
+                            {% for post in site.posts %}
+                                {% assign avg_tags = avg_tags | plus: post.tags.size %}
+                            {% endfor %}
+                            {% if site.posts.size > 0 %}
+                                {% assign avg_tags = avg_tags | divided_by: site.posts.size %}
+                            {% endif %}
+                            <div class="stat-card__number">{{ avg_tags }}</div>
+                            <div class="stat-card__label">Avg Tags per Post</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="tags-index__empty">
+                <div class="tags-index__empty-content">
+                    <h2 class="tags-index__empty-title">No Tags Yet</h2>
+                    <p class="tags-index__empty-description">
+                        Tags will appear here once blog posts are published with tag metadata.
+                    </p>
+                    <div class="tags-index__empty-actions">
+                        <a href="{{ '/blog/' | relative_url }}" class="btn btn--primary">
+                            View Blog
+                        </a>
+                        <a href="{{ '/' | relative_url }}" class="btn btn--secondary">
+                            Back to Home
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        <!-- Back to Blog -->
+        <div class="tags-index__navigation">
+            <a href="{{ '/blog/' | relative_url }}" class="tags-index__back-link">
+                <span class="tags-index__back-arrow" aria-hidden="true">←</span>
+                Back to Blog
+            </a>
+        </div>
+    </section>
+</div>

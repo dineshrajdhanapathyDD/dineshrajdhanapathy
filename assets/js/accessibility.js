@@ -1001,6 +1001,111 @@ function enhanceTableAccessibility() {
     });
 }
 
+/**
+ * Trap focus within a container
+ */
+function trapFocus(container) {
+    if (!container) return;
+    
+    const focusableElements = container.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    
+    if (focusableElements.length === 0) return;
+    
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+    
+    // Store the current focus trap
+    accessibilityState.focusTrap = {
+        container,
+        firstElement,
+        lastElement,
+        previousFocus: document.activeElement
+    };
+    
+    // Focus the first element
+    firstElement.focus();
+    
+    // Add event listener for tab navigation
+    container.addEventListener('keydown', handleFocusTrap);
+}
+
+/**
+ * Release focus trap
+ */
+function releaseFocusTrap() {
+    if (!accessibilityState.focusTrap) return;
+    
+    const { container, previousFocus } = accessibilityState.focusTrap;
+    
+    // Remove event listener
+    container.removeEventListener('keydown', handleFocusTrap);
+    
+    // Restore previous focus
+    if (previousFocus && previousFocus.focus) {
+        previousFocus.focus();
+    }
+    
+    // Clear focus trap state
+    accessibilityState.focusTrap = null;
+}
+
+/**
+ * Handle focus trap navigation
+ */
+function handleFocusTrap(event) {
+    if (event.key !== 'Tab') return;
+    
+    const { firstElement, lastElement } = accessibilityState.focusTrap;
+    
+    if (event.shiftKey) {
+        // Shift + Tab (backward)
+        if (document.activeElement === firstElement) {
+            event.preventDefault();
+            lastElement.focus();
+        }
+    } else {
+        // Tab (forward)
+        if (document.activeElement === lastElement) {
+            event.preventDefault();
+            firstElement.focus();
+        }
+    }
+}
+
+/**
+ * Store current focus for later restoration
+ */
+function storeFocus() {
+    accessibilityState.focusedElement = document.activeElement;
+}
+
+/**
+ * Restore previously stored focus
+ */
+function restoreFocus() {
+    if (accessibilityState.focusedElement && accessibilityState.focusedElement.focus) {
+        accessibilityState.focusedElement.focus();
+        accessibilityState.focusedElement = null;
+    }
+}
+
+/**
+ * Focus the first interactive element in a container
+ */
+function focusFirstInteractive(container) {
+    if (!container) return;
+    
+    const focusableElements = container.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    
+    if (focusableElements.length > 0) {
+        focusableElements[0].focus();
+    }
+}
+
 // Initialize accessibility when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     initAccessibility();
@@ -1012,7 +1117,12 @@ window.AccessibilityModule = {
     announceToScreenReader,
     trapFocus,
     releaseFocusTrap,
-    storeFocus: () => window.storeFocus(),
-    restoreFocus: () => window.restoreFocus(),
-    focusFirstInteractive: (container) => window.focusFirstInteractive(container)
+    storeFocus,
+    restoreFocus,
+    focusFirstInteractive
 };
+
+// Also add functions to window for backward compatibility
+window.storeFocus = storeFocus;
+window.restoreFocus = restoreFocus;
+window.focusFirstInteractive = focusFirstInteractive;

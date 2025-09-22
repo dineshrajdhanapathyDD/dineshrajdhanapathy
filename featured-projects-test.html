@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Featured Projects Test</title>
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <style>
+        body { padding: 2rem 0; background: var(--color-background); }
+        .test-header { text-align: center; margin-bottom: 2rem; }
+        .test-header h1 { color: var(--color-text); margin-bottom: 0.5rem; }
+        .test-header p { color: var(--color-text-secondary); }
+    </style>
+</head>
+<body>
+    <div class="test-header">
+        <h1>Featured Projects Section Test</h1>
+        <p>Testing the featured projects implementation</p>
+    </div>
+
+    <!-- Featured Projects Section -->
+    <section class="featured-projects" aria-labelledby="featured-projects-title">
+        <div class="container">
+            <div class="featured-projects__header">
+                <h2 id="featured-projects-title" class="section__title">Featured Projects</h2>
+                <p class="section__subtitle">
+                    Showcasing my expertise in cloud infrastructure, DevOps automation, and modern development practices
+                </p>
+            </div>
+
+            <div class="featured-projects__grid" id="featured-projects-container">
+                <!-- Featured projects will be loaded here -->
+            </div>
+
+            <div class="featured-projects__footer">
+                <a href="projects.html" class="btn btn--secondary btn--large">
+                    <span class="btn__text">View All Projects</span>
+                    <span class="btn__icon" aria-hidden="true">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

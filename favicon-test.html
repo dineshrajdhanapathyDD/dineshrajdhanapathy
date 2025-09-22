@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favicon Test - Dineshraj Dhanapathy</title>
+    
+    <!-- Favicon Test - Only existing files -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        .test-item {
+            margin: 15px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-left: 4px solid #007bff;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Favicon Test Page</h1>
+    <p>This page tests if the favicon is working correctly on Windows and other platforms.</p>
+    
+    <div class="status success">
+        ✅ This page should show a favicon in the browser tab
+    </div>
+    
+    <div class="test-item">
+        <h3>Files Being Tested:</h3>
+        <ul>
+            <li><strong>favicon.ico</strong> - Main favicon for browsers</li>
+            <li><strong>favicon-32x32.png</strong> - 32x32 PNG favicon</li>
+            <li><strong>favicon-16x16.png</strong> - 16x16 PNG favicon</li>
+            <li><strong>apple-touch-icon.png</strong> - Apple device icon</li>
+            <li><strong>site.webmanifest</strong> - PWA manifest</li>
+        </ul>
+    </div>
+    
+    <div class="test-item">
+        <h3>How to Test:</h3>
+        <ol>
+            <li>Look at the browser tab - you should see a favicon</li>
+            <li>Bookmark this page - the bookmark should have an icon</li>
+            <li>On Windows: Check if the favicon appears in the address bar</li>
+            <li>On mobile: Add to home screen to test app icon</li>
+        </ol>
+    </div>
+    
+    <div class="status info">
+        💡 If you don't see a favicon, check the browser console for 404 errors
+    </div>
+    
+    <script>
+        // Test if favicon files exist
+        const faviconFiles = [
+            'favicon.ico',
+            'favicon-32x32.png', 
+            'favicon-16x16.png',
+            'apple-touch-icon.png',
+            'site.webmanifest'
+        ];
+        
+        console.log('🔍 Testing favicon files...');
+        
+        faviconFiles.forEach(file => {
+            fetch(file, { method: 'HEAD' })
+                .then(response => {
+                    if (response.ok) {
+                        console.log(`✅ ${file} - Found`);
+                    } else {
+                        console.log(`❌ ${file} - Not found (${response.status})`);
+                    }
+                })
+                .catch(error => {
+                    console.log(`❌ ${file} - Error: ${error.message}`);
+                });
+        });
+        
+        // Force favicon refresh
+        setTimeout(() => {
+            const link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+            link.type = 'image/x-icon';
+            link.rel = 'shortcut icon';
+            link.href = 'favicon.ico?v=' + Date.now();
+            document.getElementsByTagName('head')[0].appendChild(link);
+        }, 1000);
+    </script>
+</body>
+</html>

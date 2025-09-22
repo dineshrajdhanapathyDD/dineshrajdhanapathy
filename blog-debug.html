@@ -1,0 +1,46 @@
+---
+layout: default
+title: "Blog Debug"
+permalink: /blog-debug/
+---
+
+<div class="container">
+    <h1>Blog Debug Information</h1>
+    
+    <h2>Site Configuration</h2>
+    <ul>
+        <li><strong>Base URL:</strong> {{ site.baseurl }}</li>
+        <li><strong>URL:</strong> {{ site.url }}</li>
+        <li><strong>Blog Title:</strong> {{ site.blog.title }}</li>
+        <li><strong>Posts Count:</strong> {{ site.posts.size }}</li>
+    </ul>
+    
+    <h2>Blog Posts</h2>
+    {% if site.posts.size > 0 %}
+        <ul>
+        {% for post in site.posts %}
+            <li>
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a> 
+                ({{ post.date | date: "%Y-%m-%d" }})
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No posts found.</p>
+    {% endif %}
+    
+    <h2>Navigation Links</h2>
+    <ul>
+        <li><a href="{{ '/' | relative_url }}">Home</a></li>
+        <li><a href="{{ '/blog/' | relative_url }}">Blog (relative_url)</a></li>
+        <li><a href="{{ site.baseurl }}/blog/">Blog (baseurl)</a></li>
+        <li><a href="/dineshrajdhanapathy/blog/">Blog (hardcoded)</a></li>
+    </ul>
+    
+    <h2>Current Page Info</h2>
+    <ul>
+        <li><strong>Page URL:</strong> {{ page.url }}</li>
+        <li><strong>Page Path:</strong> {{ page.path }}</li>
+        <li><strong>Layout:</strong> {{ page.layout }}</li>
+    </ul>
+</div>

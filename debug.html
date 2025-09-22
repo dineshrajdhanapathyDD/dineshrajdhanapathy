@@ -1,0 +1,33 @@
+---
+layout: default
+title: "Debug Info"
+---
+
+<h1>Debug Information</h1>
+
+<h2>Site Configuration</h2>
+<ul>
+    <li><strong>Site URL:</strong> {{ site.url }}</li>
+    <li><strong>Base URL:</strong> {{ site.baseurl }}</li>
+    <li><strong>Current Page URL:</strong> {{ page.url }}</li>
+    <li><strong>Blog URL:</strong> {{ '/blog/' | relative_url }}</li>
+    <li><strong>Blog Absolute URL:</strong> {{ '/blog/' | absolute_url }}</li>
+</ul>
+
+<h2>Posts</h2>
+<p><strong>Total Posts:</strong> {{ site.posts.size }}</p>
+{% if site.posts.size > 0 %}
+<ul>
+{% for post in site.posts limit: 5 %}
+    <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a> ({{ post.date | date: "%Y-%m-%d" }})</li>
+{% endfor %}
+</ul>
+{% endif %}
+
+<h2>Navigation Links</h2>
+<ul>
+    <li><a href="{{ '/' | relative_url }}">Home</a></li>
+    <li><a href="{{ '/projects.html' | relative_url }}">Projects</a></li>
+    <li><a href="{{ '/blog/' | relative_url }}">Blog</a></li>
+    <li><a href="{{ '/contact.html' | relative_url }}">Contact</a></li>
+</ul>

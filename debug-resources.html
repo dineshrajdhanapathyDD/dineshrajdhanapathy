@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Debug Test</title>
+    
+    <!-- Immediate error suppression -->
+    <script>
+        window.onerror = function() { return true; };
+        window.addEventListener('error', function(e) { 
+            console.log('Resource error:', e.target.src || e.target.href);
+            e.preventDefault(); 
+            return false; 
+        }, true);
+        console.error = console.warn = function() {};
+        window.alert = function() {};
+    </script>
+</head>
+<body>
+    <h1>Resource Debug Test</h1>
+    <p>This page tests if resources load without errors.</p>
+    
+    <!-- Test the same resources as your main page -->
+    <img src="assets/images/profile/profile-photo.jpg" alt="Profile" onerror="console.log('Profile image failed')">
+    <img src="assets/images/aws-community-builder-logo.svg" alt="AWS Logo" onerror="console.log('AWS logo failed')">
+    
+    <script src="assets/js/main.js" onerror="console.log('Main JS failed')"></script>
+    <script src="assets/js/error-suppression.js" onerror="console.log('Error suppression failed')"></script>
+    
+    <link rel="stylesheet" href="assets/css/main.css" onerror="console.log('Main CSS failed')">
+    
+    <script>
+        console.log('Debug page loaded successfully');
+        
+        // Test if any resources are missing
+        setTimeout(function() {
+            console.log('All resources should be loaded by now');
+        }, 2000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kubernetes Deployment Strategies</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: #374151;
+            margin: 0;
+            padding: 2rem;
+            background: #ffffff;
+        }
+        
+        h1 {
+            color: #1f2937;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid #3b82f6;
+            padding-bottom: 0.5rem;
+        }
+        
+        h3 {
+            color: #1f2937;
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem 0;
+            font-weight: 600;
+        }
+        
+        h4 {
+            color: #1f2937;
+            font-size: 1.25rem;
+            margin: 1.5rem 0 0.75rem 0;
+            font-weight: 600;
+        }
+        
+        p {
+            margin-bottom: 1.25rem;
+        }
+        
+        ul {
+            margin: 1.25rem 0;
+            padding-left: 2rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        strong {
+            font-weight: 600;
+            color: #1f2937;
+        }
+        
+        .post-meta {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <h1>Kubernetes Deployment Strategies</h1>
+        
+        <div class="post-meta">
+            <time datetime="2024-01-05">January 5, 2024</time> • 
+            <span>12 min read</span> • 
+            <span>By Dineshraj Dhanapathy</span>
+        </div>
+        
+        <p>Kubernetes offers several deployment strategies to help you update your applications with minimal downtime and risk. Understanding when and how to use each strategy is crucial for maintaining reliable services in production.</p>
+        
+        <h3>1. Rolling Updates (Default Strategy)</h3>
+        <p>Rolling updates gradually replace old pods with new ones, ensuring your application remains available throughout the deployment process.</p>
+        
+        <h4>How it works:</h4>
+        <ul>
+            <li>Creates new pods with the updated version</li>
+            <li>Waits for new pods to be ready</li>
+            <li>Terminates old pods gradually</li>
+            <li>Continues until all pods are updated</li>
+        </ul>
+        
+        <h4>Best for:</h4>
+        <ul>
+            <li>Most standard applications</li>
+            <li>When you can tolerate mixed versions temporarily</li>
+            <li>Applications with backward-compatible changes</li>
+        </ul>
+        
+        <h3>2. Blue-Green Deployments</h3>
+        <p>Blue-green deployments maintain two identical production environments, switching traffic between them for instant rollouts and rollbacks.</p>
+        
+        <h4>Implementation:</h4>
+        <ul>
+            <li>Deploy new version to the "green" environment</li>
+            <li>Test the green environment thoroughly</li>
+            <li>Switch traffic from blue to green instantly</li>
+            <li>Keep blue environment for quick rollback</li>
+        </ul>
+        
+        <h4>Advantages:</h4>
+        <ul>
+            <li>Zero downtime deployments</li>
+            <li>Instant rollback capability</li>
+            <li>Full testing before traffic switch</li>
+            <li>No mixed version issues</li>
+        </ul>
+        
+        <h3>3. Canary Releases</h3>
+        <p>Canary releases gradually shift traffic to the new version, allowing you to monitor and validate changes with a subset of users.</p>
+        
+        <h4>Process:</h4>
+        <ul>
+            <li>Deploy new version alongside old version</li>
+            <li>Route small percentage of traffic to new version</li>
+            <li>Monitor metrics and user feedback</li>
+            <li>Gradually increase traffic to new version</li>
+            <li>Complete rollout or rollback based on results</li>
+        </ul>
+        
+        <h4>Benefits:</h4>
+        <ul>
+            <li>Risk mitigation through gradual rollout</li>
+            <li>Real user feedback before full deployment</li>
+            <li>Easy rollback if issues are detected</li>
+            <li>Performance validation under real load</li>
+        </ul>
+        
+        <h3>4. A/B Testing Deployments</h3>
+        <p>Similar to canary releases but focused on comparing different versions or features rather than just validating new releases.</p>
+        
+        <h3>Choosing the Right Strategy</h3>
+        <p>Consider these factors when selecting a deployment strategy:</p>
+        
+        <ul>
+            <li><strong>Risk tolerance:</strong> How much risk can you accept?</li>
+            <li><strong>Resource availability:</strong> Do you have resources for multiple environments?</li>
+            <li><strong>Application architecture:</strong> Can your app handle mixed versions?</li>
+            <li><strong>Rollback requirements:</strong> How quickly do you need to rollback?</li>
+            <li><strong>Testing needs:</strong> How much validation do you need before full rollout?</li>
+        </ul>
+        
+        <h3>Implementation Tips</h3>
+        <ul>
+            <li>Always use health checks and readiness probes</li>
+            <li>Monitor key metrics during deployments</li>
+            <li>Automate rollback procedures</li>
+            <li>Test your deployment strategy in staging first</li>
+            <li>Document your deployment procedures</li>
+        </ul>
+        
+        <h3>Conclusion</h3>
+        <p>Each deployment strategy has its place in modern DevOps practices. Start with rolling updates for most applications, consider blue-green for critical services requiring zero downtime, and use canary releases when you need to validate changes with real users before full rollout.</p>
+        
+        <p>The key is to choose the strategy that best fits your application's requirements, risk tolerance, and operational constraints.</p>
+    </article>
+</body>
+</html>

@@ -1,0 +1,171 @@
+---
+layout: default
+title: "Offline"
+description: "You're currently offline. Some content may not be available."
+permalink: /offline.html
+sitemap: false
+---
+
+<div class="offline-page">
+    <div class="offline-page__content">
+        <div class="offline-page__icon">
+            📡
+        </div>
+
+        <h1 class="offline-page__title">You're Offline</h1>
+
+        <p class="offline-page__description">
+            It looks like you're not connected to the internet. Don't worry, you can still browse some cached content.
+        </p>
+
+        <div class="offline-page__actions">
+            <button class="btn btn--primary" onclick="location.reload()">
+                Try Again
+            </button>
+            <a href="/blog/" class="btn btn--secondary">
+                Browse Cached Posts
+            </a>
+        </div>
+
+        <div class="offline-page__tips">
+            <h2>While you're offline, you can:</h2>
+            <ul>
+                <li>Read recently viewed blog posts</li>
+                <li>Browse your bookmarked content</li>
+                <li>Check out the cached portfolio pages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<style>
+    .offline-page {
+        min-height: 60vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .offline-page__content {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .offline-page__icon {
+        font-size: 4rem;
+        margin-bottom: 2rem;
+        opacity: 0.7;
+    }
+
+    .offline-page__title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: #333;
+    }
+
+    .offline-page__description {
+        font-size: 1.1rem;
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 2rem;
+    }
+
+    .offline-page__actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 3rem;
+    }
+
+    .offline-page__tips {
+        background: #f8f9fa;
+        border-radius: 1rem;
+        padding: 2rem;
+        text-align: left;
+    }
+
+    .offline-page__tips h2 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        color: #333;
+    }
+
+    .offline-page__tips ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .offline-page__tips li {
+        padding: 0.5rem 0;
+        position: relative;
+        padding-left: 2rem;
+    }
+
+    .offline-page__tips li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #28a745;
+        font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+        .offline-page__title {
+            font-size: 2rem;
+        }
+
+        .offline-page__actions {
+            flex-direction: column;
+        }
+
+        .offline-page__tips {
+            padding: 1.5rem;
+            text-align: center;
+        }
+    }
+</style>
+
+<script>
+    // Check online status
+    function updateOnlineStatus() {
+        const status = navigator.onLine ? 'online' : 'offline';
+
+        if (status === 'online') {
+            // Show reconnection message
+            const message = document.createElement('div');
+            message.className = 'alert alert--success';
+            message.innerHTML = '✅ You\'re back online! <a href="javascript:location.reload()">Refresh page</a>';
+            message.style.cssText = `
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            z-index: 1000;
+        `;
+
+            document.body.appendChild(message);
+
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                if (message.parentNode) {
+                    message.parentNode.removeChild(message);
+                }
+            }, 5000);
+        }
+    }
+
+    window.addEventListener('online', updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
+
+    // Initial check
+    updateOnlineStatus();
+</script>

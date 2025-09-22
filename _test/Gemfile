@@ -1,0 +1,6 @@
+source 'https://rubygems.org'
+
+gem 'minitest', '~> 5.0'
+gem 'minitest-reporters', '~> 1.5'
+gem 'nokogiri', '~> 1.13'
+gem 'colorize', '~> 0.8'

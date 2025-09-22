@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    {% include seo-meta.html page=page %}
+    
+    <!-- Favicon and Icons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{{ '/assets/css/reset.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/accessibility.css' | relative_url }}">
+    {% if page.layout == 'post' or page.layout == 'blog' %}
+    <link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}">
+    {% endif %}
+    
+    {% seo %}
+</head>
+<body>
+    <!-- Skip Links for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#navigation" class="skip-link">Skip to navigation</a>
+    
+    <!-- Header Component -->
+    <header class="header" role="banner">
+        <nav class="nav" role="navigation" aria-label="Main navigation">
+            <div class="nav__brand">
+                <a href="{{ '/' | relative_url }}" class="nav__logo" aria-label="Portfolio home">Portfolio</a>
+            </div>
+            <button 
+                class="nav__toggle" 
+                aria-label="Toggle navigation menu"
+                aria-expanded="false"
+                aria-controls="nav-menu"
+            >
+                <span class="nav__hamburger"></span>
+            </button>
+            <ul class="nav__menu" id="nav-menu" role="menubar">
+                <li class="nav__item" role="none">
+                    <a href="/dineshrajdhanapathy/" class="nav__link" role="menuitem">Home</a>
+                </li>
+                <li class="nav__item" role="none">
+                    <a href="/dineshrajdhanapathy/projects.html" class="nav__link" role="menuitem">Projects</a>
+                </li>
+                <li class="nav__item" role="none">
+                    <a href="/dineshrajdhanapathy/blog/" class="nav__link" role="menuitem">Blog</a>
+                </li>
+                <li class="nav__item" role="none">
+                    <a href="/dineshrajdhanapathy/contact.html" class="nav__link" role="menuitem">Contact</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main" id="main-content">
+        {{ content }}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer__content">
+            <div class="footer__section">
+                <h3 class="footer__title">Connect</h3>
+                <div class="footer__social">
+                    <a href="https://linkedin.com/in/{{ site.linkedin_username }}" class="footer__social-link" aria-label="LinkedIn Profile" target="_blank" rel="noopener noreferrer">
+                        <span class="footer__social-icon">LinkedIn</span>
+                    </a>
+                    <a href="https://github.com/{{ site.github_username }}" class="footer__social-link" aria-label="GitHub Profile" target="_blank" rel="noopener noreferrer">
+                        <span class="footer__social-icon">GitHub</span>
+                    </a>
+                    <a href="https://twitter.com/{{ site.twitter_username }}" class="footer__social-link" aria-label="Twitter Profile" target="_blank" rel="noopener noreferrer">
+                        <span class="footer__social-icon">Twitter</span>
+                    </a>
+                </div>
+            </div>
+            <div class="footer__section">
+                <h3 class="footer__title">Quick Links</h3>
+                <nav class="footer__nav" aria-label="Footer navigation">
+                    <a href="{{ '/' | relative_url }}" class="footer__nav-link">Home</a>
+                    <a href="{{ '/projects.html' | relative_url }}" class="footer__nav-link">Projects</a>
+                    <a href="{{ '/blog/' | relative_url }}" class="footer__nav-link">Blog</a>
+                    <a href="{{ '/contact.html' | relative_url }}" class="footer__nav-link">Contact</a>
+                </nav>
+            </div>
+            <div class="footer__section">
+                <h3 class="footer__title">Subscribe</h3>
+                <p class="footer__text">Stay updated with my latest posts</p>
+                <a href="{{ '/feed.xml' | relative_url }}" class="footer__rss-link" aria-label="RSS Feed">RSS Feed</a>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <p class="footer__copyright">
+                &copy; {{ 'now' | date: "%Y" }} {{ site.author }}. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+    {% if page.layout == 'blog' %}
+    <script src="{{ '/assets/js/blog.js' | relative_url }}"></script>
+    {% endif %}
+    {% if page.layout == 'post' or page.layout == 'blog' %}
+    <script src="{{ '/assets/js/social-sharing.js' | relative_url }}"></script>
+    {% endif %}
+    
+    <!-- Performance Monitoring -->
+    {% if jekyll.environment == 'production' %}
+    <script src="{{ '/assets/js/performance-monitor.js' | relative_url }}" async></script>
+    {% endif %}
+</body>
+</html>

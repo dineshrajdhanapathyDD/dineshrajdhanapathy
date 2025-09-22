@@ -15,17 +15,42 @@ markdown: kramdown
 highlighter: rouge
 permalink: pretty
 
+# Blog settings
+blog:
+  title: "Blog"
+  description: "Insights on cloud technologies, DevOps practices, and software engineering"
+  posts_per_page: 10
+  excerpt_separator: "<!--more-->"
+
+# Pagination
+paginate: 10
+paginate_path: "/blog/page/:num/"
+
+# Pagination v2 settings (if using jekyll-paginate-v2)
+pagination:
+  enabled: true
+  per_page: 10
+  permalink: '/page/:num/'
+  title: ':title - page :num'
+  limit: 0
+  sort_field: 'date'
+  sort_reverse: true
+
 # Collections
 collections:
   projects:
     output: true
     permalink: /projects/:path/
+  posts:
+    output: true
+    permalink: /blog/:year/:month/:day/:title/
 
 # Plugins
 plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
+  - jekyll-paginate
 
 # Exclude from processing
 exclude:
@@ -59,3 +84,10 @@ defaults:
       type: "projects"
     values:
       layout: "project"
+  - scope:
+      path: "_posts"
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Dineshraj Dhanapathy"
+      show_excerpts: true

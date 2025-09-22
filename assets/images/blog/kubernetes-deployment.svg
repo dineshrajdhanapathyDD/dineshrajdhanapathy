@@ -1,0 +1,51 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="k8sGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#326ce5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a4480;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#k8sGrad)"/>
+  
+  <!-- Kubernetes pattern -->
+  <defs>
+    <pattern id="k8sPattern" width="80" height="80" patternUnits="userSpaceOnUse">
+      <circle cx="40" cy="40" r="2" fill="rgba(255,255,255,0.1)"/>
+      <path d="M40,20 L50,35 L40,50 L30,35 Z" fill="rgba(255,255,255,0.05)"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#k8sPattern)"/>
+  
+  <!-- Main content -->
+  <g transform="translate(600, 315)">
+    <!-- Kubernetes logo representation -->
+    <circle cx="0" cy="-80" r="50" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.4)" stroke-width="3"/>
+    <path d="M0,-110 L15,-95 L15,-65 L0,-50 L-15,-65 L-15,-95 Z" fill="white" opacity="0.9"/>
+    <circle cx="0" cy="-80" r="8" fill="#326ce5"/>
+    
+    <!-- Title -->
+    <text x="0" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="white">Kubernetes Deployment</text>
+    
+    <!-- Subtitle -->
+    <text x="0" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="rgba(255,255,255,0.9)">Container Orchestration • Scaling • Management</text>
+    
+    <!-- Container representations -->
+    <g transform="translate(-150, 120)">
+      <rect x="0" y="0" width="40" height="30" rx="4" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+      <text x="20" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">Pod</text>
+    </g>
+    <g transform="translate(-50, 120)">
+      <rect x="0" y="0" width="40" height="30" rx="4" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+      <text x="20" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">Pod</text>
+    </g>
+    <g transform="translate(50, 120)">
+      <rect x="0" y="0" width="40" height="30" rx="4" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+      <text x="20" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">Pod</text>
+    </g>
+    
+    <!-- Connection lines -->
+    <path d="M0,-30 L-130,120 M0,-30 L-30,120 M0,-30 L70,120" stroke="rgba(255,255,255,0.4)" stroke-width="2" fill="none"/>
+  </g>
+</svg>

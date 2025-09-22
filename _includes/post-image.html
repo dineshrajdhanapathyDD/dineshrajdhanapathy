@@ -1,0 +1,57 @@
+{% comment %}
+Post image include with automatic fallback and optimization
+Usage: {% include post-image.html post=post type="preview" %}
+Types: preview, featured, thumbnail
+{% endcomment %}
+
+{% assign post_data = include.post %}
+{% assign image_type = include.type | default: "preview" %}
+{% assign image_src = post_data.image %}
+{% assign image_alt = post_data.image_alt | default: post_data.title %}
+
+{% comment %} Set default image if none provided {% endcomment %}
+{% unless image_src %}
+  {% assign image_src = "/assets/images/blog/default-post.svg" %}
+  {% assign image_alt = "Default blog post image for " | append: post_data.title %}
+{% endunless %}
+
+{% comment %} Configure based on image type {% endcomment %}
+{% case image_type %}
+  {% when "preview" %}
+    {% assign image_class = "post-preview__img" %}
+    {% assign container_class = "post-preview__image" %}
+    {% assign loading = "lazy" %}
+    {% assign sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px" %}
+  {% when "featured" %}
+    {% assign image_class = "post__image" %}
+    {% assign container_class = "post__featured-image" %}
+    {% assign loading = "eager" %}
+    {% assign sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px" %}
+  {% when "thumbnail" %}
+    {% assign image_class = "post-thumbnail__img" %}
+    {% assign container_class = "post-thumbnail__image" %}
+    {% assign loading = "lazy" %}
+    {% assign sizes = "(max-width: 768px) 100px, 150px" %}
+{% endcase %}
+
+<div class="{{ container_class }}">
+  {% if image_type == "preview" %}
+    <a href="{{ post_data.url | relative_url }}" aria-label="Read {{ post_data.title }}">
+  {% endif %}
+  
+  {% include responsive-image.html 
+    src=image_src 
+    alt=image_alt 
+    class=image_class 
+    loading=loading 
+    sizes=sizes 
+    itemprop="image"
+  %}
+  
+  {% if image_type == "preview" %}
+    </a>
+    {% if post_data.featured %}
+      <span class="post-preview__featured" aria-label="Featured post">⭐</span>
+    {% endif %}
+  {% endif %}
+</div>

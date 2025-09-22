@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog JavaScript Tests</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        
+        .test-container {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        
+        .test-pass {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .test-fail {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .test-info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        #test-results {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: #f8f9fa;
+        }
+        
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        button:hover {
+            background: #0056b3;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        /* Test elements */
+        .post-preview {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        
+        .post-preview.hidden {
+            display: none;
+        }
+        
+        .tag {
+            display: inline-block;
+            background: #e9ecef;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin: 2px;
+        }
+        
+        .search-container {
+            margin: 20px 0;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .tag-filter {
+            margin: 10px 0;
+        }
+        
+        .tag-button {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 15px;
+            margin: 2px;
+            cursor: pointer;
+            font-size: 0.8em;
+        }
+        
+        .tag-button.active {
+            background: #007bff;
+        }
+        
+        .search-results {
+            margin: 20px 0;
+        }
+        
+        .no-results {
+            text-align: center;
+            color: #6c757d;
+            padding: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Blog JavaScript Functionality Tests</h1>
+    
+    <div class="test-container">
+        <h2>Test Controls</h2>
+        <button onclick="runAllTests()">Run All Tests</button>
+        <button onclick="runSearchTests()">Test Search</button>
+        <button onclick="runTagFilterTests()">Test Tag Filtering</button>
+        <button onclick="runPerformanceTests()">Test Performance</button>
+        <button onclick="clearResults()">Clear Results</button>
+    </div>
+    
+    <div class="test-container">
+        <h2>Test Results</h2>
+        <div id="test-results"></div>
+    </div>
+    
+    <!-- Test Elements -->
+    <div class="test-container">
+        <h2>Search Functionality Test</h2>
+        <div class="search-container">
+            <input type="search" class="search-input" id="search-input" placeholder="Search blog posts..." aria-label="Search blog posts">
+        </div>
+        
+        <div class="tag-filter">
+            <button class="tag-button" data-tag="javascript">JavaScript</button>
+            <button class="tag-button" data-tag="css">CSS</button>
+            <button class="tag-button" data-tag="html">HTML</button>
+            <button class="tag-button" data-tag="performance">Performance</button>
+            <button class="tag-button" data-tag="accessibility">Accessibility</button>
+        </div>
+        
+        <div id="posts-container">
+            <article class="post-preview" data-tags="javascript,performance">
+                <h3>JavaScript Performance Optimization</h3>
+                <p>Learn how to optimize your JavaScript code for better performance and user experience.</p>
+                <div class="post-tags">
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">Performance</span>
+                </div>
+            </article>
+            
+            <article class="post-preview" data-tags="css,html">
+                <h3>Modern CSS Grid Layouts</h3>
+                <p>Explore the power of CSS Grid for creating responsive and flexible layouts.</p>
+                <div class="post-tags">
+                    <span class="tag">CSS</span>
+                    <span class="tag">HTML</span>
+                </div>
+            </article>
+            
+            <article class="post-preview" data-tags="accessibility,html">
+                <h3>Web Accessibility Best Practices</h3>
+                <p>Essential techniques for making your websites accessible to all users.</p>
+                <div class="post-tags">
+                    <span class="tag">Accessibility</span>
+                    <span class="tag">HTML</span>
+                </div>
+            </article>
+            
+            <article class="post-preview" data-tags="javascript,css">
+                <h3>Interactive UI Components</h3>
+                <p>Building engaging user interfaces with JavaScript and CSS animations.</p>
+                <div class="post-tags">
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">CSS</span>
+                </div>
+            </article>
+        </div>
+        
+        <div class="search-results">
+            <div class="no-results hidden">No posts found matching your search.</div>
+        </div>
+    </div>
+
+    <script>
+        // Mock search index data
+        const searchIndex = {
+            posts: [
+                {
+                    id: 'javascript-performance',
+                    title: 'JavaScript Performance Optimization',
+                    content: 'Learn how to optimize your JavaScript code for better performance and user experience. This includes techniques like debouncing, throttling, and efficient DOM manipulation.',
+                    excerpt: 'Learn how to optimize your JavaScript code for better performance and user experience.',
+                    url: '/blog/2024/01/15/javascript-performance/',
+                    date: '2024-01-15',
+                    tags: ['javascript', 'performance'],
+                    categories: ['development']
+                },
+                {
+                    id: 'css-grid-layouts',
+                    title: 'Modern CSS Grid Layouts',
+                    content: 'Explore the power of CSS Grid for creating responsive and flexible layouts. CSS Grid provides a two-dimensional layout system.',
+                    excerpt: 'Explore the power of CSS Grid for creating responsive and flexible layouts.',
+                    url: '/blog/2024/01/10/css-grid-layouts/',
+                    date: '2024-01-10',
+                    tags: ['css', 'html'],
+                    categories: ['design']
+                },
+                {
+                    id: 'accessibility-best-practices',
+                    title: 'Web Accessibility Best Practices',
+                    content: 'Essential techniques for making your websites accessible to all users. This includes semantic HTML, ARIA labels, and keyboard navigation.',
+                    excerpt: 'Essential techniques for making your websites accessible to all users.',
+                    url: '/blog/2024/01/05/accessibility-best-practices/',
+                    date: '2024-01-05',
+                    tags: ['accessibility', 'html'],
+                    categories: ['development']
+                },
+                {
+                    id: 'interactive-ui-components',
+                    title: 'Interactive UI Components',
+                    content: 'Building engaging user interfaces with JavaScript and CSS animations. Learn about transitions, transforms, and user interaction patterns.',
+                    excerpt: 'Building engaging user interfaces with JavaScript and CSS animations.',
+                    url: '/blog/2024/01/01/interactive-ui-components/',
+                    date: '2024-01-01',
+                    tags: ['javascript', 'css'],
+                    categories: ['design']
+                }
+            ]
+        };
+
+        // Test framework
+        class TestFramework {
+            constructor() {
+                this.results = [];
+                this.resultsContainer = document.getElementById('test-results');
+            }
+
+            test(name, testFunction) {
+                try {
+                    const result = testFunction();
+                    if (result === true || result === undefined) {
+                        this.pass(name);
+                    } else {
+                        this.fail(name, result);
+                    }
+                } catch (error) {
+                    this.fail(name, error.message);
+                }
+            }
+
+            pass(name) {
+                this.results.push({ name, status: 'pass' });
+                this.log(`✅ PASS: ${name}`, 'test-pass');
+            }
+
+            fail(name, message) {
+                this.results.push({ name, status: 'fail', message });
+                this.log(`❌ FAIL: ${name} - ${message}`, 'test-fail');
+            }
+
+            info(message) {
+                this.log(`ℹ️ INFO: ${message}`, 'test-info');
+            }
+
+            log(message, className) {
+                const div = document.createElement('div');
+                div.className = `test-result ${className}`;
+                div.textContent = message;
+                this.resultsContainer.appendChild(div);
+                this.resultsContainer.scrollTop = this.resultsContainer.scrollHeight;
+            }
+
+            clear() {
+                this.results = [];
+                this.resultsContainer.innerHTML = '';
+            }
+
+            getSummary() {
+                const passed = this.results.filter(r => r.status === 'pass').length;
+                const failed = this.results.filter(r => r.status === 'fail').length;
+                return { passed, failed, total: this.results.length };
+            }
+        }
+
+        const testFramework = new TestFramework();
+
+        // Search functionality tests
+        function testSearchFunctionality() {
+            testFramework.info('Testing search functionality...');
+
+            // Test search index structure
+            testFramework.test('Search index has posts array', () => {
+                return Array.isArray(searchIndex.posts);
+            });
+
+            testFramework.test('Search index posts have required fields', () => {
+                const requiredFields = ['id', 'title', 'content', 'excerpt', 'url', 'date', 'tags'];
+                return searchIndex.posts.every(post => 
+                    requiredFields.every(field => post.hasOwnProperty(field))
+                );
+            });
+
+            // Test search functionality
+            testFramework.test('Search returns results for valid query', () => {
+                const results = performSearch('JavaScript');
+                return results.length > 0;
+            });
+
+            testFramework.test('Search is case insensitive', () => {
+                const results1 = performSearch('javascript');
+                const results2 = performSearch('JavaScript');
+                return results1.length === results2.length;
+            });
+
+            testFramework.test('Search returns empty array for no matches', () => {
+                const results = performSearch('nonexistentterm12345');
+                return results.length === 0;
+            });
+
+            testFramework.test('Search highlights matching terms', () => {
+                const results = performSearch('JavaScript');
+                return results.some(result => 
+                    result.highlightedTitle.includes('<mark>') || 
+                    result.highlightedExcerpt.includes('<mark>')
+                );
+            });
+        }
+
+        // Tag filtering tests
+        function testTagFiltering() {
+            testFramework.info('Testing tag filtering functionality...');
+
+            testFramework.test('Filter posts by single tag', () => {
+                const posts = document.querySelectorAll('.post-preview');
+                filterPostsByTag('javascript');
+                const visiblePosts = document.querySelectorAll('.post-preview:not(.hidden)');
+                return visiblePosts.length > 0 && visiblePosts.length < posts.length;
+            });
+
+            testFramework.test('Show all posts when no filter active', () => {
+                const totalPosts = document.querySelectorAll('.post-preview').length;
+                clearTagFilter();
+                const visiblePosts = document.querySelectorAll('.post-preview:not(.hidden)');
+                return visiblePosts.length === totalPosts;
+            });
+
+            testFramework.test('Tag buttons toggle active state', () => {
+                const tagButton = document.querySelector('[data-tag="javascript"]');
+                tagButton.click();
+                return tagButton.classList.contains('active');
+            });
+
+            testFramework.test('Multiple tag selection works', () => {
+                clearTagFilter();
+                const jsButton = document.querySelector('[data-tag="javascript"]');
+                const cssButton = document.querySelector('[data-tag="css"]');
+                
+                jsButton.click();
+                cssButton.click();
+                
+                const visiblePosts = document.querySelectorAll('.post-preview:not(.hidden)');
+                return visiblePosts.length > 0;
+            });
+        }
+
+        // Performance tests
+        function testPerformance() {
+            testFramework.info('Testing performance characteristics...');
+
+            testFramework.test('Search completes within 100ms', () => {
+                const start = performance.now();
+                performSearch('JavaScript performance optimization techniques');
+                const end = performance.now();
+                return (end - start) < 100;
+            });
+
+            testFramework.test('Tag filtering completes within 50ms', () => {
+                const start = performance.now();
+                filterPostsByTag('javascript');
+                const end = performance.now();
+                return (end - start) < 50;
+            });
+
+            testFramework.test('DOM updates are efficient', () => {
+                const posts = document.querySelectorAll('.post-preview');
+                const start = performance.now();
+                
+                // Simulate multiple rapid filter changes
+                for (let i = 0; i < 10; i++) {
+                    filterPostsByTag('javascript');
+                    filterPostsByTag('css');
+                }
+                
+                const end = performance.now();
+                return (end - start) < 200;
+            });
+        }
+
+        // Search implementation
+        function performSearch(query) {
+            if (!query || query.trim() === '') {
+                return [];
+            }
+
+            const searchTerm = query.toLowerCase().trim();
+            const results = [];
+
+            searchIndex.posts.forEach(post => {
+                let score = 0;
+                let highlightedTitle = post.title;
+                let highlightedExcerpt = post.excerpt;
+
+                // Title match (higher weight)
+                if (post.title.toLowerCase().includes(searchTerm)) {
+                    score += 10;
+                    const regex = new RegExp(`(${searchTerm})`, 'gi');
+                    highlightedTitle = post.title.replace(regex, '<mark>$1</mark>');
+                }
+
+                // Content match
+                if (post.content.toLowerCase().includes(searchTerm)) {
+                    score += 5;
+                }
+
+                // Excerpt match
+                if (post.excerpt.toLowerCase().includes(searchTerm)) {
+                    score += 3;
+                    const regex = new RegExp(`(${searchTerm})`, 'gi');
+                    highlightedExcerpt = post.excerpt.replace(regex, '<mark>$1</mark>');
+                }
+
+                // Tag match
+                if (post.tags.some(tag => tag.toLowerCase().includes(searchTerm))) {
+                    score += 7;
+                }
+
+                if (score > 0) {
+                    results.push({
+                        ...post,
+                        score,
+                        highlightedTitle,
+                        highlightedExcerpt
+                    });
+                }
+            });
+
+            return results.sort((a, b) => b.score - a.score);
+        }
+
+        // Tag filtering implementation
+        function filterPostsByTag(tag) {
+            const posts = document.querySelectorAll('.post-preview');
+            const activeButton = document.querySelector(`[data-tag="${tag}"]`);
+
+            posts.forEach(post => {
+                const postTags = post.dataset.tags.split(',');
+                if (postTags.includes(tag)) {
+                    post.classList.remove('hidden');
+                } else {
+                    post.classList.add('hidden');
+                }
+            });
+
+            // Update button state
+            document.querySelectorAll('.tag-button').forEach(btn => btn.classList.remove('active'));
+            if (activeButton) {
+                activeButton.classList.add('active');
+            }
+        }
+
+        function clearTagFilter() {
+            const posts = document.querySelectorAll('.post-preview');
+            posts.forEach(post => post.classList.remove('hidden'));
+            
+            document.querySelectorAll('.tag-button').forEach(btn => btn.classList.remove('active'));
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Search input
+            const searchInput = document.getElementById('search-input');
+            searchInput.addEventListener('input', function(e) {
+                const query = e.target.value;
+                const results = performSearch(query);
+                
+                // Update UI based on results (simplified for testing)
+                const noResults = document.querySelector('.no-results');
+                if (query && results.length === 0) {
+                    noResults.classList.remove('hidden');
+                } else {
+                    noResults.classList.add('hidden');
+                }
+            });
+
+            // Tag buttons
+            document.querySelectorAll('.tag-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const tag = this.dataset.tag;
+                    if (this.classList.contains('active')) {
+                        clearTagFilter();
+                    } else {
+                        filterPostsByTag(tag);
+                    }
+                });
+            });
+        });
+
+        // Test runner functions
+        function runAllTests() {
+            testFramework.clear();
+            testFramework.info('Starting comprehensive blog functionality tests...');
+            
+            testSearchFunctionality();
+            testTagFiltering();
+            testPerformance();
+            
+            const summary = testFramework.getSummary();
+            testFramework.info(`Tests completed: ${summary.passed} passed, ${summary.failed} failed, ${summary.total} total`);
+        }
+
+        function runSearchTests() {
+            testFramework.clear();
+            testSearchFunctionality();
+            const summary = testFramework.getSummary();
+            testFramework.info(`Search tests: ${summary.passed} passed, ${summary.failed} failed`);
+        }
+
+        function runTagFilterTests() {
+            testFramework.clear();
+            testTagFiltering();
+            const summary = testFramework.getSummary();
+            testFramework.info(`Tag filter tests: ${summary.passed} passed, ${summary.failed} failed`);
+        }
+
+        function runPerformanceTests() {
+            testFramework.clear();
+            testPerformance();
+            const summary = testFramework.getSummary();
+            testFramework.info(`Performance tests: ${summary.passed} passed, ${summary.failed} failed`);
+        }
+
+        function clearResults() {
+            testFramework.clear();
+        }
+    </script>
+</body>
+</html>

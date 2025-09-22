@@ -1,0 +1,305 @@
+{% comment %}
+Error handling and graceful degradation for blog components
+Usage: {% include error-handling.html type="image" fallback="default-post.svg" %}
+{% endcomment %}
+
+{% assign error_type = include.type | default: "general" %}
+{% assign fallback = include.fallback %}
+{% assign message = include.message %}
+
+{% case error_type %}
+  {% when "image" %}
+    <!-- Image Error Handling -->
+    <div class="error-fallback error-fallback--image">
+      {% if fallback %}
+        <img src="{{ '/assets/images/blog/' | append: fallback | relative_url }}" 
+             alt="Default blog post image" 
+             class="error-fallback__image"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      {% endif %}
+      <div class="error-fallback__placeholder" style="display: none;">
+        <div class="error-fallback__icon">📷</div>
+        <p class="error-fallback__message">{{ message | default: "Image not available" }}</p>
+      </div>
+    </div>
+
+  {% when "post-not-found" %}
+    <!-- Post Not Found Error -->
+    <div class="error-fallback error-fallback--post">
+      <div class="error-fallback__content">
+        <h2 class="error-fallback__title">Post Not Found</h2>
+        <p class="error-fallback__message">
+          {{ message | default: "The requested blog post could not be found." }}
+        </p>
+        <div class="error-fallback__actions">
+          <a href="{{ '/blog/' | relative_url }}" class="btn btn--primary">
+            Browse All Posts
+          </a>
+          <a href="{{ '/' | relative_url }}" class="btn btn--secondary">
+            Back to Home
+          </a>
+        </div>
+      </div>
+    </div>
+
+  {% when "search-error" %}
+    <!-- Search Error -->
+    <div class="error-fallback error-fallback--search">
+      <div class="error-fallback__content">
+        <h3 class="error-fallback__title">Search Unavailable</h3>
+        <p class="error-fallback__message">
+          {{ message | default: "Search functionality is temporarily unavailable. Please browse posts manually." }}
+        </p>
+        <div class="error-fallback__actions">
+          <a href="{{ '/blog/tags/' | relative_url }}" class="btn btn--primary">
+            Browse by Tags
+          </a>
+        </div>
+      </div>
+    </div>
+
+  {% when "feed-error" %}
+    <!-- RSS Feed Error -->
+    <div class="error-fallback error-fallback--feed">
+      <div class="error-fallback__content">
+        <h3 class="error-fallback__title">Feed Unavailable</h3>
+        <p class="error-fallback__message">
+          {{ message | default: "RSS feed is temporarily unavailable." }}
+        </p>
+        <div class="error-fallback__actions">
+          <a href="{{ '/blog/' | relative_url }}" class="btn btn--primary">
+            Visit Blog
+          </a>
+        </div>
+      </div>
+    </div>
+
+  {% when "javascript-disabled" %}
+    <!-- JavaScript Disabled Notice -->
+    <noscript>
+      <div class="error-fallback error-fallback--noscript">
+        <div class="error-fallback__content">
+          <h3 class="error-fallback__title">JavaScript Disabled</h3>
+          <p class="error-fallback__message">
+            Some interactive features require JavaScript. The blog is still fully functional without it.
+          </p>
+        </div>
+      </div>
+    </noscript>
+
+  {% when "loading" %}
+    <!-- Loading State -->
+    <div class="error-fallback error-fallback--loading" id="loading-{{ include.id | default: 'content' }}">
+      <div class="error-fallback__spinner"></div>
+      <p class="error-fallback__message">
+        {{ message | default: "Loading content..." }}
+      </p>
+    </div>
+
+  {% when "network-error" %}
+    <!-- Network Error -->
+    <div class="error-fallback error-fallback--network" style="display: none;" id="network-error">
+      <div class="error-fallback__content">
+        <h3 class="error-fallback__title">Connection Error</h3>
+        <p class="error-fallback__message">
+          {{ message | default: "Unable to load content. Please check your internet connection." }}
+        </p>
+        <div class="error-fallback__actions">
+          <button class="btn btn--primary" onclick="location.reload()">
+            Try Again
+          </button>
+        </div>
+      </div>
+    </div>
+
+  {% else %}
+    <!-- General Error Fallback -->
+    <div class="error-fallback error-fallback--general">
+      <div class="error-fallback__content">
+        <h3 class="error-fallback__title">Something went wrong</h3>
+        <p class="error-fallback__message">
+          {{ message | default: "An unexpected error occurred. Please try again." }}
+        </p>
+        {% if fallback %}
+        <div class="error-fallback__actions">
+          <a href="{{ fallback }}" class="btn btn--primary">
+            Continue
+          </a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+{% endcase %}
+
+<!-- Error Handling Styles -->
+<style>
+.error-fallback {
+  margin: 2rem 0;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  text-align: center;
+}
+
+.error-fallback--image {
+  background: #f8f9fa;
+  border: 2px dashed #dee2e6;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.error-fallback--post,
+.error-fallback--search,
+.error-fallback--feed,
+.error-fallback--network,
+.error-fallback--general {
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+}
+
+.error-fallback--noscript {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  color: #856404;
+}
+
+.error-fallback--loading {
+  background: #e3f2fd;
+  border: 1px solid #bbdefb;
+  color: #1565c0;
+}
+
+.error-fallback__title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.error-fallback__message {
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.error-fallback__actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.error-fallback__icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.error-fallback__placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 150px;
+}
+
+.error-fallback__spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e3f2fd;
+  border-top: 4px solid #1565c0;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .error-fallback {
+    margin: 1rem -1rem;
+    padding: 1.5rem 1rem;
+    border-radius: 0;
+  }
+  
+  .error-fallback__actions {
+    flex-direction: column;
+  }
+}
+</style>
+
+<!-- Error Handling JavaScript -->
+<script>
+// Global error handling for images
+document.addEventListener('DOMContentLoaded', function() {
+  // Handle image loading errors
+  document.addEventListener('error', function(e) {
+    if (e.target.tagName === 'IMG') {
+      const img = e.target;
+      
+      // Don't handle if already using fallback
+      if (img.src.includes('default-post.svg')) {
+        return;
+      }
+      
+      // Try fallback image
+      const fallbackSrc = '/assets/images/blog/default-post.svg';
+      img.src = '{{ fallbackSrc | relative_url }}';
+      img.alt = 'Default blog post image';
+      
+      // Add error class for styling
+      img.classList.add('image-error');
+      
+      console.warn('Image failed to load:', img.dataset.originalSrc || img.src);
+    }
+  }, true);
+  
+  // Handle network errors
+  window.addEventListener('online', function() {
+    const networkError = document.getElementById('network-error');
+    if (networkError) {
+      networkError.style.display = 'none';
+    }
+  });
+  
+  window.addEventListener('offline', function() {
+    const networkError = document.getElementById('network-error');
+    if (networkError) {
+      networkError.style.display = 'block';
+    }
+  });
+});
+
+// Utility function to show error fallback
+function showErrorFallback(containerId, type, message) {
+  const container = document.getElementById(containerId);
+  if (container) {
+    container.innerHTML = `
+      <div class="error-fallback error-fallback--${type}">
+        <div class="error-fallback__content">
+          <h3 class="error-fallback__title">Error</h3>
+          <p class="error-fallback__message">${message}</p>
+          <div class="error-fallback__actions">
+            <button class="btn btn--primary" onclick="location.reload()">
+              Try Again
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+}
+
+// Utility function to hide loading state
+function hideLoading(loadingId) {
+  const loading = document.getElementById(loadingId);
+  if (loading) {
+    loading.style.display = 'none';
+  }
+}
+</script>
