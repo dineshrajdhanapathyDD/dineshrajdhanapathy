@@ -63,6 +63,7 @@ portfolio-website/
 │   ├── AWS_LEARNING_RESOURCES_FEATURE.md # AWS learning resources section documentation
 │   ├── AWS_LOGO_UPDATE.md        # AWS Community Builder logo enhancement
 │   ├── BLOG_ERROR_SUPPRESSION_UPDATE.md # Blog page error suppression implementation
+│   ├── BLOG_REDIRECT_IMPLEMENTATION.md # Blog redirect page documentation
 │   ├── CODE_FORMATTING_UPDATE.md # Code formatting improvements
 │   ├── COMPREHENSIVE_FAVICON_IMPLEMENTATION.md # Complete favicon system documentation
 │   ├── CV_DOWNLOAD_ISSUE.md      # CV download troubleshooting
@@ -74,11 +75,14 @@ portfolio-website/
 │   ├── FEATURED_PROJECTS_TEST_PAGE.md # Featured projects test page documentation
 │   ├── MOBILE_NAVIGATION_ENHANCEMENT.md # Mobile navigation overlay improvements
 │   ├── NAVIGATION_SYSTEM_UPDATE.md # Navigation system documentation
+│   ├── PRODUCTION_TEST_UPDATE.md # Production test updates for skip links removal
+│   ├── SKIP_LINKS_REMOVAL_UPDATE.md # Skip links removal documentation
 │   ├── SOCIAL_MEDIA_INTEGRATION_UPDATE.md # Social media integration
 │   └── STRUCTURE_SUMMARY.md      # Project structure overview
 ├── 📄 index.html                 # Homepage
 ├── 📄 projects.html              # Projects page
 ├── 📄 contact.html               # Contact page
+├── 📄 blog.html                  # Blog redirect page (redirects to blog/)
 ├── 📄 certification-roadmap.html # Certification roadmap
 ├── 📄 resume-match.html          # Resume matching tool
 ├── 📄 featured-projects-test.html # Featured projects section test page
@@ -192,10 +196,10 @@ portfolio-website/
 ## 🔧 Features Guide
 
 ### Blog System
-- **Iframe-based posts** - Each post loads in an iframe for better isolation
-- **Expand/collapse** - Click "Read More" to expand posts inline
-- **Search functionality** - Real-time search through posts
-- **Tag filtering** - Filter posts by tags
+- **Directory-based structure** - Blog content organized in dedicated `blog/` directory
+- **Automatic redirect** - Root-level `blog.html` redirects to `blog/` for clean URLs
+- **Direct post navigation** - Individual blog posts accessible via direct links
+- **Simplified architecture** - Clean, reliable navigation without complex JavaScript dependencies
 
 ### Project Showcase
 - **Interactive gallery** - Hover effects and smooth transitions
@@ -293,7 +297,8 @@ The project includes dedicated test pages for isolated component testing:
 ### Manual Testing Checklist
 - [ ] All pages load correctly
 - [ ] Navigation works on all pages
-- [ ] Blog posts expand/collapse properly
+- [ ] Blog redirect (`blog.html`) works correctly
+- [ ] Blog posts load and navigate properly
 - [ ] Contact form validates and submits
 - [ ] CV download works
 - [ ] Featured projects section displays correctly
@@ -394,6 +399,35 @@ For questions or support:
 - **Medium**: [@dineshrajdhanapathy](https://medium.com/@dineshrajdhanapathy)
 
 ## 🔧 Recent Updates
+
+### February 2025 - Blog Redirect Implementation
+
+#### Blog Navigation Enhancement
+- **Root-level redirect** - Added `blog.html` as a redirect page to `blog/` directory
+- **Clean URL structure** - Users can access blog via `/blog.html` or `/blog/` URLs
+- **Automatic redirection** - JavaScript and meta refresh ensure reliable redirection
+- **Fallback navigation** - Manual link provided for cases where automatic redirect fails
+- **SEO-friendly** - Proper redirect implementation maintains search engine optimization
+
+#### Technical Implementation
+```html
+<!-- Immediate JavaScript redirect -->
+<script>
+    window.location.replace('./blog/');
+</script>
+
+<!-- Meta refresh fallback -->
+<meta http-equiv="refresh" content="0; url=./blog/">
+
+<!-- Manual fallback link -->
+<a href="./blog/">Click here if not redirected automatically</a>
+```
+
+#### Benefits
+- **Improved Navigation** - Multiple ways to access blog content
+- **User Experience** - Seamless redirection without user intervention
+- **Reliability** - Multiple redirect methods ensure compatibility across browsers
+- **Maintainability** - Centralized blog access point for easier URL management
 
 ### February 2025 - Skip Links Removal & UI Simplification
 

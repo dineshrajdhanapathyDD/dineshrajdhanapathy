@@ -183,7 +183,7 @@ class BlogPostValidator
     end
 
     # Check for proper heading structure
-    headings = content.scan(/^(#{1,6})\s+(.+)$/)
+    headings = content.scan(/^(\#{1,6})\s+(.+)$/)
     
     if headings.empty?
       @warnings << "No headings found in content"

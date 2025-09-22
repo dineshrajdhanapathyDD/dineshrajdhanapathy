@@ -6,11 +6,31 @@
     <title>Blog - Dineshraj Dhanapathy</title>
     <meta name="description" content="Insights on cloud technologies, DevOps practices, and software engineering from Dineshraj Dhanapathy">
     
-    <!-- Error Suppression -->
+    <!-- Error Suppression and Path Handling -->
     <script>
         window.onerror = function() { return true; };
         window.addEventListener('error', function(e) { e.preventDefault(); return false; }, true);
         console.error = console.warn = function() {};
+        
+        // Handle different server configurations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if we're in the right location
+            const currentPath = window.location.pathname;
+            console.log('Current blog path:', currentPath);
+            
+            // If we get a 404 or routing error, try alternative paths
+            if (currentPath.includes('dineshrajdhanapathy')) {
+                // GitHub Pages or similar hosting
+                const links = document.querySelectorAll('a[href^="../"]');
+                links.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href.startsWith('../')) {
+                        // Adjust relative paths for GitHub Pages
+                        link.setAttribute('href', href.replace('../', '/dineshrajdhanapathy/'));
+                    }
+                });
+            }
+        });
     </script>
     
     <!-- Stylesheets -->
