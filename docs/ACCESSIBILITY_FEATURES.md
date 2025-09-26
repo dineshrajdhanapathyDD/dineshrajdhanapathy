@@ -42,12 +42,12 @@ releaseFocusTrap();
 - **Tab/Shift+Tab**: Navigate through interactive elements
 - **Arrow Keys**: Navigate within menus and lists
 
-#### Skip Links (Selective Implementation)
-- Available on complex pages like certification roadmap
-- Jump to main content, navigation, and footer
-- Only visible when focused for clean visual design
-- Removed from homepage for simplified interface
-- CSS styles preserved for potential restoration
+#### Skip Links (Restored Implementation)
+- **Homepage**: Skip links restored for enhanced accessibility
+- **Other Pages**: Available on certification roadmap and recommended for all pages
+- **Navigation**: Jump to main content, navigation, and footer
+- **Visual Design**: Hidden until focused, maintaining clean appearance
+- **CSS Integration**: Fully integrated with existing `assets/css/accessibility.css` styles
 
 ### 3. Screen Reader Support
 

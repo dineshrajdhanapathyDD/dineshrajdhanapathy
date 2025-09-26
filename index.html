@@ -348,7 +348,12 @@
 </head>
 
 <body onload="window.onerror=function(){return true};" onerror="return false;">
-
+    <!-- Skip Links for Accessibility -->
+    <div class="skip-links">
+        <a href="#main-content" class="skip-link">Skip to main content</a>
+        <a href="#navigation" class="skip-link">Skip to navigation</a>
+        <a href="#footer" class="skip-link">Skip to footer</a>
+    </div>
 
     <!-- Header Component -->
     <header class="header" role="banner">
@@ -1175,7 +1180,7 @@
     </main>
 
     <!-- Footer Component -->
-    <footer class="footer" role="contentinfo">
+    <footer class="footer" role="contentinfo" id="footer">
         <div class="container">
             <div class="footer__content">
                 <!-- Footer Main Content -->

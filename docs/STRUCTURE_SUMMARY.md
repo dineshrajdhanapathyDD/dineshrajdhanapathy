@@ -6,7 +6,12 @@ This portfolio website has been completely reorganized with a clean, maintainabl
 
 ## 🔧 Recent Updates
 
-### February 2025 - Blog Fallback File Fix ✅
+### February 2025 - Skip Links Restoration & Blog Improvements ✅
+- **RESTORED**: Skip links to homepage (`index.html`) for enhanced accessibility
+- **ENHANCED**: WCAG 2.1 AA compliance with keyboard navigation shortcuts
+- **IMPLEMENTED**: Three skip links: main content, navigation, and footer
+- **INTEGRATED**: Existing CSS styles from `assets/css/accessibility.css`
+- **IMPROVED**: User experience for keyboard users and screen reader users
 - **FIXED**: Corrupted `blog-fallback.html` file with scrambled HTML content
 - **REBUILT**: Complete file rewrite with clean HTML5 structure and semantic markup
 - **ADDED**: Comprehensive error suppression to prevent browser popups

@@ -119,9 +119,16 @@
     </script>
 </head>
 <body>
+    <!-- Skip Links for Accessibility -->
+    <div class="skip-links">
+        <a href="#main-content" class="skip-link">Skip to main content</a>
+        <a href="#navigation" class="skip-link">Skip to navigation</a>
+        <a href="#footer" class="skip-link">Skip to footer</a>
+    </div>
+
     <!-- Header Component -->
     <header class="header" role="banner">
-        <nav class="nav" role="navigation" aria-label="Main navigation">
+        <nav class="nav" role="navigation" aria-label="Main navigation" id="navigation">
             <div class="nav__brand">
                 <a href="index.html" class="nav__logo" aria-label="Portfolio home">Portfolio</a>
             </div>
@@ -151,7 +158,7 @@
     </header>
 
     <!-- Main Content -->
-    <main class="main">
+    <main class="main" id="main-content">
         <!-- Projects Header -->
         <section class="page-header">
             <div class="container">
@@ -290,7 +297,7 @@
     </main>
 
     <!-- Footer Component -->
-    <footer class="footer" role="contentinfo">
+    <footer class="footer" role="contentinfo" id="footer">
         <div class="container">
             <div class="footer__content">
                 <!-- Footer Main Content -->
