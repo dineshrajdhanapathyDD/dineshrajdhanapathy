@@ -5526,12 +5526,17 @@ HANCED FOOTER COMPONENT ===== */
   line-height: var(--line-height-relaxed);
 }
 
-.footer__newsletter-input-group {
+.footer__newsletter {
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
   max-width: 300px;
   margin: 0 auto;
+}
+
+.footer__newsletter-input-group {
+  display: flex;
+  flex-direction: column;
 }
 
 .footer__newsletter-input {
@@ -5573,6 +5578,23 @@ HANCED FOOTER COMPONENT ===== */
 .footer__newsletter-btn:focus-visible {
   outline: 2px solid var(--color-white);
   outline-offset: 2px;
+}
+
+.footer__newsletter-btn:active {
+  transform: translateY(0);
+}
+
+/* Newsletter responsive improvements */
+@media (max-width: 480px) {
+  .footer__newsletter {
+    max-width: 100%;
+  }
+  
+  .footer__newsletter-input,
+  .footer__newsletter-btn {
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--font-size-sm);
+  }
 }
 
 /* Footer Bottom */

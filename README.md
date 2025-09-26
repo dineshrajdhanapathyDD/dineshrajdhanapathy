@@ -218,6 +218,12 @@ portfolio-website/
 - **Responsive design** - Works on all devices
 - **Accessibility** - Screen reader compatible with focus management
 
+### Newsletter Subscription
+- **Footer integration** - Newsletter signup form in footer section
+- **Email validation** - Required field validation for email input
+- **Accessible design** - Proper ARIA labels and keyboard navigation
+- **Flexible structure** - Optimized HTML structure for responsive styling
+
 ### Error Suppression System
 - **Comprehensive Error Handling** - Prevents all browser error popups and dialogs with multi-layered protection
 - **Graceful Fallbacks** - Automatic fallback content for failed resources
@@ -423,6 +429,40 @@ For questions or support:
 - **Medium**: [@dineshrajdhanapathy](https://medium.com/@dineshrajdhanapathy)
 
 ## 🔧 Recent Updates
+
+### February 2025 - Footer Newsletter Form Structure Update
+
+#### Newsletter Form Enhancement
+- **Structural Improvement** - Reorganized newsletter subscription form in footer for better styling and layout
+- **Button Positioning** - Moved submit button outside of input group div for improved CSS flexibility
+- **Maintained Functionality** - All form functionality and accessibility features preserved
+- **Better Styling Control** - Enhanced CSS styling capabilities for responsive design
+
+#### Technical Implementation
+```html
+<!-- Updated Structure -->
+<form class="footer__newsletter" id="newsletter-form">
+    <div class="footer__newsletter-input-group">
+        <input type="email" class="footer__newsletter-input" placeholder="Enter your email"
+            aria-label="Email address for newsletter" required>
+    </div>
+    <button type="submit" class="footer__newsletter-btn"
+        aria-label="Subscribe to newsletter">
+        Subscribe
+    </button>
+</form>
+```
+
+#### Benefits
+- **Improved Layout** - Better control over button positioning and responsive behavior
+- **Enhanced Styling** - More flexible CSS styling options for the form components
+- **Maintained Accessibility** - All ARIA labels and form accessibility features preserved
+- **Consistent UX** - Form functionality remains unchanged for users
+
+#### Documentation
+- **New Documentation** - Created `FOOTER_NEWSLETTER_STRUCTURE_UPDATE.md` with complete implementation details
+- **Updated README** - Added newsletter subscription feature to features list
+- **Structure Documentation** - Updated project structure documentation to reflect changes
 
 ### February 2025 - Site-wide Skip Links Implementation
 
