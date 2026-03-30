@@ -110,15 +110,15 @@
 
     <!-- Working Favicon and Icons (Files that actually exist) -->
     <!-- Standard favicon for all browsers including Windows -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/x-icon" href="assets/images/favicons/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicons/favicon.ico">
 
     <!-- PNG favicons for modern browsers -->
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicons/favicon-16x16.png">
 
     <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicons/apple-touch-icon.png">
 
     <!-- Android Chrome Icons -->
     <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
@@ -212,7 +212,6 @@
     <link rel="stylesheet" href="assets/css/notifications.css" onerror="this.remove()">
     <link rel="stylesheet" href="assets/css/accessibility.css" onerror="this.remove()">
     <link rel="stylesheet" href="assets/css/aws-community-builder.css" onerror="this.remove()">
-    <link rel="stylesheet" href="assets/css/blog.css" onerror="this.remove()">
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -342,9 +341,6 @@
 
     <!-- Error Suppression System - Load first to catch all errors -->
     <script src="assets/js/error-suppression.js"></script>
-
-    <!-- Blog Router - Fix blog navigation -->
-    <script src="assets/js/blog-router.js"></script>
 </head>
 
 <body onload="window.onerror=function(){return true};" onerror="return false;">
@@ -372,9 +368,6 @@
                 </li>
                 <li class="nav__item" role="none">
                     <a href="projects.html" class="nav__link" role="menuitem">Projects</a>
-                </li>
-                <li class="nav__item" role="none">
-                    <a href="blog/" class="nav__link" role="menuitem">Blog</a>
                 </li>
                 <li class="nav__item" role="none">
                     <a href="contact.html" class="nav__link" role="menuitem">Contact</a>
@@ -558,7 +551,7 @@
                                         onclick="return handleDownload(this)">
                                         <span class="btn__icon" aria-hidden="true">📄</span>
                                         <span class="btn__text">Download My CV</span>
-                                        <span class="btn__subtext">PDF • Updated January 2025</span>
+                                        <span class="btn__subtext">PDF • Updated 2025</span>
                                     </a>
                                     <div class="cv-download__info">
                                         <span class="cv-download__file-info">
@@ -885,11 +878,7 @@
                                 succeed with AWS.
                             </p>
                             <div class="aws-cta__actions">
-                                <a href="certification-roadmap.html" class="btn btn--primary">
-                                    <span class="btn__text">Explore Certification Roadmap</span>
-                                    <span class="btn__icon" aria-hidden="true">🗺️</span>
-                                </a>
-                                <a href="contact.html" class="btn btn--secondary">
+                                <a href="contact.html" class="btn btn--primary">
                                     <span class="btn__text">Let's Connect</span>
                                 </a>
                             </div>
@@ -923,48 +912,6 @@
             </div>
         </section>
 
-        <!-- Recent Blog Posts Section -->
-        <section class="recent-blog" aria-labelledby="blog-title">
-            <div class="container">
-                <div class="recent-blog__header">
-                    <h2 id="blog-title" class="section__title">Latest from the Blog</h2>
-                    <p class="section__description">
-                        Insights on cloud technologies, DevOps practices, and software engineering
-                    </p>
-                </div>
-
-                <div class="recent-blog__content" id="recent-blog-posts">
-                    <!-- Recent blog posts will be dynamically loaded here -->
-                    <div class="recent-blog__loading">
-                        <p>Loading recent posts...</p>
-                    </div>
-                </div>
-
-                <div class="recent-blog__actions">
-                    <a href="blog/" class="btn btn--primary">
-                        <span class="btn__text">View All Posts</span>
-                        <span class="btn__icon" aria-hidden="true">→</span>
-                    </a>
-                </div>
-
-                <!-- Fallback for no posts -->
-                <div class="recent-blog__empty" style="display: none;">
-                    <div class="recent-blog__empty-content">
-                        <h3 class="recent-blog__empty-title">Blog Coming Soon!</h3>
-                        <p class="recent-blog__empty-description">
-                            I'm working on some great content to share with you.
-                            Check back soon for insights on cloud technologies, DevOps practices, and software
-                            engineering.
-                        </p>
-                        <div class="recent-blog__empty-actions">
-                            <a href="projects.html" class="btn btn--secondary">
-                                Explore My Projects
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- Skills Section -->
         <section class="skills">
@@ -1063,120 +1010,6 @@
             </div>
         </section>
 
-        <!-- Blog Section -->
-        <section class="blog-showcase" aria-labelledby="blog-title">
-            <div class="container">
-                <div class="blog-showcase__header">
-                    <h2 id="blog-title" class="section__title">Latest Articles</h2>
-                    <p class="blog-showcase__subtitle">
-                        Sharing insights on cloud architecture, DevOps practices, and AWS technologies
-                    </p>
-                </div>
-
-                <div class="blog-showcase__content">
-                    <div class="blog-showcase__intro">
-                        <div class="blog-platform">
-                            <div class="blog-platform__icon">
-                                <span class="blog-platform__logo">M</span>
-                            </div>
-                            <div class="blog-platform__info">
-                                <h3 class="blog-platform__title">Follow me on Medium</h3>
-                                <p class="blog-platform__description">
-                                    I regularly write about AWS best practices, DevOps automation,
-                                    and cloud architecture patterns. Join thousands of readers who
-                                    follow my technical insights and tutorials.
-                                </p>
-                                <a href="https://medium.com/@dineshrajdhanapathy" class="btn btn--accent"
-                                    target="_blank" rel="noopener noreferrer" aria-label="Visit my Medium blog">
-                                    <span class="btn__text">Read on Medium</span>
-                                    <span class="btn__icon" aria-hidden="true">→</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="blog-showcase__articles">
-                        <div class="blog-articles">
-                            <h3 class="blog-articles__title">Featured Topics</h3>
-                            <div class="blog-topics">
-                                <div class="blog-topic">
-                                    <div class="blog-topic__icon" aria-hidden="true">☁️</div>
-                                    <div class="blog-topic__content">
-                                        <h4 class="blog-topic__title">AWS Architecture</h4>
-                                        <p class="blog-topic__description">
-                                            Deep dives into AWS services, architecture patterns, and best practices
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="blog-topic">
-                                    <div class="blog-topic__icon" aria-hidden="true">🚀</div>
-                                    <div class="blog-topic__content">
-                                        <h4 class="blog-topic__title">DevOps Automation</h4>
-                                        <p class="blog-topic__description">
-                                            CI/CD pipelines, infrastructure as code, and deployment strategies
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="blog-topic">
-                                    <div class="blog-topic__icon" aria-hidden="true">🔧</div>
-                                    <div class="blog-topic__content">
-                                        <h4 class="blog-topic__title">Kubernetes & Containers</h4>
-                                        <p class="blog-topic__description">
-                                            Container orchestration, microservices, and cloud-native technologies
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="blog-topic">
-                                    <div class="blog-topic__icon" aria-hidden="true">🛡️</div>
-                                    <div class="blog-topic__content">
-                                        <h4 class="blog-topic__title">Cloud Security</h4>
-                                        <p class="blog-topic__description">
-                                            Security best practices, compliance, and secure infrastructure design
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="blog-showcase__stats">
-                        <div class="blog-stats">
-                            <div class="blog-stat">
-                                <span class="blog-stat__number">10+</span>
-                                <span class="blog-stat__label">Articles Published</span>
-                            </div>
-                            <div class="blog-stat">
-                                <span class="blog-stat__number">1K+</span>
-                                <span class="blog-stat__label">Readers Reached</span>
-                            </div>
-                            <div class="blog-stat">
-                                <span class="blog-stat__number">AWS</span>
-                                <span class="blog-stat__label">Community Builder</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="blog-showcase__cta">
-                        <div class="blog-cta">
-                            <h3 class="blog-cta__title">Stay Updated</h3>
-                            <p class="blog-cta__description">
-                                Get notified when I publish new articles about cloud technologies and DevOps practices.
-                            </p>
-                            <div class="blog-cta__actions">
-                                <a href="https://medium.com/@dineshrajdhanapathy" class="btn btn--primary"
-                                    target="_blank" rel="noopener noreferrer">
-                                    <span class="btn__text">Follow on Medium</span>
-                                    <span class="btn__icon" aria-hidden="true">✍️</span>
-                                </a>
-                                <a href="blog/" class="btn btn--secondary">
-                                    <span class="btn__text">Browse All Posts</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
 
     <!-- Footer Component -->

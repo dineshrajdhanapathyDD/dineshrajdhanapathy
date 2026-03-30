@@ -6,20 +6,6 @@
 // Project data structure
 const projectsData = [
     {
-        id: "aws-project-portfolio",
-        title: "AWS Project Portfolio",
-        description: "Comprehensive collection of AWS projects showcasing cloud architecture, serverless applications, and infrastructure automation.",
-        longDescription: "Extensive portfolio of AWS projects demonstrating expertise in cloud architecture, serverless computing, infrastructure automation, and DevOps practices. Includes hands-on implementations of various AWS services and best practices for building scalable, secure, and cost-effective cloud solutions.",
-        technologies: ["AWS", "CloudFormation", "Lambda", "S3", "EC2", "RDS", "IAM", "VPC"],
-        githubUrl: "https://learn.nextwork.org/positive_purple_innocent_lemon/portfolio",
-        liveUrl: "https://learn.nextwork.org/positive_purple_innocent_lemon/portfolio",
-        imageUrl: "assets/images/projects/aws-icon.svg", // AWS icon
-        featured: true,
-        dateCreated: "2024-12-01",
-        status: "completed",
-        category: "cloud"
-    },
-    {
         id: "kodekloud-devops-projects",
         title: "KodeKloud DevOps Projects",
         description: "Collection of hands-on DevOps projects covering CI/CD pipelines, container orchestration, infrastructure as code, and automation.",
@@ -102,20 +88,6 @@ const projectsData = [
         dateCreated: "2024-06-20",
         status: "completed",
         category: "cloud"
-    },
-    {
-        id: "cloud-certification-roadmap",
-        title: "Cloud Certification Roadmap",
-        description: "Interactive tool for planning cloud certification paths based on skills assessment and career goals.",
-        longDescription: "Comprehensive cloud certification planning tool that helps users create personalized certification roadmaps based on their current skills, experience, and career goals. Features skill assessment, career goal definition, interactive certification path visualization, learning resource recommendations, and structured study plan generation.",
-        technologies: ["JavaScript", "HTML5", "CSS3", "LocalStorage", "D3.js", "Accessibility", "Responsive Design"],
-        githubUrl: "https://github.com/dineshrajdhanapathyDD/portfolio/tree/main/certification-roadmap",
-        liveUrl: "certification-roadmap.html",
-        imageUrl: "assets/images/projects/cloud-certification-icon.svg", // Cloud certification icon
-        featured: true,
-        dateCreated: "2024-07-20",
-        status: "completed",
-        category: "tools"
     },
     {
         id: "aws-ai-ml",

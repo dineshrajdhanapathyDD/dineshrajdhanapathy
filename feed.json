@@ -9,7 +9,7 @@ layout: null
   "feed_url": "{{ site.url }}/feed.json",
   "user_comment": "This feed allows you to read the posts from this site in any feed reader that supports the JSON Feed format.",
   "icon": "{{ '/assets/images/logo.png' | absolute_url }}",
-  "favicon": "{{ '/favicon.ico' | absolute_url }}",
+  "favicon": "{{ '/assets/images/favicons/favicon.ico' | absolute_url }}",
   "author": {
     "name": "{{ site.author }}",
     "url": "{{ site.url }}",
