@@ -6,6 +6,63 @@
 // Project data structure
 const projectsData = [
     {
+        id: "serenova-devpost",
+        title: "Serenova — Devpost Hackathon",
+        description: "NovaVision AI hackathon project submitted to Devpost. AI-powered solution built during a competitive hackathon event.",
+        longDescription: "Serenova is an AI-powered hackathon project submitted to Devpost. Built during a competitive hackathon, it showcases innovative use of AI technologies to solve real-world problems. Features modern architecture and creative problem-solving approaches.",
+        technologies: ["AI", "Python", "GenAI", "Hackathon"],
+        githubUrl: "https://github.com/dineshrajdhanapathyDD/Serenova-Devpost.git",
+        liveUrl: "https://main.d3jlnda3f4tvsm.amplifyapp.com/",
+        devpostUrl: "https://devpost.com/software/novavision-ai",
+        imageUrl: "assets/images/projects/ai-icon.svg",
+        featured: true,
+        dateCreated: "2025-03-20",
+        status: "completed",
+        category: "ai-ml"
+    },
+    {
+        id: "weather-forecast-ticket-booking",
+        title: "Weather Forecast & Ticket Booking",
+        description: "AI-powered weather forecast and ticket booking application built for the AI10000ideas project challenge.",
+        longDescription: "An intelligent application that combines weather forecasting with ticket booking functionality. Built as part of the AI10000ideas project, it leverages AI to provide smart recommendations based on weather conditions for travel and event planning.",
+        technologies: ["AI", "Python", "AWS", "API Gateway", "Lambda"],
+        githubUrl: "https://github.com/dineshrajdhanapathyDD/Weather-Forecast-ticket-Booking.git",
+        liveUrl: "https://main.d3ets75t767njn.amplifyapp.com/",
+        imageUrl: "assets/images/projects/ai-icon.svg",
+        featured: true,
+        dateCreated: "2025-03-15",
+        status: "completed",
+        category: "ai-ml"
+    },
+    {
+        id: "retailmind-ai",
+        title: "RetailMind AI — AI for Bharat",
+        description: "AI-powered retail intelligence solution built for the AI for Bharat hackathon by AWS & Hack2Skill.",
+        longDescription: "RetailMind AI is an intelligent retail solution developed for the AI for Bharat hackathon. It uses AI and GenAI capabilities to provide smart retail insights, customer analytics, and business intelligence for the Indian retail market.",
+        technologies: ["AI", "GenAI", "Amazon Bedrock", "Python", "AWS"],
+        githubUrl: "https://github.com/dineshrajdhanapathyDD/RetailMind-AI.git",
+        liveUrl: "https://main.d9i6dbk7fpk6o.amplifyapp.com/",
+        imageUrl: "assets/images/projects/ai-icon.svg",
+        featured: true,
+        dateCreated: "2025-02-28",
+        status: "completed",
+        category: "ai-ml"
+    },
+    {
+        id: "smart-safety-companion",
+        title: "SmartSafetyCompanion — AWS UG Madurai AIDLC",
+        description: "Smart safety companion app built for the AWS User Group Madurai AIDLC Challenge (March 2025).",
+        longDescription: "SmartSafetyCompanion is an AI-driven safety application developed for the AWS User Group Madurai AIDLC Challenge. It leverages AWS AI/ML services to provide intelligent safety monitoring, alerts, and companion features for users.",
+        technologies: ["AI", "AWS", "Amazon Bedrock", "Lambda", "Python", "DynamoDB"],
+        githubUrl: "https://github.com/dineshrajdhanapathyDD/SmartSafetyCompanion.git",
+        liveUrl: "https://main.d2gbwf1vr4giz.amplifyapp.com/",
+        imageUrl: "assets/images/projects/ai-icon.svg",
+        featured: true,
+        dateCreated: "2025-03-01",
+        status: "completed",
+        category: "ai-ml"
+    },
+    {
         id: "kodekloud-devops-projects",
         title: "KodeKloud DevOps Projects",
         description: "Collection of hands-on DevOps projects covering CI/CD pipelines, container orchestration, infrastructure as code, and automation.",
@@ -231,17 +288,25 @@ function createProjectCard(project) {
                </a>`
             : '';
 
+        const devpostLink = project.devpostUrl
+            ? `<a href="${project.devpostUrl}" class="project__link project__link--devpost" target="_blank" rel="noopener noreferrer" aria-label="View ${project.title} on Devpost">
+                 <span class="project__link-text">Devpost</span>
+                 <span class="project__link-icon" aria-hidden="true">↗</span>
+               </a>`
+            : '';
+
         projectLinks = `
             <a href="${project.githubUrl}" class="project__link project__link--github" target="_blank" rel="noopener noreferrer" aria-label="View ${project.title} source code on GitHub">
                 <span class="project__link-text">GitHub</span>
                 <span class="project__link-icon" aria-hidden="true">↗</span>
             </a>
             ${liveLink}
+            ${devpostLink}
         `;
     }
 
     return `
-        <article class="project-card" data-project-id="${project.id}" data-category="${project.category}">
+        <article class="project-card glass-card glass-card--hoverable animate-on-scroll" data-project-id="${project.id}" data-category="${project.category}">
             <div class="project__image-container">
                 <img 
                     src="${project.imageUrl}" 

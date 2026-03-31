@@ -89,26 +89,7 @@
     <meta name="msapplication-TileColor" content="#0066cc">
     <meta name="application-name" content="Dineshraj Dhanapathy Portfolio">
 
-    <!-- BULLETPROOF ERROR SUPPRESSION - LOADS FIRST -->
-    <script src="no-errors.js"></script>
-
-    <!-- Prevent browser error reporting -->
-    <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self' 'unsafe-inline' 'unsafe-eval' *; img-src 'self' data: *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *;">
-    <meta name="referrer" content="no-referrer-when-downgrade">
-
-    <!-- FIRST PRIORITY: Immediate Error Suppression -->
-    <script>
-        // NUCLEAR OPTION: Suppress everything immediately
-        window.onerror = function () { return !0 };
-        window.addEventListener('error', function (e) { e.preventDefault(); e.stopPropagation(); return !1 }, !0);
-        window.addEventListener('unhandledrejection', function (e) { e.preventDefault(); return !1 });
-        console.error = console.warn = function () { };
-        window.alert = function () { };
-        window.confirm = function () { return !0 };
-    </script>
-
-    <!-- Working Favicon and Icons (Files that actually exist) -->
+    <!-- Working Favicon and Icons -->
     <!-- Standard favicon for all browsers including Windows -->
     <link rel="icon" type="image/x-icon" href="assets/images/favicons/favicon.ico">
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicons/favicon.ico">
@@ -121,93 +102,26 @@
     <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicons/apple-touch-icon.png">
 
     <!-- Android Chrome Icons -->
-    <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/images/favicons/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/images/favicons/android-chrome-512x512.png">
 
     <!-- PWA Manifest -->
     <link rel="manifest" href="site.webmanifest">
 
     <!-- Windows specific -->
-    <meta name="msapplication-TileColor" content="#0066cc">
     <meta name="msapplication-config" content="browserconfig.xml">
-    <meta name="theme-color" content="#0066cc">
 
-    <!-- ULTIMATE Error Suppression - Maximum Protection -->
-    <script>
-        // IMMEDIATE AND AGGRESSIVE ERROR SUPPRESSION
-        (function () {
-            'use strict';
+    <!-- Inline Theme Initialization (prevents flash of wrong theme) -->
+    <script>(function(){try{var t=localStorage.getItem('portfolio-theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t)}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches){document.documentElement.setAttribute('data-theme','dark')}}catch(e){}})();</script>
 
-            // Override ALL possible error sources immediately
-            window.onerror = function () { return true; };
-            window.onunhandledrejection = function () { return true; };
-
-            // Capture and suppress ALL error events with maximum priority
-            window.addEventListener('error', function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                e.stopImmediatePropagation();
-                return false;
-            }, { capture: true, passive: false });
-
-            window.addEventListener('unhandledrejection', function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                e.stopImmediatePropagation();
-                return false;
-            }, { capture: true, passive: false });
-
-            // Override console methods to prevent any error output
-            const noop = function () { };
-            console.error = noop;
-            console.warn = noop;
-            console.assert = noop;
-            console.trace = noop;
-
-            // Override ALL popup methods
-            window.alert = noop;
-            window.confirm = function () { return true; };
-            window.prompt = function () { return ''; };
-
-            // Override fetch to never fail
-            if (window.fetch) {
-                const originalFetch = window.fetch;
-                window.fetch = function () {
-                    return originalFetch.apply(this, arguments)
-                        .catch(function () {
-                            return Promise.resolve({
-                                ok: false,
-                                status: 404,
-                                json: function () { return Promise.resolve({}); },
-                                text: function () { return Promise.resolve(''); }
-                            });
-                        });
-                };
-            }
-
-            // Prevent any script errors from showing
-            setTimeout(function () {
-                // Additional safety net
-                window.onerror = function () { return true; };
-                document.addEventListener('error', function (e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    return false;
-                }, true);
-            }, 0);
-
-        })();
-    </script>
-
-    <!-- Error Suppression Script - Comprehensive handling -->
-    <script src="assets/js/error-suppression.js"
-        onerror="console.log('Error suppression script failed to load')"></script>
-
-    <!-- Image Loading Handler -->
-    <script src="assets/js/image-loader.js" onerror="console.log('Image loader script failed to load')"></script>
+    <!-- Google Fonts (Inter) with font-display: swap for resilience -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="assets/css/reset.css" onerror="this.remove()">
+    <link rel="stylesheet" href="assets/css/design-tokens.css" onerror="this.remove()">
     <link rel="stylesheet" href="assets/css/main.css" onerror="this.remove()">
     <link rel="stylesheet" href="assets/css/notifications.css" onerror="this.remove()">
     <link rel="stylesheet" href="assets/css/accessibility.css" onerror="this.remove()">
@@ -339,8 +253,6 @@
     }
     </script>
 
-    <!-- Error Suppression System - Load first to catch all errors -->
-    <script src="assets/js/error-suppression.js"></script>
 </head>
 
 <body onload="window.onerror=function(){return true};" onerror="return false;">
@@ -373,6 +285,10 @@
                     <a href="contact.html" class="nav__link" role="menuitem">Contact</a>
                 </li>
             </ul>
+            <button class="theme-toggle" aria-label="Toggle dark mode">
+                <span class="theme-toggle__icon theme-toggle__icon--light">☀️</span>
+                <span class="theme-toggle__icon theme-toggle__icon--dark">🌙</span>
+            </button>
         </nav>
     </header>
 
@@ -380,23 +296,29 @@
     <main class="main" id="main-content">
         <!-- Hero Section -->
         <section class="hero" aria-labelledby="hero-title">
-            <div class="hero__content">
+            <div class="hero__bg-gradient" aria-hidden="true"></div>
+            <div class="hero__particles" aria-hidden="true">
+                <div class="hero__particle hero__particle--1"></div>
+                <div class="hero__particle hero__particle--2"></div>
+                <div class="hero__particle hero__particle--3"></div>
+            </div>
+            <div class="container hero__content">
                 <div class="hero__text">
-                    <div class="hero__greeting">
+                    <div class="hero__greeting animate-on-scroll">
                         <span class="hero__greeting-text">Hello, I'm</span>
                     </div>
-                    <h1 id="hero-title" class="hero__title">
+                    <h1 id="hero-title" class="hero__title animate-on-scroll">
                         <span class="hero__name">Dineshraj Dhanapathy</span>
                         <span class="hero__role">Cloud and DevOps Engineer</span>
                         <span class="hero__badge">AWS Community Builder</span>
                     </h1>
-                    <p class="hero__description">
+                    <p class="hero__description animate-on-scroll">
                         I architect scalable cloud infrastructure that combines reliability with automation.
                         Specializing in AWS, Kubernetes, and DevOps practices, I transform complex requirements into
                         robust,
                         secure solutions that drive business success.
                     </p>
-                    <div class="hero__stats">
+                    <div class="hero__stats animate-on-scroll">
                         <div class="hero__stat">
                             <span class="hero__stat-number">2+</span>
                             <span class="hero__stat-label">Years Experience</span>
@@ -410,42 +332,42 @@
                             <span class="hero__stat-label">Client Satisfaction</span>
                         </div>
                     </div>
-                    <div class="hero__actions">
-                        <a href="projects.html" class="btn btn--primary" aria-describedby="view-projects-desc">
+                    <div class="hero__actions animate-on-scroll">
+                        <a href="projects.html" class="btn btn--gradient" aria-describedby="view-projects-desc">
                             <span class="btn__text">View My Work</span>
                             <span class="btn__icon" aria-hidden="true">→</span>
                         </a>
-                        <a href="assets/documents/DD.pdf" class="btn btn--accent" download="Dineshraj_Dhanapathy_CV.pdf"
-                            aria-describedby="download-cv-desc" onclick="return handleDownload(this)">
-                            <span class="btn__text">Download CV</span>
-                            <span class="btn__icon" aria-hidden="true">📄</span>
+                        <a href="contact.html" class="btn btn--glass">
+                            <span class="btn__text">Get In Touch</span>
+                            <span class="btn__icon" aria-hidden="true">✉️</span>
                         </a>
-                        <a href="https://medium.com/@dineshrajdhanapathy" class="btn btn--secondary" target="_blank"
-                            rel="noopener noreferrer">
-                            <span class="btn__text">Read My Blog</span>
-                            <span class="btn__icon" aria-hidden="true">✍️</span>
+                    </div>
+                    <div class="hero__socials animate-on-scroll">
+                        <a href="https://github.com/dineshrajdhanapathyDD" class="hero__social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/dineshraj-dhanapathy-25490058/" class="hero__social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                        <a href="https://medium.com/@dineshrajdhanapathy" class="hero__social-link" target="_blank" rel="noopener noreferrer" aria-label="Medium">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zm7.42 0c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
+                        </a>
+                        <a href="https://dev.to/dineshrajdhanapathydd" class="hero__social-link" target="_blank" rel="noopener noreferrer" aria-label="Dev.to">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M7.42 10.05c-.18-.16-.46-.23-.84-.23H6v4.36h.58c.37 0 .67-.08.84-.23.2-.17.3-.48.3-.94v-2.02c0-.47-.11-.77-.3-.94zm-1.42-.8h1.17c.67 0 1.2.15 1.53.46.33.31.5.8.5 1.46v1.66c0 .66-.17 1.15-.5 1.46-.33.31-.86.46-1.53.46H6V9.25zM11 9.25h3v.9h-2v1.3h1.8v.9H12v1.3h2v.9h-3V9.25zm5.4 0h1.2l-.9 2.4.9 2.9h-1.2l-.6-2-.6 2h-1.2l.9-2.9-.9-2.4h1.2l.6 2 .6-2zM0 19.5V4.5C0 3.12 1.12 2 2.5 2h19C22.88 2 24 3.12 24 4.5v15c0 1.38-1.12 2.5-2.5 2.5h-19C1.12 22 0 20.88 0 19.5z"/></svg>
+                        </a>
+                        <a href="https://x.com/DD_Dineshraj" class="hero__social-link" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                         </a>
                     </div>
                     <div id="view-projects-desc" class="sr-only">
                         Browse through my portfolio of web development projects and case studies
                     </div>
-                    <div id="download-cv-desc" class="sr-only">
-                        Download my complete CV/Resume in PDF format with detailed experience and skills
-                    </div>
                 </div>
-                <div class="hero__image">
-                    <div class="hero__photo-container">
+                <div class="hero__visual animate-on-scroll">
+                    <div class="hero__photo-ring">
                         <img src="assets/images/profile/profile-photo.jpg"
                             alt="Dineshraj Dhanapathy - Cloud and DevOps Engineer" class="hero__photo" loading="eager"
                             onerror="handleImageError(this)">
-                        <div class="hero__photo-placeholder fallback" style="display: none;">
-                            <span class="hero__photo-initials" aria-hidden="true">DD</span>
-                        </div>
-                    </div>
-                    <div class="hero__decorations" aria-hidden="true">
-                        <div class="hero__decoration hero__decoration--1"></div>
-                        <div class="hero__decoration hero__decoration--2"></div>
-                        <div class="hero__decoration hero__decoration--3"></div>
                     </div>
                 </div>
             </div>
@@ -464,72 +386,41 @@
                     </div>
 
                     <div class="about__details">
-                        <div class="about__column">
+                        <div class="about__card glass-card">
+                            <div class="about__card-icon" aria-hidden="true">🛤️</div>
                             <h3 class="about__subtitle">My Journey</h3>
                             <p class="about__text">
-                                With over 2 years of experience in cloud infrastructure and DevOps, I've had the
-                                privilege of working
-                                with startups and established companies to build robust, scalable systems.
-                                My journey began with a curiosity about cloud technologies, and it has evolved
-                                into a deep passion for creating efficient, automated infrastructure solutions.
-                            </p>
-                            <p class="about__text">
-                                As an <strong>AWS Community Builder</strong>, I'm recognized by Amazon Web Services for
-                                my
-                                technical expertise and commitment to sharing knowledge with the cloud community. This
-                                recognition
-                                reflects my dedication to helping others learn AWS technologies and best practices.
-                            </p>
-                            <p class="about__text">
-                                I specialize in AWS cloud services, Kubernetes orchestration, infrastructure as code
-                                with Terraform,
-                                and building CI/CD pipelines that enable teams to deploy with confidence and speed.
+                                2+ years in cloud infrastructure and DevOps — from startups to established companies. 
+                                As an <strong>AWS Community Builder</strong>, I'm recognized by AWS for technical expertise 
+                                and knowledge sharing. I specialize in AWS services, Kubernetes, Terraform, and CI/CD pipelines.
                             </p>
                         </div>
-
-                        <div class="about__column">
+                        <div class="about__card glass-card">
+                            <div class="about__card-icon" aria-hidden="true">⚡</div>
                             <h3 class="about__subtitle">What Drives Me</h3>
                             <p class="about__text">
-                                I'm motivated by the challenge of solving complex infrastructure problems and the
-                                satisfaction of
-                                seeing systems run smoothly at scale. Whether it's optimizing cloud costs,
-                                improving deployment reliability, or implementing security best practices, I approach
-                                each project
-                                with enthusiasm and attention to detail.
-                            </p>
-                            <p class="about__text">
-                                When I'm not working on infrastructure, you'll find me exploring new cloud technologies,
-                                contributing to
-                                open-source DevOps tools, or sharing knowledge with the technical community.
+                                Solving complex infrastructure problems and seeing systems run smoothly at scale. 
+                                Whether it's optimizing cloud costs, improving deployment reliability, or implementing 
+                                security best practices — I approach each project with enthusiasm and attention to detail.
                             </p>
                         </div>
                     </div>
 
                     <div class="about__highlights">
-                        <div class="about__highlight">
+                        <div class="about__highlight glass-card">
                             <div class="about__highlight-icon" aria-hidden="true">🚀</div>
                             <h4 class="about__highlight-title">Automation Expert</h4>
-                            <p class="about__highlight-text">
-                                I build fully automated CI/CD pipelines and infrastructure as code solutions that
-                                enable teams to deploy with confidence and speed.
-                            </p>
+                            <p class="about__highlight-text">CI/CD pipelines & IaC solutions for fast, confident deployments.</p>
                         </div>
-                        <div class="about__highlight">
+                        <div class="about__highlight glass-card">
                             <div class="about__highlight-icon" aria-hidden="true">🔒</div>
                             <h4 class="about__highlight-title">Security Focused</h4>
-                            <p class="about__highlight-text">
-                                I implement security best practices at every layer of the infrastructure stack,
-                                ensuring robust protection for your systems and data.
-                            </p>
+                            <p class="about__highlight-text">Best practices at every layer — IAM, encryption, compliance.</p>
                         </div>
-                        <div class="about__highlight">
+                        <div class="about__highlight glass-card">
                             <div class="about__highlight-icon" aria-hidden="true">🔧</div>
                             <h4 class="about__highlight-title">Problem Solver</h4>
-                            <p class="about__highlight-text">
-                                I thrive on tackling complex infrastructure challenges and finding elegant solutions
-                                that
-                                scale efficiently and reliably.
-                            </p>
+                            <p class="about__highlight-text">Complex infrastructure challenges → elegant, scalable solutions.</p>
                         </div>
                     </div>
 
@@ -914,7 +805,7 @@
 
 
         <!-- Skills Section -->
-        <section class="skills">
+        <section class="skills" id="skills">
             <div class="container">
                 <h2 class="section__title">Skills & Technologies</h2>
                 <div class="skills__grid" id="skills-container">
@@ -1135,11 +1026,12 @@
     <script src="assets/js/accessibility.js" onerror="console.log('Accessibility script failed')"></script>
     <script src="assets/js/error-handling.js" onerror="console.log('Error handling script failed')"></script>
     <script src="assets/js/performance.js" onerror="console.log('Performance script failed')"></script>
+    <script src="assets/js/theme-switcher.js" onerror="console.log('Theme switcher script failed')"></script>
+    <script src="assets/js/scroll-animator.js" onerror="console.log('Scroll animator script failed')"></script>
     <script src="assets/js/main.js" onerror="console.log('Main script failed')"></script>
     <script src="assets/js/skills.js" onerror="console.log('Skills script failed')"></script>
     <script src="assets/js/images.js" onerror="console.log('Images script failed')"></script>
     <script src="assets/js/seo.js" onerror="console.log('SEO script failed')"></script>
-    <script src="assets/js/homepage-blog.js" onerror="console.log('Homepage blog script failed')"></script>
 
     <!-- Final error suppression safety net -->
     <script>

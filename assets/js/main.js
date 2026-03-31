@@ -5,6 +5,21 @@
 
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize theme switcher
+    if (typeof ThemeSwitcher !== 'undefined') {
+        const themeSwitcher = new ThemeSwitcher('.theme-toggle');
+        themeSwitcher.init();
+    }
+
+    // Initialize scroll animations via ScrollAnimator
+    if (typeof ScrollAnimator !== 'undefined') {
+        const scrollAnimator = new ScrollAnimator();
+        scrollAnimator.observe('.animate-on-scroll');
+        scrollAnimator.observe('.glass-card');
+        scrollAnimator.observe('.section__title');
+        scrollAnimator.observe('.hero__stat');
+    }
+
     // Initialize all components
     initNavigation();
     initLastUpdated();
@@ -37,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /**
  * Navigation functionality
- * Handles mobile menu toggle and active states
+ * Handles mobile menu toggle, active states, and keyboard accessibility
  */
 function initNavigation() {
     const navToggle = document.querySelector('.nav__toggle');
@@ -45,6 +60,10 @@ function initNavigation() {
     const navLinks = document.querySelectorAll('.nav__link');
     
     if (!navToggle || !navMenu) return;
+    
+    // Ensure aria-expanded is synchronized with initial menu state
+    const isInitiallyOpen = navMenu.classList.contains('nav__menu--open');
+    navToggle.setAttribute('aria-expanded', String(isInitiallyOpen));
     
     // Mobile menu toggle
     navToggle.addEventListener('click', function() {
@@ -82,11 +101,38 @@ function initNavigation() {
         }
     });
     
-    // Keyboard navigation for mobile menu
+    // Keyboard navigation for mobile menu toggle
     navToggle.addEventListener('keydown', function(event) {
         if (event.key === 'Enter' || event.key === ' ') {
             event.preventDefault();
             navToggle.click();
+        }
+    });
+    
+    // Focus trapping within mobile menu when open
+    navMenu.addEventListener('keydown', function(event) {
+        if (!navMenu.classList.contains('nav__menu--open')) return;
+        
+        const focusableItems = navMenu.querySelectorAll('.nav__link, a[href], button:not([disabled])');
+        if (focusableItems.length === 0) return;
+        
+        const firstItem = focusableItems[0];
+        const lastItem = focusableItems[focusableItems.length - 1];
+        
+        if (event.key === 'Tab') {
+            if (event.shiftKey) {
+                // Shift+Tab on first item: wrap to toggle button
+                if (document.activeElement === firstItem) {
+                    event.preventDefault();
+                    navToggle.focus();
+                }
+            } else {
+                // Tab on last item: wrap to toggle button
+                if (document.activeElement === lastItem) {
+                    event.preventDefault();
+                    navToggle.focus();
+                }
+            }
         }
     });
     
@@ -96,11 +142,14 @@ function initNavigation() {
 
 /**
  * Open mobile navigation menu
+ * Sets aria-expanded, animates hamburger, and moves focus to first menu item
  */
 function openNavMenu() {
     const navToggle = document.querySelector('.nav__toggle');
     const navMenu = document.querySelector('.nav__menu');
     const hamburger = document.querySelector('.nav__hamburger');
+    
+    if (!navToggle || !navMenu) return;
     
     navMenu.classList.add('nav__menu--open');
     navToggle.setAttribute('aria-expanded', 'true');
@@ -112,7 +161,7 @@ function openNavMenu() {
         hamburger.style.backgroundColor = 'transparent';
     }
     
-    // Focus first menu item for accessibility
+    // Move focus to first menu item for accessibility (Req 5.6)
     const firstLink = navMenu.querySelector('.nav__link');
     if (firstLink) {
         setTimeout(() => firstLink.focus(), 100);
@@ -121,11 +170,14 @@ function openNavMenu() {
 
 /**
  * Close mobile navigation menu
+ * Sets aria-expanded to false and resets hamburger animation
  */
 function closeNavMenu() {
     const navToggle = document.querySelector('.nav__toggle');
     const navMenu = document.querySelector('.nav__menu');
     const hamburger = document.querySelector('.nav__hamburger');
+    
+    if (!navToggle || !navMenu) return;
     
     navMenu.classList.remove('nav__menu--open');
     navToggle.setAttribute('aria-expanded', 'false');
@@ -250,15 +302,18 @@ function initFocusManagement() {
 
 /**
  * Initialize keyboard navigation helpers
+ * Handles Escape key to close mobile menu and return focus to toggle (Req 5.5, 8.2)
  */
 function initKeyboardNavigation() {
-    // Handle escape key to close mobile menu
     document.addEventListener('keydown', function(event) {
         if (event.key === 'Escape') {
             const navMenu = document.querySelector('.nav__menu');
+            const navToggle = document.querySelector('.nav__toggle');
             if (navMenu && navMenu.classList.contains('nav__menu--open')) {
                 closeNavMenu();
-                document.querySelector('.nav__toggle').focus();
+                if (navToggle) {
+                    navToggle.focus();
+                }
             }
         }
     });

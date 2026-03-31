@@ -35,8 +35,17 @@
     <meta name="twitter:image:alt" content="Dineshraj Dhanapathy's Cloud and DevOps Engineer Portfolio">
     <meta name="twitter:creator" content="@DD_Dineshraj">
     
+    <!-- Inline Theme Initialization (prevents flash of wrong theme) -->
+    <script>(function(){try{var t=localStorage.getItem('portfolio-theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t)}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches){document.documentElement.setAttribute('data-theme','dark')}}catch(e){}})();</script>
+
+    <!-- Google Fonts (Inter) with font-display: swap for resilience -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <!-- Stylesheets -->
     <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/design-tokens.css">
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/accessibility.css">
     
@@ -151,16 +160,20 @@
                     <a href="contact.html" class="nav__link" role="menuitem">Contact</a>
                 </li>
             </ul>
+            <button class="theme-toggle" aria-label="Toggle dark mode">
+                <span class="theme-toggle__icon theme-toggle__icon--light">☀️</span>
+                <span class="theme-toggle__icon theme-toggle__icon--dark">🌙</span>
+            </button>
         </nav>
     </header>
 
     <!-- Main Content -->
     <main class="main" id="main-content">
         <!-- Projects Header -->
-        <section class="page-header">
+        <section class="page-header page-header--gradient">
             <div class="container">
-                <h1 class="page-header__title">My Projects</h1>
-                <p class="page-header__description">
+                <h1 class="page-header__title animate-on-scroll">My Projects</h1>
+                <p class="page-header__description animate-on-scroll">
                     A collection of my recent work showcasing various technologies and problem-solving approaches.
                 </p>
             </div>
@@ -213,7 +226,7 @@
                         </div>
                         
                         <div class="projects__static-grid">
-                            <article class="project-card">
+                            <article class="project-card glass-card glass-card--hoverable animate-on-scroll">
                                 <div class="project__content">
                                     <h3 class="project__title">KodeKloud DevOps Projects</h3>
                                     <p class="project__description">Collection of hands-on DevOps projects covering CI/CD pipelines, container orchestration, infrastructure as code, and automation.</p>
@@ -229,7 +242,7 @@
                                 </div>
                             </article>
                             
-                            <article class="project-card">
+                            <article class="project-card glass-card glass-card--hoverable animate-on-scroll">
                                 <div class="project__content">
                                     <h3 class="project__title">Three-Tier Architecture with CloudFront</h3>
                                     <p class="project__description">Scalable serverless website architecture built with AWS CloudFront, S3, and API Gateway for high-performance content delivery.</p>
@@ -245,7 +258,7 @@
                                 </div>
                             </article>
                             
-                            <article class="project-card">
+                            <article class="project-card glass-card glass-card--hoverable animate-on-scroll">
                                 <div class="project__content">
                                     <h3 class="project__title">Kubernetes Platform</h3>
                                     <p class="project__description">Comprehensive Kubernetes implementation with container orchestration, service discovery, and automated scaling.</p>
@@ -261,7 +274,7 @@
                                 </div>
                             </article>
                             
-                            <article class="project-card">
+                            <article class="project-card glass-card glass-card--hoverable animate-on-scroll">
                                 <div class="project__content">
                                     <h3 class="project__title">DevOps CI/CD Pipeline Series</h3>
                                     <p class="project__description">End-to-end CI/CD pipeline implementation with various DevOps tools for automated testing, building, and deployment.</p>
@@ -404,6 +417,8 @@
     <script src="assets/js/accessibility.js"></script>
     <script src="assets/js/error-handling.js"></script>
     <script src="assets/js/performance.js"></script>
+    <script src="assets/js/theme-switcher.js"></script>
+    <script src="assets/js/scroll-animator.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/projects.js"></script>
     <script src="assets/js/images.js"></script>

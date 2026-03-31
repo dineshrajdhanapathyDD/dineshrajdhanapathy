@@ -40,8 +40,17 @@
     <meta name="twitter:image:alt" content="Contact Dineshraj Dhanapathy - Full Stack Developer">
     <meta name="twitter:creator" content="@DD_Dineshraj">
 
+    <!-- Inline Theme Initialization (prevents flash of wrong theme) -->
+    <script>(function(){try{var t=localStorage.getItem('portfolio-theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t)}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches){document.documentElement.setAttribute('data-theme','dark')}}catch(e){}})();</script>
+
+    <!-- Google Fonts (Inter) with font-display: swap for resilience -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <!-- Stylesheets -->
     <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/design-tokens.css">
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/accessibility.css">
 
@@ -144,27 +153,31 @@
                         aria-current="page">Contact</a>
                 </li>
             </ul>
+            <button class="theme-toggle" aria-label="Toggle dark mode">
+                <span class="theme-toggle__icon theme-toggle__icon--light">☀️</span>
+                <span class="theme-toggle__icon theme-toggle__icon--dark">🌙</span>
+            </button>
         </nav>
     </header>
 
     <!-- Main Content -->
     <main class="main" id="main-content">
         <!-- Contact Header -->
-        <section class="page-header">
+        <section class="page-header page-header--gradient">
             <div class="container">
-                <h1 class="page-header__title">Get In Touch</h1>
-                <p class="page-header__description">
+                <h1 class="page-header__title animate-on-scroll">Get In Touch</h1>
+                <p class="page-header__description animate-on-scroll">
                     I'm always interested in new opportunities and collaborations. Let's connect!
                 </p>
             </div>
         </section>
 
         <!-- Contact Content -->
-        <section class="contact">
+        <section class="contact animate-on-scroll">
             <div class="container">
                 <div class="contact__grid">
                     <!-- Contact Form -->
-                    <div class="contact__form-section">
+                    <div class="contact__form-section glass-card">
                         <h2 class="contact__section-title">Send a Message</h2>
                         <form class="contact-form" id="contact-form" action="https://formspree.io/f/xpwlpyyv"
                             method="POST">
@@ -208,7 +221,7 @@
                                 <span class="btn__text">Send Message</span>
                                 <span class="btn__loading" style="display: none;">Sending...</span>
                             </button>
-                            <p class="form__note" style="margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <p class="form__note" style="margin-top: 10px; font-size: 0.9em; color: var(--text-muted);">
                                 <em>Note: Your message will be sent securely via Formspree and delivered directly to my
                                     inbox.</em>
                             </p>
@@ -255,7 +268,7 @@
 
                         <div class="contact__info">
                             <!-- Primary Contact -->
-                            <div class="contact__item contact__item--primary">
+                            <div class="contact__item contact__item--primary glass-card animate-on-scroll">
                                 <div class="contact__item-icon" aria-hidden="true">📧</div>
                                 <div class="contact__item-content">
                                     <h3 class="contact__item-title">Email</h3>
@@ -270,7 +283,7 @@
                             </div>
 
                             <!-- Professional Networks -->
-                            <div class="contact__item">
+                            <div class="contact__item glass-card animate-on-scroll">
                                 <div class="contact__item-icon" aria-hidden="true">💼</div>
                                 <div class="contact__item-content">
                                     <h3 class="contact__item-title">Professional Networks</h3>
@@ -304,7 +317,7 @@
                             </div>
 
                             <!-- Additional Contact Methods -->
-                            <div class="contact__item">
+                            <div class="contact__item glass-card animate-on-scroll">
                                 <div class="contact__item-icon" aria-hidden="true">🌐</div>
                                 <div class="contact__item-content">
                                     <h3 class="contact__item-title">Other Platforms</h3>
@@ -336,7 +349,7 @@
                             </div>
 
                             <!-- Availability & Response -->
-                            <div class="contact__item contact__item--info">
+                            <div class="contact__item contact__item--info glass-card animate-on-scroll">
                                 <div class="contact__item-icon" aria-hidden="true">⏰</div>
                                 <div class="contact__item-content">
                                     <h3 class="contact__item-title">Availability</h3>
@@ -370,7 +383,7 @@
                             </div>
 
                             <!-- Collaboration Preferences -->
-                            <div class="contact__item contact__item--collaboration">
+                            <div class="contact__item contact__item--collaboration glass-card animate-on-scroll">
                                 <div class="contact__item-icon" aria-hidden="true">🤝</div>
                                 <div class="contact__item-content">
                                     <h3 class="contact__item-title">Let's Collaborate</h3>
@@ -518,6 +531,8 @@
     <script src="assets/js/accessibility.js"></script>
     <script src="assets/js/error-handling.js"></script>
     <script src="assets/js/performance.js"></script>
+    <script src="assets/js/theme-switcher.js"></script>
+    <script src="assets/js/scroll-animator.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/contact.js"></script>
     <script src="assets/js/images.js"></script>

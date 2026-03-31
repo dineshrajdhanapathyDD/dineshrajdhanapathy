@@ -5,30 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Primary Meta Tags -->
-    <title>404 - Page Not Found | Alex Johnson Portfolio</title>
-    <meta name="title" content="404 - Page Not Found | Alex Johnson Portfolio">
-    <meta name="description" content="The page you're looking for doesn't exist. Return to Alex Johnson's portfolio to explore web development projects and professional information.">
+    <title>404 - Page Not Found | Dineshraj Dhanapathy Portfolio</title>
+    <meta name="title" content="404 - Page Not Found | Dineshraj Dhanapathy Portfolio">
+    <meta name="description" content="The page you're looking for doesn't exist. Return to Dineshraj Dhanapathy's portfolio to explore cloud and DevOps projects.">
     <meta name="robots" content="noindex, nofollow">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="404 - Page Not Found | Alex Johnson Portfolio">
-    <meta property="og:description" content="The page you're looking for doesn't exist. Return to Alex Johnson's portfolio to explore web development projects and professional information.">
-    <meta property="og:site_name" content="Alex Johnson Portfolio">
+    <meta property="og:title" content="404 - Page Not Found | Dineshraj Dhanapathy Portfolio">
+    <meta property="og:description" content="The page you're looking for doesn't exist. Return to Dineshraj Dhanapathy's portfolio to explore cloud and DevOps projects.">
+    <meta property="og:site_name" content="Dineshraj Dhanapathy Portfolio">
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="404 - Page Not Found | Alex Johnson Portfolio">
-    <meta name="twitter:description" content="The page you're looking for doesn't exist. Return to Alex Johnson's portfolio to explore web development projects and professional information.">
+    <meta name="twitter:title" content="404 - Page Not Found | Dineshraj Dhanapathy Portfolio">
+    <meta name="twitter:description" content="The page you're looking for doesn't exist. Return to Dineshraj Dhanapathy's portfolio to explore cloud and DevOps projects.">
     
+    <!-- Inline Theme Initialization (prevents flash of wrong theme) -->
+    <script>(function(){try{var t=localStorage.getItem('portfolio-theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t)}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches){document.documentElement.setAttribute('data-theme','dark')}}catch(e){}})();</script>
+
+    <!-- Google Fonts (Inter) with font-display: swap for resilience -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <!-- Stylesheets -->
     <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/design-tokens.css">
     <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/accessibility.css">
 </head>
 <body>
+    <!-- Skip Links for Accessibility -->
+    <div class="skip-links">
+        <a href="#main-content" class="skip-link">Skip to main content</a>
+        <a href="#navigation" class="skip-link">Skip to navigation</a>
+        <a href="#footer" class="skip-link">Skip to footer</a>
+    </div>
+
     <!-- Header Component -->
     <header class="header" role="banner">
-        <nav class="nav" role="navigation" aria-label="Main navigation">
+        <nav class="nav" role="navigation" aria-label="Main navigation" id="navigation">
             <div class="nav__brand">
                 <a href="index.html" class="nav__logo" aria-label="Portfolio home">Portfolio</a>
             </div>
@@ -51,6 +68,10 @@
                     <a href="contact.html" class="nav__link" role="menuitem">Contact</a>
                 </li>
             </ul>
+            <button class="theme-toggle" aria-label="Toggle dark mode">
+                <span class="theme-toggle__icon theme-toggle__icon--light">☀️</span>
+                <span class="theme-toggle__icon theme-toggle__icon--dark">🌙</span>
+            </button>
         </nav>
     </header>
 
@@ -58,7 +79,7 @@
     <main class="main" id="main-content">
         <section class="error-page">
             <div class="container">
-                <div class="error-page__content">
+                <div class="error-page__content glass-card animate-on-scroll">
                     <div class="error-page__icon" aria-hidden="true">🔍</div>
                     <h1 class="error-page__title">404</h1>
                     <h2 class="error-page__subtitle">Page Not Found</h2>
@@ -68,7 +89,7 @@
                     </p>
                     
                     <!-- Search Suggestions -->
-                    <div class="error-page__suggestions">
+                    <div class="error-page__suggestions animate-on-scroll">
                         <h3 class="error-page__suggestions-title">Looking for something specific?</h3>
                         <div class="error-page__search">
                             <input 
@@ -86,7 +107,7 @@
                     </div>
                     
                     <!-- Popular Pages -->
-                    <div class="error-page__popular">
+                    <div class="error-page__popular animate-on-scroll">
                         <h3 class="error-page__popular-title">Popular Pages</h3>
                         <div class="error-page__links">
                             <a href="index.html" class="error-page__link">
@@ -108,7 +129,7 @@
                     </div>
                     
                     <!-- Main Actions -->
-                    <div class="error-page__actions">
+                    <div class="error-page__actions animate-on-scroll">
                         <a href="index.html" class="btn btn--primary">
                             <span class="btn__text">Go Home</span>
                             <span class="btn__icon" aria-hidden="true">🏠</span>
@@ -120,7 +141,7 @@
                     </div>
                     
                     <!-- Help Text -->
-                    <div class="error-page__help">
+                    <div class="error-page__help animate-on-scroll">
                         <p class="error-page__help-text">
                             If you believe this is an error, please 
                             <a href="contact.html" class="error-page__help-link">contact me</a> 
@@ -133,17 +154,18 @@
     </main>
 
     <!-- Footer Component -->
-    <footer class="footer" role="contentinfo">
+    <footer class="footer" role="contentinfo" id="footer">
         <div class="container">
             <div class="footer__content">
                 <!-- Footer Main Content -->
                 <div class="footer__main">
                     <!-- Brand Section -->
                     <div class="footer__brand">
-                        <h3 class="footer__brand-title">Alex Johnson</h3>
-                        <p class="footer__brand-tagline">Full Stack Developer</p>
+                        <h3 class="footer__brand-title">Dineshraj Dhanapathy</h3>
+                        <p class="footer__brand-tagline">Cloud and DevOps Engineer</p>
                         <p class="footer__brand-description">
-                            Crafting digital experiences with modern web technologies and user-centered design.
+                            I architect scalable cloud infrastructure that combines reliability with automation.
+                            Specializing in AWS, Kubernetes, and DevOps practices.
                         </p>
                     </div>
                     
@@ -164,15 +186,15 @@
                     <div class="footer__section">
                         <h4 class="footer__section-title">Connect</h4>
                         <div class="footer__social">
-                            <a href="https://linkedin.com/in/alexjohnson-dev" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+                            <a href="https://www.linkedin.com/in/dineshraj-dhanapathy-25490058/" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
                                 <span class="footer__social-icon">💼</span>
                                 <span class="footer__social-text">LinkedIn</span>
                             </a>
-                            <a href="https://github.com/alexjohnson-dev" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+                            <a href="https://github.com/dineshrajdhanapathyDD" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
                                 <span class="footer__social-icon">🔗</span>
                                 <span class="footer__social-text">GitHub</span>
                             </a>
-                            <a href="mailto:alex.johnson@example.com" class="footer__social-link" aria-label="Email Contact">
+                            <a href="mailto:dineshrajdhanapathy@mail.com" class="footer__social-link" aria-label="Email Contact">
                                 <span class="footer__social-icon">📧</span>
                                 <span class="footer__social-text">Email</span>
                             </a>
@@ -206,7 +228,7 @@
                 <div class="footer__bottom">
                     <div class="footer__bottom-left">
                         <p class="footer__copyright">
-                            &copy; 2025 Alex Johnson. All rights reserved.
+                            &copy; 2025 Dineshraj Dhanapathy. All rights reserved.
                         </p>
                         <p class="footer__updated">
                             Last updated: <span id="last-updated">January 2025</span>
@@ -242,6 +264,8 @@
 
     <!-- Scripts -->
     <script src="assets/js/error-handling.js"></script>
+    <script src="assets/js/theme-switcher.js"></script>
+    <script src="assets/js/scroll-animator.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/images.js"></script>
     <script src="assets/js/404.js"></script>

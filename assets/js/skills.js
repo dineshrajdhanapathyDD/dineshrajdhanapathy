@@ -3,62 +3,66 @@
  * Manages the display of technical skills with visual representations
  */
 
-// Skills data structure
+// Skills data structure - Cloud themed categories
 const skillsData = {
-    devops: {
-        title: "DevOps & Cloud",
+    cloud: {
+        title: "Cloud & AWS",
         icon: "☁️",
+        color: "#667eea",
         skills: [
-            { name: "AWS", level: 85, recent: false },
-            { name: "Kubernetes", level: 80, recent: false },
-            { name: "Docker", level: 88, recent: false },
-            { name: "Terraform", level: 75, recent: true },
-            { name: "Jenkins", level: 82, recent: false },
-            { name: "GitHub Actions", level: 78, recent: true },
-            { name: "Ansible", level: 70, recent: true },
-            { name: "CloudFormation", level: 75, recent: false }
+            { name: "AWS", level: 85 },
+            { name: "EC2", level: 82 },
+            { name: "Lambda", level: 80 },
+            { name: "S3", level: 88 },
+            { name: "ECS/EKS", level: 78 },
+            { name: "CloudFormation", level: 75 },
+            { name: "API Gateway", level: 80 },
+            { name: "DynamoDB", level: 76 },
+            { name: "CloudFront", level: 74 },
+            { name: "IAM", level: 82 },
+            { name: "Amazon Bedrock", level: 72 }
         ]
     },
-    qa: {
+    devops: {
+        title: "DevOps & IaC",
+        icon: "🚀",
+        color: "#764ba2",
+        skills: [
+            { name: "Docker", level: 88 },
+            { name: "Kubernetes", level: 80 },
+            { name: "Terraform", level: 75 },
+            { name: "Jenkins", level: 82 },
+            { name: "GitHub Actions", level: 78 },
+            { name: "Ansible", level: 70 },
+            { name: "CI/CD Pipelines", level: 85 },
+            { name: "Prometheus", level: 72 },
+            { name: "Grafana", level: 70 }
+        ]
+    },
+    languages: {
+        title: "Languages & Tools",
+        icon: "💻",
+        color: "#f093fb",
+        skills: [
+            { name: "Python", level: 80 },
+            { name: "Bash", level: 75 },
+            { name: "Git", level: 90 },
+            { name: "Linux", level: 85 },
+            { name: "REST APIs", level: 80 },
+            { name: "HTML/CSS/JS", level: 78 }
+        ]
+    },
+    testing: {
         title: "QA & Testing",
         icon: "🧪",
+        color: "#f5576c",
         skills: [
-            { name: "Selenium", level: 80, recent: false },
-            { name: "JUnit", level: 75, recent: false },
-            { name: "TestNG", level: 78, recent: false },
-            { name: "Postman", level: 85, recent: false },
-            { name: "SonarQube", level: 72, recent: true },
-            { name: "JMeter", level: 70, recent: true },
-            { name: "Cucumber", level: 68, recent: true },
-            { name: "Test Automation", level: 82, recent: false }
-        ]
-    },
-    tools: {
-        title: "Tools & Technologies",
-        icon: "🛠️",
-        skills: [
-            { name: "Git & GitHub", level: 90, recent: false },
-            { name: "Python", level: 80, recent: false },
-            { name: "Bash Scripting", level: 75, recent: false },
-            { name: "Linux", level: 85, recent: false },
-            { name: "Prometheus", level: 72, recent: true },
-            { name: "Grafana", level: 70, recent: true },
-            { name: "ELK Stack", level: 68, recent: true },
-            { name: "REST APIs", level: 80, recent: false }
-        ]
-    },
-    soft: {
-        title: "Soft Skills",
-        icon: "🤝",
-        skills: [
-            { name: "Problem Solving", level: 92, recent: false },
-            { name: "Team Collaboration", level: 88, recent: false },
-            { name: "Communication", level: 85, recent: false },
-            { name: "Project Management", level: 78, recent: true },
-            { name: "Mentoring", level: 75, recent: true },
-            { name: "Agile/Scrum", level: 80, recent: false },
-            { name: "Code Review", level: 85, recent: false },
-            { name: "Technical Writing", level: 70, recent: true }
+            { name: "Selenium", level: 80 },
+            { name: "Cypress", level: 75 },
+            { name: "Playwright", level: 72 },
+            { name: "Postman", level: 85 },
+            { name: "TestNG", level: 78 },
+            { name: "Maven", level: 74 }
         ]
     }
 };
@@ -75,7 +79,7 @@ function initSkills() {
 }
 
 /**
- * Render all skill categories
+ * Render all skill categories as cloud-themed cards
  */
 function renderSkills(container) {
     container.innerHTML = '';
@@ -87,20 +91,21 @@ function renderSkills(container) {
 }
 
 /**
- * Create a skill category element
+ * Create a skill category element - cloud card style
  */
 function createSkillCategory(categoryKey, category) {
     const categoryDiv = document.createElement('div');
-    categoryDiv.className = 'skills__category';
+    categoryDiv.className = 'skills__category glass-card';
     categoryDiv.setAttribute('data-category', categoryKey);
+    categoryDiv.style.setProperty('--category-color', category.color);
     
     categoryDiv.innerHTML = `
         <div class="skills__category-header">
             <span class="skills__category-icon" aria-hidden="true">${category.icon}</span>
             <h3 class="skills__category-title">${category.title}</h3>
         </div>
-        <div class="skills__list">
-            ${category.skills.map(skill => createSkillItem(skill)).join('')}
+        <div class="skills__cloud">
+            ${category.skills.map(skill => createSkillTag(skill, category.color)).join('')}
         </div>
     `;
     
@@ -108,22 +113,16 @@ function createSkillCategory(categoryKey, category) {
 }
 
 /**
- * Create individual skill item HTML
+ * Create individual skill tag - cloud bubble style
  */
-function createSkillItem(skill) {
-    const recentBadge = skill.recent ? '<span class="skill__badge skill__badge--recent" aria-label="Recently learned">New</span>' : '';
+function createSkillTag(skill, color) {
+    // Size based on level: higher level = larger tag
+    const sizeClass = skill.level >= 85 ? 'skill-tag--lg' : skill.level >= 75 ? 'skill-tag--md' : 'skill-tag--sm';
     
     return `
-        <div class="skill__item" data-skill="${skill.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}">
-            <div class="skill__header">
-                <span class="skill__name">${skill.name}</span>
-                ${recentBadge}
-                <span class="skill__level-text" aria-label="Skill level">${skill.level}%</span>
-            </div>
-            <div class="skill__progress" role="progressbar" aria-valuenow="${skill.level}" aria-valuemin="0" aria-valuemax="100" aria-label="${skill.name} skill level: ${skill.level}%">
-                <div class="skill__progress-bar" style="--skill-level: ${skill.level}%"></div>
-            </div>
-        </div>
+        <span class="skill-tag ${sizeClass}" style="--tag-color: ${color}" title="${skill.name} — ${skill.level}%">
+            ${skill.name}
+        </span>
     `;
 }
 

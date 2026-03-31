@@ -6,8 +6,55 @@ permalink: /offline.html
 sitemap: false
 ---
 
+<!-- Inline Theme Initialization (prevents flash of wrong theme) -->
+<script>(function(){try{var t=localStorage.getItem('portfolio-theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t)}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches){document.documentElement.setAttribute('data-theme','dark')}}catch(e){}})();</script>
+
+<link rel="stylesheet" href="assets/css/reset.css">
+<link rel="stylesheet" href="assets/css/design-tokens.css">
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/accessibility.css">
+
+<!-- Skip Links for Accessibility -->
+<div class="skip-links">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#navigation" class="skip-link">Skip to navigation</a>
+    <a href="#footer" class="skip-link">Skip to footer</a>
+</div>
+
+<header class="header" role="banner">
+    <nav class="nav" role="navigation" aria-label="Main navigation" id="navigation">
+        <div class="nav__brand">
+            <a href="index.html" class="nav__logo" aria-label="Portfolio home">Portfolio</a>
+        </div>
+        <button 
+            class="nav__toggle" 
+            aria-label="Toggle navigation menu"
+            aria-expanded="false"
+            aria-controls="nav-menu"
+        >
+            <span class="nav__hamburger"></span>
+        </button>
+        <ul class="nav__menu" id="nav-menu" role="menubar">
+            <li class="nav__item" role="none">
+                <a href="index.html" class="nav__link" role="menuitem">Home</a>
+            </li>
+            <li class="nav__item" role="none">
+                <a href="projects.html" class="nav__link" role="menuitem">Projects</a>
+            </li>
+            <li class="nav__item" role="none">
+                <a href="contact.html" class="nav__link" role="menuitem">Contact</a>
+            </li>
+        </ul>
+        <button class="theme-toggle" aria-label="Toggle dark mode">
+            <span class="theme-toggle__icon theme-toggle__icon--light">☀️</span>
+            <span class="theme-toggle__icon theme-toggle__icon--dark">🌙</span>
+        </button>
+    </nav>
+</header>
+
+<main class="main" id="main-content">
 <div class="offline-page">
-    <div class="offline-page__content">
+    <div class="offline-page__content glass-card animate-on-scroll">
         <div class="offline-page__icon">
             📡
         </div>
@@ -18,7 +65,7 @@ sitemap: false
             It looks like you're not connected to the internet. Don't worry, you can still browse some cached content.
         </p>
 
-        <div class="offline-page__actions">
+        <div class="offline-page__actions animate-on-scroll">
             <button class="btn btn--primary" onclick="location.reload()">
                 Try Again
             </button>
@@ -27,7 +74,7 @@ sitemap: false
             </a>
         </div>
 
-        <div class="offline-page__tips">
+        <div class="offline-page__tips glass-card animate-on-scroll">
             <h2>While you're offline, you can:</h2>
             <ul>
                 <li>Read recently viewed blog posts</li>
@@ -37,6 +84,13 @@ sitemap: false
         </div>
     </div>
 </div>
+</main>
+
+<footer class="footer" role="contentinfo" id="footer">
+    <div class="container">
+        <p class="footer__copyright">&copy; 2025 Dineshraj Dhanapathy. All rights reserved.</p>
+    </div>
+</footer>
 
 <style>
     .offline-page {
@@ -44,7 +98,7 @@ sitemap: false
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 2rem;
+        padding: var(--space-8);
         text-align: center;
     }
 
@@ -55,43 +109,40 @@ sitemap: false
 
     .offline-page__icon {
         font-size: 4rem;
-        margin-bottom: 2rem;
+        margin-bottom: var(--space-8);
         opacity: 0.7;
     }
 
     .offline-page__title {
         font-size: 2.5rem;
         font-weight: 700;
-        margin-bottom: 1rem;
-        color: #333;
+        margin-bottom: var(--space-4);
+        color: var(--text-primary);
     }
 
     .offline-page__description {
         font-size: 1.1rem;
-        color: #666;
+        color: var(--text-secondary);
         line-height: 1.6;
-        margin-bottom: 2rem;
+        margin-bottom: var(--space-8);
     }
 
     .offline-page__actions {
         display: flex;
-        gap: 1rem;
+        gap: var(--space-4);
         justify-content: center;
         flex-wrap: wrap;
-        margin-bottom: 3rem;
+        margin-bottom: var(--space-12);
     }
 
     .offline-page__tips {
-        background: #f8f9fa;
-        border-radius: 1rem;
-        padding: 2rem;
         text-align: left;
     }
 
     .offline-page__tips h2 {
         font-size: 1.2rem;
-        margin-bottom: 1rem;
-        color: #333;
+        margin-bottom: var(--space-4);
+        color: var(--text-primary);
     }
 
     .offline-page__tips ul {
@@ -100,9 +151,10 @@ sitemap: false
     }
 
     .offline-page__tips li {
-        padding: 0.5rem 0;
+        padding: var(--space-2) 0;
         position: relative;
-        padding-left: 2rem;
+        padding-left: var(--space-8);
+        color: var(--text-secondary);
     }
 
     .offline-page__tips li::before {
@@ -123,11 +175,15 @@ sitemap: false
         }
 
         .offline-page__tips {
-            padding: 1.5rem;
+            padding: var(--space-6);
             text-align: center;
         }
     }
 </style>
+
+<script src="assets/js/theme-switcher.js"></script>
+<script src="assets/js/scroll-animator.js"></script>
+<script src="assets/js/main.js"></script>
 
 <script>
     // Check online status
@@ -144,11 +200,11 @@ sitemap: false
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            background: #d4edda;
-            color: #155724;
+            background: var(--surface-secondary);
+            color: var(--text-primary);
             padding: 1rem 2rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
             z-index: 1000;
         `;
 
