@@ -612,3 +612,154 @@
 .hero__social-link svg {
   flex-shrink: 0;
 }
+
+
+/* ==========================================================================
+   Certifications Section — Scrolling Carousel
+   ========================================================================== */
+
+.certifications {
+  padding: var(--space-16) 0;
+  overflow: hidden;
+}
+
+.certifications__grid {
+  margin-top: var(--space-8);
+}
+
+.cert-scroll {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+
+.cert-scroll__track {
+  display: flex;
+  gap: var(--space-4);
+  width: max-content;
+  animation: cert-scroll 30s linear infinite;
+}
+
+@keyframes cert-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.cert-card {
+  flex-shrink: 0;
+  width: 240px;
+  padding: var(--space-6);
+  text-align: center;
+  cursor: default;
+  transition: transform var(--duration-normal) var(--ease-out-expo),
+              box-shadow var(--duration-normal) var(--ease-out-expo);
+}
+
+.cert-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: var(--shadow-xl);
+}
+
+.cert-card__icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-3);
+}
+
+.cert-card__name {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+  line-height: 1.4;
+}
+
+.cert-card__issuer {
+  font-size: var(--font-size-xs, 0.75rem);
+  color: var(--text-muted);
+  margin-bottom: var(--space-2);
+}
+
+.cert-card__date {
+  display: inline-block;
+  font-size: var(--font-size-xs, 0.75rem);
+  font-weight: 500;
+  color: #667eea;
+  background: rgba(102, 126, 234, 0.1);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+}
+
+[data-theme="dark"] .cert-card__date {
+  background: rgba(102, 126, 234, 0.2);
+}
+
+.certifications__empty {
+  text-align: center;
+  color: var(--text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cert-scroll__track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: auto;
+  }
+  
+  .cert-scroll {
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+}
+
+
+/* AWS Community Builder badge link */
+a.aws-community-builder__badge {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  transition: transform var(--duration-normal) var(--ease-out-expo),
+              box-shadow var(--duration-normal) var(--ease-out-expo);
+}
+
+a.aws-community-builder__badge:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+a.aws-community-builder__badge * {
+  pointer-events: none;
+}
+
+
+/* Nav CV Download Button */
+.nav__cv-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  background: var(--gradient-primary);
+  color: var(--text-inverse);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform var(--duration-fast) var(--ease-out-expo),
+              box-shadow var(--duration-fast) var(--ease-out-expo);
+}
+
+.nav__cv-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  color: var(--text-inverse);
+}
+
+@media (max-width: 639px) {
+  .nav__cv-btn {
+    display: none;
+  }
+}

@@ -285,6 +285,9 @@
                     <a href="contact.html" class="nav__link" role="menuitem">Contact</a>
                 </li>
             </ul>
+            <a href="assets/documents/DD.pdf" class="nav__cv-btn" download="Dineshraj_Dhanapathy_CV.pdf" aria-label="Download CV">
+                📄 CV
+            </a>
             <button class="theme-toggle" aria-label="Toggle dark mode">
                 <span class="theme-toggle__icon theme-toggle__icon--light">☀️</span>
                 <span class="theme-toggle__icon theme-toggle__icon--dark">🌙</span>
@@ -462,7 +465,7 @@
         <section class="aws-community-builder" aria-labelledby="aws-community-title">
             <div class="container">
                 <div class="aws-community-builder__content">
-                    <div class="aws-community-builder__badge">
+                    <a href="https://builder.aws.com/community/@dd1?tab=badges" class="aws-community-builder__badge" target="_blank" rel="noopener noreferrer" aria-label="View AWS Community Builder badges">
                         <div class="aws-community-builder__logo">
                             <img src="assets/images/aws-community-builder-logo.svg" alt="AWS Community Builder"
                                 class="aws-logo" onerror="handleImageError(this)" loading="lazy">
@@ -474,7 +477,7 @@
                             <h2 id="aws-community-title" class="aws-community-builder__title">AWS Community Builder</h2>
                             <p class="aws-community-builder__subtitle">Recognized by Amazon Web Services</p>
                         </div>
-                    </div>
+                    </a>
 
                     <div class="aws-community-builder__details">
                         <div class="aws-community-builder__description">
@@ -901,6 +904,16 @@
             </div>
         </section>
 
+        <!-- Certifications Section -->
+        <section class="certifications" id="certifications">
+            <div class="container">
+                <h2 class="section__title">Certifications</h2>
+                <div class="certifications__grid" id="certifications-grid">
+                    <!-- Certifications loaded by JS -->
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- Footer Component -->
@@ -1030,32 +1043,17 @@
     <script src="assets/js/scroll-animator.js" onerror="console.log('Scroll animator script failed')"></script>
     <script src="assets/js/main.js" onerror="console.log('Main script failed')"></script>
     <script src="assets/js/skills.js" onerror="console.log('Skills script failed')"></script>
+    <script src="assets/js/certifications.js" onerror="console.log('Certifications script failed')"></script>
     <script src="assets/js/images.js" onerror="console.log('Images script failed')"></script>
     <script src="assets/js/seo.js" onerror="console.log('SEO script failed')"></script>
 
-    <!-- Final error suppression safety net -->
-    <script>
-        // Final safety net to catch any remaining errors
-        setTimeout(function () {
-            // Override any alert/confirm dialogs that might show errors
-            window.alert = function (msg) {
-                console.log('Suppressed alert:', msg);
-                return true;
-            };
-            window.confirm = function (msg) {
-                console.log('Suppressed confirm:', msg);
-                return true;
-            };
-
-            // Ensure all error handlers are in place
-            window.onerror = function () { return true; };
-            window.addEventListener('error', function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                return false;
-            }, true);
-        }, 100);
-    </script>
+    <!-- Theme transition style -->
+    <style>
+        html.theme-transitioning,
+        html.theme-transitioning * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+        }
+    </style>
 </body>
 
 </html>

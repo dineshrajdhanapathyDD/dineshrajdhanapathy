@@ -82,7 +82,14 @@ class ThemeSwitcher {
    * @param {Theme} theme
    */
   applyTheme(theme) {
+    // Add transition class for smooth theme change
+    document.documentElement.classList.add('theme-transitioning');
     document.documentElement.setAttribute('data-theme', theme);
+
+    // Remove transition class after animation
+    setTimeout(function() {
+      document.documentElement.classList.remove('theme-transitioning');
+    }, 300);
 
     // Persist to localStorage or fall back to memory
     if (this._storageAvailable) {
@@ -157,7 +164,9 @@ class ThemeSwitcher {
    */
   _bindToggle() {
     if (!this.toggleButton) return;
-    this.toggleButton.addEventListener('click', () => this.toggle());
+    this.toggleButton.addEventListener('click', () => {
+      this.toggle();
+    });
   }
 
   /**
